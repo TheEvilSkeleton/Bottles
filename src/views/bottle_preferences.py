@@ -23,7 +23,7 @@ from gi.repository import Gtk, Adw
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.gtk import GtkUtils
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available, vkbasalt_available, mangohud_available, obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
@@ -33,6 +33,7 @@ from bottles.dialogs.envvars import EnvVarsDialog
 from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
+from bottles.dialogs.vkbasalt import vkBasaltDialog
 
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
@@ -47,6 +48,7 @@ class PreferencesView(Adw.PreferencesPage):
     # region Widgets
     btn_manage_components = Gtk.Template.Child()
     btn_manage_gamescope = Gtk.Template.Child()
+    btn_manage_vkbasalt = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     row_dxvk = Gtk.Template.Child()
@@ -130,6 +132,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.row_drives.connect("activated", self.__show_drives)
         self.btn_manage_components.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
+        self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
@@ -180,6 +183,7 @@ class PreferencesView(Adw.PreferencesPage):
         '''Toggle some utilities according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
+        self.switch_vkbasalt.set_sensitive(vkbasalt_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         _not_available = _("This feature is not available on your system.")
@@ -187,6 +191,8 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_gamemode.set_tooltip_text(_not_available)
         if not gamescope_available:
             self.switch_gamescope.set_tooltip_text(_not_available)
+        if not vkbasalt_available:
+            self.switch_vkbasalt.set_tooltip_text(_not_available)
         if not mangohud_available:
             self.switch_mangohud.set_tooltip_text(_not_available)
         if not obs_vkc_available:
@@ -428,6 +434,13 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_gamescope_settings(self, widget):
         new_window = GamescopeDialog(
+            window=self.window,
+            config=self.config
+        )
+        new_window.present()
+
+    def __show_vkbasalt_settings(self, widget):
+        new_window = vkBasaltDialog(
             window=self.window,
             config=self.config
         )

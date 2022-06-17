@@ -94,6 +94,7 @@ class TrdyPaths:
 # Check if some tools are available
 gamemode_available = shutil.which("gamemoderun") or False
 gamescope_available = shutil.which("gamescope") or False
+vkbasalt_available = shutil.which("vkbasalt-cli") or False
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 

@@ -9,7 +9,7 @@ from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
+from bottles.backend.globals import Paths, gamemode_available, gamescope_available, vkbasalt_available, mangohud_available, \
     obs_vkc_available
 from bottles.backend.logger import Logger
 
@@ -405,6 +405,9 @@ class WineCommand:
             if gamescope_available and params.get("gamescope"):
                 command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
 
+            if vkbasalt_available and params.get("vkbasalt-cli"):
+                command = f"{self.__get_vkbasalt_cmd(return_vkbasalt_cmd)}  -- {command}"
+
             if mangohud_available and params.get("mangohud"):
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
@@ -478,6 +481,14 @@ class WineCommand:
                 gamescope_cmd.append(f"-H {params['gamescope_window_height']}")
 
         return " ".join(gamescope_cmd)
+
+    def __get_vkbasalt_cmd(self, return_vkbasalt_cmd: bool = False) -> str:
+        config = self.config
+        params = config["Parameters"]
+        vkbasalt_cmd = []
+
+        if vkbasalt_available and params["vkbasalt-cli"]:
+            vkbasalt_cmd = [vkbasalt_available]
 
     def run(self):
         if None in [self.runner, self.env]:

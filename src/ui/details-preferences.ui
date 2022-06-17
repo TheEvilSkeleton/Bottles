@@ -144,6 +144,16 @@
                                 <property name="valign">center</property>
                             </object>
                         </child>
+                        <child>
+                            <object class="GtkButton" id="btn_manage_vkbasalt">
+                                <property name="tooltip-text" translatable="yes">Manage vkBasalt settings</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">applications-system-symbolic</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
+                            </object>
+                        </child>
                     </object>
                 </child>
                 <child>
