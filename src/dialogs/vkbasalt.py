@@ -73,18 +73,6 @@ class vkBasaltDialog(Adw.Window):
         self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
 
         parameters = config["Parameters"]
-        self.arg_w.set_text(str(parameters["vkbasalt_game_width"]))
-        self.arg_h.set_text(str(parameters["vkbasalt_game_height"]))
-        self.arg_W.set_text(str(parameters["vkbasalt_window_width"]))
-        self.arg_H.set_text(str(parameters["vkbasalt_window_height"]))
-        self.arg_fps.set_text(str(parameters["vkbasalt_fps"]))
-        self.arg_fps_no_focus.set_text(str(parameters["vkbasalt_fps_no_focus"]))
-        self.switch_scaling.set_state(parameters["vkbasalt_scaling"])
-        self.toggle_borderless.set_active(parameters["vkbasalt_borderless"])
-        self.toggle_fullscreen.set_active(parameters["vkbasalt_fullscreen"])
-
-        self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
-        self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
     def __idle_save(self, *args):
         settings = {"vkbasalt_game_width": int(self.arg_w.get_text()),
