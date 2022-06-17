@@ -100,3 +100,4 @@ class vkBasaltDialog(Adw.Window):
 
     def __close_window(self, *args):
         self.destroy()
+

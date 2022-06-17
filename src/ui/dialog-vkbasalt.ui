@@ -31,35 +31,50 @@
                     <object class="AdwPreferencesPage">
                         <child>
                             <object class="AdwPreferencesGroup">
-                                <property name="description" translatable="yes">Configure vkBasalt.</property>
+                                <property name="description" translatable="yes">Configure vkBasalt settings.</property>
                             </object>
                         </child>
                         <child>
                             <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Game resolution</property>
+                                <property name="title" translatable="yes">Filters</property>
                                 <child>
-                                    <object class="AdwEntryRow" id="arg_w">
-                                      <property name="title" translatable="yes">Width (e.g. 1280)</property>
+                                    <object class="AdwActionRow" id="cas">
+                                        <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
+                                        <child>
+                                            <object class="GtkSwitch">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwEntryRow" id="arg_h">
-                                      <property name="title" translatable="yes">Height (e.g. 720)</property>
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">vkBasalt resolution</property>
-                                <child>
-                                    <object class="AdwEntryRow" id="arg_W">
-                                      <property name="title" translatable="yes">Width (e.g. 1280)</property>
+                                    <object class="AdwActionRow" id="dls">
+                                        <property name="title" translatable="yes">Denoised Luma Sharpening</property>
+                                        <child>
+                                            <object class="GtkSwitch">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwEntryRow" id="arg_H">
-                                      <property name="title" translatable="yes">Height (e.g. 720)</property>
+                                    <object class="AdwActionRow" id="fxaa">
+                                        <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
+                                        <child>
+                                            <object class="GtkSwitch">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwActionRow" id="smaa">
+                                        <property name="title" translatable="yes">Enhanced Subpixel Morphological Antialiasing</property>
+                                        <child>
+                                            <object class="GtkSwitch">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
                                     </object>
                                 </child>
                             </object>
@@ -67,26 +82,6 @@
                         <child>
                             <object class="AdwPreferencesGroup">
                                 <property name="title" translatable="yes">Extra settings</property>
-                                <child>
-                                    <object class="AdwEntryRow" id="arg_fps">
-                                      <property name="title" translatable="yes">Frame rate limit (e.g. 60)</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="AdwEntryRow" id="arg_fps_no_focus">
-                                      <property name="title" translatable="yes">Frame rate limit (when unfocused)</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Use integer scaling</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="switch_scaling">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
                                 <child>
                                     <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Window type</property>
