@@ -50,10 +50,7 @@ class vkBasaltDialog(Adw.Window):
         # connect signals
         self.btn_save.connect("clicked", self.__save)
         self.btn_cancel.connect("clicked", self.__close_window)
-        self.toggle_borderless.connect("toggled", self.__change_wtype, "b")
-        self.toggle_fullscreen.connect("toggled", self.__change_wtype, "f")
 
-        self.__update(config)
 
     def __change_wtype(self, widget, wtype):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
@@ -100,4 +97,5 @@ class vkBasaltDialog(Adw.Window):
 
     def __close_window(self, *args):
         self.destroy()
+
 

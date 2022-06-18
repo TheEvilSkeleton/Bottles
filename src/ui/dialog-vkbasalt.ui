@@ -79,36 +79,6 @@
                                 </child>
                             </object>
                         </child>
-                        <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Extra settings</property>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Window type</property>
-                                        <child>
-                                            <object class="GtkBox">
-                                                <child>
-                                                    <object class="GtkToggleButton" id="toggle_borderless">
-                                                        <property name="label" translatable="yes">Borderless</property>
-                                                        <property name="active">True</property>
-                                                        <property name="valign">center</property>
-                                                    </object>
-                                                </child>
-                                                <child>
-                                                    <object class="GtkToggleButton" id="toggle_fullscreen">
-                                                        <property name="label" translatable="yes">Fullscreen</property>
-                                                        <property name="valign">center</property>
-                                                    </object>
-                                                </child>
-                                                <style>
-                                                    <class name="linked"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
                     </object>
                 </child>
             </object>
