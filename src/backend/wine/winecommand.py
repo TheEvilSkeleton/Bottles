@@ -231,6 +231,8 @@ class WineCommand:
 
         # vkBasalt environment variables
         if params["vkbasalt"] and not self.minimal:
+            if os.path.isfile(os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf")):
+                env.add("VKBASALT_CONFIG_FILE", os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf"))
             env.add("ENABLE_VKBASALT", "1")
 
         # OBS Vulkan Capture environment variables
@@ -404,9 +406,6 @@ class WineCommand:
 
             if gamescope_available and params.get("gamescope"):
                 command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
-
-            if vkbasalt_available and params.get("vkbasalt-cli"):
-                command = f"{self.__get_vkbasalt_cmd(return_vkbasalt_cmd)}  -- {command}"
 
             if mangohud_available and params.get("mangohud"):
                 if not return_steam_cmd:

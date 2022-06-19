@@ -1,6 +1,6 @@
 # vkbasalt.py
 #
-# Copyright 2022 Bottles
+# Copyright 2022 Hari Rana <theevilskeleton@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
+import os
 from gi.repository import Gtk, GLib, Adw
 from bottles.backend.utils.vkbasalt import parse
+from bottles.backend.utils.manager import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-vkbasalt.ui')
@@ -25,22 +27,27 @@ class vkBasaltDialog(Adw.Window):
     __gtype_name__ = 'vkBasaltDialog'
 
     # region Widgets
-    effects = Gtk.Template.Child()
-    disable_on_launch = Gtk.Template.Child()
-    toggle_key = Gtk.Template.Child()
-    cas_sharpness = Gtk.Template.Child()
-    dls_sharpness = Gtk.Template.Child()
-    dls_denoise = Gtk.Template.Child()
-    fxaa_subpixel_quality = Gtk.Template.Child()
-    fxaa_edge_quality_threshold = Gtk.Template.Child()
-    fxaa_quality_edge_threshold_min = Gtk.Template.Child()
-    smaa_edge_detection = Gtk.Template.Child()
-    smaa_threshold = Gtk.Template.Child()
-    smaa_max_search_steps = Gtk.Template.Child()
-    smaa_max_search_steps_diagonal = Gtk.Template.Child()
-    smaa_corner_rounding = Gtk.Template.Child()
+    default = Gtk.Template.Child()
+    cas = Gtk.Template.Child()
+    dls = Gtk.Template.Child()
+    fxaa = Gtk.Template.Child()
+    smaa = Gtk.Template.Child()
+
+    # disable_on_launch = Gtk.Template.Child()
+    # toggle_key = Gtk.Template.Child()
+    # cas_sharpness = Gtk.Template.Child()
+    # dls_sharpness = Gtk.Template.Child()
+    # dls_denoise = Gtk.Template.Child()
+    # fxaa_subpixel_quality = Gtk.Template.Child()
+    # fxaa_edge_quality_threshold = Gtk.Template.Child()
+    # fxaa_quality_edge_threshold_min = Gtk.Template.Child()
+    # smaa_edge_detection = Gtk.Template.Child()
+    # smaa_threshold = Gtk.Template.Child()
+    # smaa_max_search_steps = Gtk.Template.Child()
+    # smaa_max_search_steps_diagonal = Gtk.Template.Child()
+    # smaa_corner_rounding = Gtk.Template.Child()
     # lut_file_path = Gtk.Template.Child()
-    output = Gtk.Template.Child()
+    # output = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
 
@@ -63,28 +70,24 @@ class vkBasaltDialog(Adw.Window):
     def __update(self, config):
 
         parameters = config["Parameters"]
+        self.default.set_text(str(parameters["default"]))
+        # self.cas.set_state(parameters["cas"])
 
     def __idle_save(self, *args):
-        settings = {
-            "effects": effects,
-            "disable_on_launch": disable_on_launch,
-            "toggle_key": toggle_key,
-            "cas_sharpness": cas_sharpness,
-            "dls_sharpness": dls_sharpness,
-            "dls_denoise": dls_denoise,
-            "fxaa_subpixel_quality": fxaa_subpixel_quality,
-            "fxaa_edge_quality_threshold": fxaa_edge_quality_threshold,
-            "fxaa_quality_edge_threshold_min": fxaa_quality_edge_threshold_min,
-            "smaa_edge_detection": smaa_edge_detection,
-            "smaa_threshold": smaa_threshold,
-            "smaa_max_search_steps": smaa_max_search_steps,
-            "smaa_max_search_steps_diagonal": smaa_max_search_steps_diagonal,
-            "smaa_corner_rounding": smaa_corner_rounding,
-            # "lut_file_path": lut_file_path,
-            "output": output
-        }
-        # parse(settings)
 
+        class settings:
+            default = False
+            output = "" # ADD CURRENT PATH
+            exec = False
+
+        if self.default.get_state() is True:
+            settings.default = True
+
+
+        #     "default": default,
+        #     "output": os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf")
+        # }
+        parse(settings)
         self.destroy()
 
     def __save(self, *args):

@@ -36,42 +36,57 @@
                         </child>
                         <child>
                             <object class="AdwPreferencesGroup">
+                                <property name="title" translatable="yes">Default</property>
+                                <child>
+                                  <object class="AdwActionRow">
+                                      <property name="title" translatable="yes">Use Default Settings</property>
+                                      <child>
+                                          <object class="GtkSwitch" id="default">
+                                              <property name="valign">center</property>
+                                          </object>
+                                      </child>
+                                  </object>
+                                </child>
+                            </object>
+                          </child>
+                          <child>
+                            <object class="AdwPreferencesGroup">
                                 <property name="title" translatable="yes">Filters</property>
                                 <child>
-                                    <object class="AdwActionRow" id="cas">
+                                    <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
                                         <child>
-                                            <object class="GtkSwitch">
+                                            <object class="GtkSwitch" id="cas">
                                                 <property name="valign">center</property>
                                             </object>
                                         </child>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwActionRow" id="dls">
+                                    <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Denoised Luma Sharpening</property>
                                         <child>
-                                            <object class="GtkSwitch">
+                                            <object class="GtkSwitch" id="dls">
                                                 <property name="valign">center</property>
                                             </object>
                                         </child>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwActionRow" id="fxaa">
+                                    <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
                                         <child>
-                                            <object class="GtkSwitch">
+                                            <object class="GtkSwitch" id="fxaa">
                                                 <property name="valign">center</property>
                                             </object>
                                         </child>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwActionRow" id="smaa">
+                                    <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Enhanced Subpixel Morphological Antialiasing</property>
                                         <child>
-                                            <object class="GtkSwitch">
+                                            <object class="GtkSwitch" id="smaa">
                                                 <property name="valign">center</property>
                                             </object>
                                         </child>
