@@ -75,18 +75,19 @@ class vkBasaltDialog(Adw.Window):
 
     def __idle_save(self, *args):
 
+        config = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
+
         class settings:
             default = False
-            output = "" # ADD CURRENT PATH
+            output = config
             exec = False
 
         if self.default.get_state() is True:
+            settings.output = False
             settings.default = True
+            if os.path.isfile(config):
+                os.remove(config)
 
-
-        #     "default": default,
-        #     "output": os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf")
-        # }
         parse(settings)
         self.destroy()
 

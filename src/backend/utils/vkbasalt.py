@@ -35,7 +35,7 @@ def parse(args):
                     environ["ENABLE_VKBASALT"] = "1"
                     environ["VKBASALT_CONFIG_FILE"] = f"{install_paths[i]}/vkBasalt.conf"
                     system(f"{args.exec}")
-                exit(0)
+                return
             else:
                 exit(1)
 
