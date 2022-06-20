@@ -71,7 +71,6 @@ class vkBasaltDialog(Adw.Window):
 
         parameters = config["Parameters"]
         self.default.set_text(str(parameters["default"]))
-        # self.cas.set_state(parameters["cas"])
 
     def __idle_save(self, *args):
 
@@ -79,14 +78,48 @@ class vkBasaltDialog(Adw.Window):
 
         class settings:
             default = False
-            output = config
+            effects = False
+            output = False
+            disable_on_launch = False
+            toggle_key = False
+            cas_sharpness = False
+            dls_sharpness = False
+            dls_denoise = False
+            fxaa_subpixel_quality = False
+            fxaa_edge_quality_threshold = False
+            fxaa_quality_edge_threshold_min = False
+            smaa_edge_detection = False
+            smaa_threshold = False
+            smaa_max_search_steps = False
+            smaa_max_search_steps_diagonal = False
+            smaa_corner_rounding = False
+            lut_file_path = False
             exec = False
 
         if self.default.get_state() is True:
-            settings.output = False
             settings.default = True
             if os.path.isfile(config):
                 os.remove(config)
+
+        # if self.cas.get_state() is True or self.dls.get_state() is True or self.fxaa.get_state() is True or self.smaa.get_state() is True:
+
+        # effects = []
+
+        # if self.cas.get_state() is True:
+        #     effects.append("cas")
+
+        # if self.dls.get_state() is True:
+        #     effects.append("dls")
+
+        # if self.fxaa.get_state() is True:
+        #     effects.append("fxaa")
+
+        # if self.smaa.get_state() is True:
+        #     effects.append("smaa")
+
+        # settings.effects = tuple(effects)
+
+        # settings.output = config
 
         parse(settings)
         self.destroy()
