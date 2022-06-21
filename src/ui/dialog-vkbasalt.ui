@@ -1,165 +1,500 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.10.2 -->
 <interface>
-    <requires lib="gtk" version="4.0"/>
-    <requires lib="libadwaita" version="1.0"/>
-    <template class="vkBasaltDialog" parent="AdwWindow">
-        <property name="modal">True</property>
-        <property name="deletable">False</property>
-        <property name="default-width">550</property>
-        <property name="title" translatable="yes">vkBasalt Settings</property>
+  <!-- interface-name dialog-vkbasalt.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="vkBasaltDialog" parent="AdwWindow">
+    <property name="default-width">550</property>
+    <property name="default-height">720</property>
+    <property name="deletable">False</property>
+    <property name="modal">True</property>
+    <property name="title" translatable="yes">vkBasalt Settings</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <child>
-            <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                    <object class="AdwHeaderBar">
-                        <child type="start">
-                            <object class="GtkButton" id="btn_cancel">
-                                <property name="label" translatable="yes">Cancel</property>
-                            </object>
-                        </child>
-                        <child type="end">
-                            <object class="GtkButton" id="btn_save">
-                                <property name="label" translatable="yes">Save</property>
-                                <style>
-                                    <class name="suggested-action"/>
-                                </style>
-                            </object>
-                        </child>
-                    </object>
-                </child>
-                <child>
-                    <object class="AdwPreferencesPage">
-                        <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="description" translatable="yes">Configure vkBasalt settings.</property>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Default</property>
-                                <child>
-                                  <object class="AdwActionRow">
-                                      <property name="title" translatable="yes">Use Default Settings</property>
-                                      <child>
-                                          <object class="GtkSwitch" id="default">
-                                              <property name="valign">center</property>
-                                          </object>
-                                      </child>
-                                  </object>
-                                </child>
-                            </object>
-                          </child>
-                          <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Filters</property>
-                                <property name="description" translatable="yes">Filters are applied according to the list order.</property>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="cas">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Denoised Luma Sharpening</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="dls">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="fxaa">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Enhanced Subpixel Morphological Antialiasing</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="smaa">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Launch</property>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Disable On Launch</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="disable_on_launch">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Sharpness</property>
-                                <property name="description" translatable="yes">Adjust sharpness of filters.</property>
-                                <child>
-                                    <object class="AdwPreferencesRow">
-                                    <child>
-                                      <object class="GtkBox">
-                                          <property name="margin-start">12</property>
-                                          <property name="margin-end">12</property>
-                                          <property name="margin-top">12</property>
-                                          <property name="margin-bottom">12</property>
-                                          <property name="spacing">6</property>
-                                          <property name="orientation">vertical</property>
-
-                                          <child>
-                                              <object class="GtkLabel" id="title">
-                                                  <property name="label" translatable="yes">Contrast Adaptive Sharpening Sharpness</property>
-                                                  <property name="ellipsize">none</property>
-                                                  <property name="lines">0</property>
-                                                  <property name="xalign">0.0</property>
-                                                  <property name="mnemonic_widget">cas_sharpness</property>
-                                              </object>
-                                          </child>
-
-                                          <child>
-                                              <object class="GtkScale" id="cas_sharpness">
-                                                  <property name="hexpand">True</property>
-                                                  <property name="width-request">280</property>
-                                                  <property name="inverted">True</property>
-                                                  <property name="restrict_to_fill_level">False</property>
-                                                  <property name="fill_level">1</property>
-                                                  <property name="digits">0</property>
-                                                  <property name="draw_value">False</property>
-                                                  <property name="has_origin">False</property>
-                                                  <property name="value_pos">bottom</property>
-                                              </object>
-                                          </child>
-
-                                        </object>
-                                    </child>
-
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
-                    </object>
-                </child>
-            </object>
+          <object class="AdwHeaderBar">
+            <child type="start">
+              <object class="GtkButton" id="btn_cancel">
+                <property name="label" translatable="yes">Cancel</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="btn_save">
+                <property name="label" translatable="yes">Save</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
         </child>
-    </template>
+        <child>
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="description" translatable="yes">Configure vkBasalt settings.</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Default</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Use Default Settings</property>
+                    <child>
+                      <object class="GtkSwitch" id="default">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="description" translatable="yes">Layers are applied according to the list order.</property>
+                <property name="title">Layers</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
+                    <child>
+                      <object class="GtkSwitch" id="cas">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Denoised Luma Sharpening</property>
+                    <child>
+                      <object class="GtkSwitch" id="dls">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
+                    <child>
+                      <object class="GtkSwitch" id="fxaa">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Subpixel Morphological Anti-Aliasing</property>
+                    <child>
+                      <object class="GtkSwitch" id="smaa">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title">Configure Layers</property>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Contrast Adaptive Sharpening Sharpness</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="cas_sharpness">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Denoised Luma Sharpening Sharpness</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="dls_sharpness">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Denoised Luma Sharpening Denoise</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="dls_denoise">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Fast Approximate Anti-Aliasing Subpixel Quality</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="fxaa_subpixel_quality">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Fast Approximate Anti-Aliasing Quality Edge Threshold</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="fxaa_quality_edge_threshold">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Fast Approximate Anti-Aliasing Quality Edge Threshold Minimum</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="fxaa_quality_edge_threshold_min">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Edge Detection</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="smaa_edge_detection">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Threshold</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="smaa_threshold">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Max Search Steps</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="smaa_max_search_steps">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Max Search Steps Diagonal</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="smaa_max_search_steps_diagonal">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="ellipsize">none</property>
+                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Max Corner Rounding</property>
+                            <property name="xalign">0.0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScale" id="smaa_corner_rounding">
+                            <property name="digits">0</property>
+                            <property name="draw-value">False</property>
+                            <property name="fill-level">1</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="inverted">True</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">280</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title">Miscellaneous</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Disable On Launch</property>
+                    <child>
+                      <object class="GtkSwitch" id="disable_on_launch">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
 </interface>
-

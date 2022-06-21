@@ -30,10 +30,10 @@ def parse(args):
         for i in range(len(install_paths)):
             if path.exists(f"{install_paths[i]}/vkBasalt.conf"):
                 if args.output:
-                    copyfile(f"{install_paths[i]}/vkBasalt.conf", f"{args.output}/vkBasalt.conf")
+                    copyfile(os.path.join(install_paths[i], "vkBasalt.conf"), os.path.join(args.output, "vkBasalt.conf"))
                 if args.exec:
                     environ["ENABLE_VKBASALT"] = "1"
-                    environ["VKBASALT_CONFIG_FILE"] = f"{install_paths[i]}/vkBasalt.conf"
+                    environ["VKBASALT_CONFIG_FILE"] = os.path.join(install_paths[i], "vkBasalt.conf")
                     system(f"{args.exec}")
                 return
             else:
@@ -90,9 +90,9 @@ def parse(args):
                 exit(1)
 
         # --fxaa-edge-quality-threshold
-        if args.fxaa_edge_quality_threshold:
-            if 0 <= args.fxaa_edge_quality_threshold <= 1:
-                file.append(f"fxaaQualityEdgeThreshold = {args.fxaa_edge_quality_threshold}\n")
+        if args.fxaa_quality_edge_threshold:
+            if 0 <= args.fxaa_quality_edge_threshold <= 1:
+                file.append(f"fxaaQualityEdgeThreshold = {args.fxaa_quality_edge_threshold}\n")
             else:
                 print("Error: FXAA edge quality threshold must be above 0 and below 1")
                 exit(1)
@@ -167,7 +167,7 @@ def parse(args):
         if args.exec:
             environ["ENABLE_VKBASALT"] = "1"
             if args.output:
-                environ["VKBASALT_CONFIG_FILE"] = f"{args.output}/vkBasalt.conf"
+                environ["VKBASALT_CONFIG_FILE"] = os.path.join(args.output, "vkBasalt.conf")
             else:
                 environ["VKBASALT_CONFIG_FILE"] = tmp_dir
             system(f"{args.exec}")

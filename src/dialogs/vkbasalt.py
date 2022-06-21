@@ -39,7 +39,7 @@ class vkBasaltDialog(Adw.Window):
     # dls_sharpness = Gtk.Template.Child()
     # dls_denoise = Gtk.Template.Child()
     # fxaa_subpixel_quality = Gtk.Template.Child()
-    # fxaa_edge_quality_threshold = Gtk.Template.Child()
+    # fxaa_quality_edge_threshold = Gtk.Template.Child()
     # fxaa_quality_edge_threshold_min = Gtk.Template.Child()
     # smaa_edge_detection = Gtk.Template.Child()
     # smaa_threshold = Gtk.Template.Child()
@@ -86,7 +86,7 @@ class vkBasaltDialog(Adw.Window):
             dls_sharpness = False
             dls_denoise = False
             fxaa_subpixel_quality = False
-            fxaa_edge_quality_threshold = False
+            fxaa_quality_edge_threshold = False
             fxaa_quality_edge_threshold_min = False
             smaa_edge_detection = False
             smaa_threshold = False
