@@ -101,6 +101,7 @@
             <child>
               <object class="AdwPreferencesGroup">
                 <property name="title">Configure Layers</property>
+                <property name="description">Configure properties of layers.</property>
                 <child>
                   <object class="AdwPreferencesRow">
                     <child>
@@ -125,6 +126,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">-1</property>
+                                <property name="upper">1</property>
+                                <property name="value">0.4</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -159,6 +167,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">1</property>
+                                <property name="value">0.5</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -193,6 +208,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">1</property>
+                                <property name="value">0.17</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -227,6 +249,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">1</property>
+                                <property name="value">0.75</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -261,6 +290,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">0.5</property>
+                                <property name="value">0.125</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -295,6 +331,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">0.1</property>
+                                <property name="value">0.0312</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -329,6 +372,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">0.5</property>
+                                <property name="value">0.05</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -363,6 +413,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">0.5</property>
+                                <property name="value">0.05</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -397,6 +454,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">112</property>
+                                <property name="value">32</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -431,6 +495,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">20</property>
+                                <property name="value">16</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>
@@ -465,6 +536,13 @@
                             <property name="fill-level">1</property>
                             <property name="has-origin">False</property>
                             <property name="hexpand">True</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">0</property>
+                                <property name="upper">100</property>
+                                <property name="value">25</property>
+                              </object>
+                            </property>
                             <property name="inverted">True</property>
                             <property name="restrict-to-fill-level">False</property>
                             <property name="value-pos">bottom</property>

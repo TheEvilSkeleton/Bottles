@@ -28,12 +28,12 @@ def parse(args):
             "/usr/share/vkBasalt"
         ]
         for i in range(len(install_paths)):
-            if path.exists(f"{install_paths[i]}/vkBasalt.conf"):
+            if path.exists(path.join(install_paths[i], "vkBasalt.conf")):
                 if args.output:
-                    copyfile(os.path.join(install_paths[i], "vkBasalt.conf"), os.path.join(args.output, "vkBasalt.conf"))
+                    copyfile(path.join(install_paths[i], "vkBasalt.conf"), path.join(args.output, "vkBasalt.conf"))
                 if args.exec:
                     environ["ENABLE_VKBASALT"] = "1"
-                    environ["VKBASALT_CONFIG_FILE"] = os.path.join(install_paths[i], "vkBasalt.conf")
+                    environ["VKBASALT_CONFIG_FILE"] = path.join(install_paths[i], "vkBasalt.conf")
                     system(f"{args.exec}")
                 return
             else:
@@ -167,7 +167,7 @@ def parse(args):
         if args.exec:
             environ["ENABLE_VKBASALT"] = "1"
             if args.output:
-                environ["VKBASALT_CONFIG_FILE"] = os.path.join(args.output, "vkBasalt.conf")
+                environ["VKBASALT_CONFIG_FILE"] = path.join(args.output, "vkBasalt.conf")
             else:
                 environ["VKBASALT_CONFIG_FILE"] = tmp_dir
             system(f"{args.exec}")
