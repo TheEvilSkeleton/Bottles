@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
 import os
 from gi.repository import Gtk, GLib, Adw
 from bottles.backend.utils.vkbasalt import parse
@@ -74,7 +73,7 @@ class vkBasaltDialog(Adw.Window):
 
     def __idle_save(self, *args):
 
-        config = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
+        config = ManagerUtils.get_bottle_path(self.config)
 
         class settings:
             default = False
@@ -96,30 +95,31 @@ class vkBasaltDialog(Adw.Window):
             lut_file_path = False
             exec = False
 
+        # Applies default settings and closes dialog.
         if self.default.get_state() is True:
             settings.default = True
+            config = os.path.join(config, "vkBasalt.conf")
             if os.path.isfile(config):
                 os.remove(config)
+            parse(settings)
+            self.destroy()
+            return
 
-        # if self.cas.get_state() is True or self.dls.get_state() is True or self.fxaa.get_state() is True or self.smaa.get_state() is True:
+        # Checks filter settings.
+        if self.cas.get_state() is True or self.dls.get_state() is True or self.fxaa.get_state() is True or self.smaa.get_state() is True:
+            effects = []
+            if self.cas.get_state() is True:
+                effects.append("cas")
+            if self.dls.get_state() is True:
+                effects.append("dls")
+            if self.fxaa.get_state() is True:
+                effects.append("fxaa")
+            if self.smaa.get_state() is True:
+                effects.append("smaa")
 
-        # effects = []
+        settings.effects = tuple(effects)
 
-        # if self.cas.get_state() is True:
-        #     effects.append("cas")
-
-        # if self.dls.get_state() is True:
-        #     effects.append("dls")
-
-        # if self.fxaa.get_state() is True:
-        #     effects.append("fxaa")
-
-        # if self.smaa.get_state() is True:
-        #     effects.append("smaa")
-
-        # settings.effects = tuple(effects)
-
-        # settings.output = config
+        settings.output = config
 
         parse(settings)
         self.destroy()
