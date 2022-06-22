@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-15 15:02+0000\n"
+"PO-Revision-Date: 2022-06-22 13:29+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -1191,7 +1191,7 @@ msgstr "DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Bied DLSS-ondersteuning indien beschikbaar en Nvidia's NVAPI."
+msgstr "DLSS-ondersteuning en Nvidia's NVAPI inschakelen indien beschikbaar."
 
 #: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
 #: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
@@ -1252,7 +1252,8 @@ msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
-"vkBasalt is een Vulkan post processing laag die games er beter uit laat zien."
+"vkBasalt is een Vulkan-nabehandelingslaag welke de visuele graphics van "
+"games verbetert."
 
 #: src/ui/details-preferences.ui:151
 msgid "Display Settings"
@@ -1729,8 +1730,7 @@ msgid ""
 "running processes will behave on your bottle."
 msgstr ""
 "Omgevingsvariabelen zijn dynamisch benoemde waarden die invloed kunnen "
-"hebben op de manier waarop draaiende processen zich zullen gedragen op je "
-"bottle."
+"hebben op de manier waarop processen zich zullen gedragen in uw bottle."
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
@@ -1748,8 +1748,8 @@ msgstr "Gamescope Instellingen"
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
 msgstr ""
-"Configureer hoe Gamescope het venster moet beheren voor de spellen die je "
-"gaat draaien."
+"Configureer hoe Gamescope het venster moet beheren voor de spellen die u "
+"uitvoert."
 
 #: src/ui/dialog-gamescope.ui:39
 msgid "Game resolution"
@@ -1781,11 +1781,11 @@ msgstr "Framerate-limiet (zonder focus)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
-msgstr "Integer schalen gebruiken"
+msgstr "Schalen met geheel getal gebruiken"
 
 #: src/ui/dialog-gamescope.ui:92
 msgid "Window type"
-msgstr "Venster type"
+msgstr "Venstertype"
 
 #: src/ui/dialog-gamescope.ui:97
 msgid "Borderless"
@@ -2024,7 +2024,7 @@ msgstr ""
 
 #: src/ui/list-entry.ui:96
 msgid "Run .exe/.msi in this bottle"
-msgstr "Start .exe/.msi in deze bottle"
+msgstr ".exe/.msi in deze bottle uitvoeren"
 
 #: src/ui/list.ui:17
 msgid "Search your bottles…"

@@ -348,6 +348,10 @@ class Manager:
 
     def check_runtimes(self, install_latest: bool = True) -> bool:
         self.runtimes_available = []
+        if "FLATPAK_ID" in os.environ:
+            self.runtimes_available = ["flatpak-managed"]
+            return True
+
         runtimes = os.listdir(Paths.runtimes)
 
         if len(runtimes) == 0:
@@ -1098,8 +1102,9 @@ class Manager:
         if not template and not custom_environment:
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            rk.set_windows(config["Windows"])
-            wineboot.update()
+            if "caffe" not in runner_name.lower():  # Caffe came with win10 and doesn't need this
+                rk.set_windows(config["Windows"])
+                wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
 
@@ -1114,7 +1119,7 @@ class Manager:
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe"]
+            _blacklist_dll = ["winemenubuilder.exe", "mshtml", "mscoree"]  # avoid gecko, mono popups
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",

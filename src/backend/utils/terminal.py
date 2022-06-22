@@ -36,17 +36,22 @@ class TerminalUtils:
     }
 
     terminals = [
+        # Part of Flatpak package
         ['easyterm.py', '-d -p "%s" -c %s'],
+        # Third party
         ['foot', '%s'],
         ['kitty', '%s'],
+        ['tilix', '-- %s'],
+        # Desktop environments
         ['xfce4-terminal', '-e %s'],
-        ['xterm', '-e %s'],
         ['konsole', '--noclose -e %s'],
         ['gnome-terminal', '-- %s'],
+        ['kgx', '-e %s'],
         ['mate-terminal', '--command %s'],
-        ['tilix', '-- %s'],
         ['qterminal', '--execute %s'],
         ['lxterminal', '-e %s'],
+        # Fallback
+        ['xterm', '-e %s'],
     ]
 
     def __init__(self):
@@ -83,7 +88,7 @@ class TerminalUtils:
             command = ' '.join(self.terminal) % (colors, f'bash -c "{command}"')
             if "ENABLE_BASH" in os.environ:
                 command = ' '.join(self.terminal) % (colors, f"bash")
-        elif self.terminal[0] in ['xfce4-terminal']:
+        elif self.terminal[0] in ['kgx', 'xfce4-terminal']:
             command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
         elif self.terminal[0] in ['kitty', 'foot', 'konsole', 'gnome-terminal']:
             command = ' '.join(self.terminal) % "sh -c %s" % f'"{command}"'

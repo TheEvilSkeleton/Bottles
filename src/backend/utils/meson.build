@@ -17,7 +17,8 @@ bottles_sources = [
   'snake.py',
   'vdf.py',
   'imagemagick.py',
-  'vkbasalt.py'
+  'proc.py',
+  'vkbasalt.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)
