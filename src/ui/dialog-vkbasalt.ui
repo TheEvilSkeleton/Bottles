@@ -42,7 +42,7 @@
                 <child>
                   <object class="AdwActionRow">
                     <property name="activatable-widget">default</property>
-                    <property name="title" translatable="yes">Use Default Settings</property>
+                    <property name="title" translatable="yes">Default Settings</property>
                     <child>
                       <object class="GtkSwitch" id="default">
                         <property name="valign">center</property>
