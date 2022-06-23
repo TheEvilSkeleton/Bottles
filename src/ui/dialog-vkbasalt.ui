@@ -54,8 +54,8 @@
             </child>
             <child>
               <object class="AdwPreferencesGroup">
-                <property name="description" translatable="yes">Layers are applied according to the list order.</property>
-                <property name="title">Layers</property>
+                <property name="description" translatable="yes">Effects are applied according to the list order.</property>
+                <property name="title">Effects</property>
                 <child>
                   <object class="AdwExpanderRow" id="cas">
                     <property name="show_enable_switch">True</property>
