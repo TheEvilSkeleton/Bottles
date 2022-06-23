@@ -50,7 +50,7 @@
             <child>
               <object class="AdwPreferencesGroup">
                 <property name="description" translatable="yes">Effects are applied according to the list order.</property>
-                <property name="title">Effects</property>
+                <property name="title" translatable="yes">Effects</property>
                 <child>
                   <object class="AdwExpanderRow" id="cas">
                     <property name="show_enable_switch">True</property>
@@ -486,7 +486,7 @@
             </child>
             <child>
               <object class="AdwPreferencesGroup">
-                <property name="title">Miscellaneous</property>
+                <property name="title" translatable="yes">Miscellaneous</property>
                 <child>
                   <object class="AdwActionRow">
                     <property name="activatable-widget">disable_on_launch</property>
