@@ -96,11 +96,11 @@ class VkBasaltDialog(Adw.Window):
 
         # Applies default settings and closes dialog.
         if self.default.get_state() is True:
-            VkBasaltSettings.settings.default = True
+            VkBasaltSettings.default = True
             config = os.path.join(config, "vkBasalt.conf")
             if os.path.isfile(config):
                 os.remove(config)
-            parse(VkBasaltSettings.settings)
+            parse(VkBasaltSettings)
             self.destroy()
             return
 
@@ -116,11 +116,11 @@ class VkBasaltDialog(Adw.Window):
             if self.smaa.get_state() is True:
                 effects.append("smaa")
 
-        VkBasaltSettings.settings.effects = tuple(effects)
+        VkBasaltSettings.effects = tuple(effects)
 
-        VkBasaltSettings.settings.output = config
+        VkBasaltSettings.output = config
 
-        parse(VkBasaltSettings.settings)
+        parse(VkBasaltSettings)
         self.destroy()
 
     def __save(self, *args):
