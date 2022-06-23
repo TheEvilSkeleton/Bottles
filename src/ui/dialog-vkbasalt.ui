@@ -4,7 +4,7 @@
   <!-- interface-name dialog-vkbasalt.ui -->
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="vkBasaltDialog" parent="AdwWindow">
+  <template class="VkBasaltDialog" parent="AdwWindow">
     <property name="default-width">550</property>
     <property name="deletable">False</property>
     <property name="modal">True</property>

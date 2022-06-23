@@ -33,7 +33,7 @@ from bottles.dialogs.envvars import EnvVarsDialog
 from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
-from bottles.dialogs.vkbasalt import vkBasaltDialog
+from bottles.dialogs.vkbasalt import VkBasaltDialog
 
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
@@ -437,7 +437,7 @@ class PreferencesView(Adw.PreferencesPage):
         new_window.present()
 
     def __show_vkbasalt_settings(self, widget):
-        new_window = vkBasaltDialog(
+        new_window = VkBasaltDialog(
             window=self.window,
             config=self.config
         )

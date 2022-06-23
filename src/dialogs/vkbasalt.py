@@ -20,10 +20,29 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.backend.utils.vkbasalt import parse
 from bottles.backend.utils.manager import ManagerUtils
 
+class VkBasaltSettings:
+    default = False
+    effects = False
+    output = False
+    disable_on_launch = False
+    toggle_key = False
+    cas_sharpness = False
+    dls_sharpness = False
+    dls_denoise = False
+    fxaa_subpixel_quality = False
+    fxaa_quality_edge_threshold = False
+    fxaa_quality_edge_threshold_min = False
+    smaa_edge_detection = False
+    smaa_threshold = False
+    smaa_max_search_steps = False
+    smaa_max_search_steps_diagonal = False
+    smaa_corner_rounding = False
+    lut_file_path = False
+    exec = False
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-vkbasalt.ui')
-class vkBasaltDialog(Adw.Window):
-    __gtype_name__ = 'vkBasaltDialog'
+class VkBasaltDialog(Adw.Window):
+    __gtype_name__ = 'VkBasaltDialog'
 
     # region Widgets
     default = Gtk.Template.Child()
@@ -75,33 +94,13 @@ class vkBasaltDialog(Adw.Window):
 
         config = ManagerUtils.get_bottle_path(self.config)
 
-        class settings:
-            default = False
-            effects = False
-            output = False
-            disable_on_launch = False
-            toggle_key = False
-            cas_sharpness = False
-            dls_sharpness = False
-            dls_denoise = False
-            fxaa_subpixel_quality = False
-            fxaa_quality_edge_threshold = False
-            fxaa_quality_edge_threshold_min = False
-            smaa_edge_detection = False
-            smaa_threshold = False
-            smaa_max_search_steps = False
-            smaa_max_search_steps_diagonal = False
-            smaa_corner_rounding = False
-            lut_file_path = False
-            exec = False
-
         # Applies default settings and closes dialog.
         if self.default.get_state() is True:
-            settings.default = True
+            VkBasaltSettings.settings.default = True
             config = os.path.join(config, "vkBasalt.conf")
             if os.path.isfile(config):
                 os.remove(config)
-            parse(settings)
+            parse(VkBasaltSettings.settings)
             self.destroy()
             return
 
@@ -117,11 +116,11 @@ class vkBasaltDialog(Adw.Window):
             if self.smaa.get_state() is True:
                 effects.append("smaa")
 
-        settings.effects = tuple(effects)
+        VkBasaltSettings.settings.effects = tuple(effects)
 
-        settings.output = config
+        VkBasaltSettings.settings.output = config
 
-        parse(settings)
+        parse(VkBasaltSettings.settings)
         self.destroy()
 
     def __save(self, *args):
