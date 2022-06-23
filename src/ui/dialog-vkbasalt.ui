@@ -33,11 +33,6 @@
           <object class="AdwPreferencesPage">
             <child>
               <object class="AdwPreferencesGroup">
-                <property name="description" translatable="yes">Configure vkBasalt settings.</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwPreferencesGroup">
                 <property name="title" translatable="yes">Default</property>
                 <child>
                   <object class="AdwActionRow">
