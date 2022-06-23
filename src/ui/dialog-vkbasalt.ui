@@ -82,11 +82,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="cas_sharpness">
-                              <property name="lower">-1.0</property>
-                              <property name="step-increment">0.1</property>
-                              <property name="upper">1.0</property>
-                            </object>
+                              <object class="GtkAdjustment" id="cas_sharpness">
+                                <property name="lower">-1.0</property>
+                                <property name="step-increment">0.1</property>
+                                <property name="upper">1.0</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -125,11 +125,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="dls_sharpness">
-                              <property name="step-increment">0.1</property>
-                              <property name="upper">1.0</property>
-                              <property name="value">0.5</property>
-                            </object>
+                              <object class="GtkAdjustment" id="dls_sharpness">
+                                <property name="step-increment">0.1</property>
+                                <property name="upper">1.0</property>
+                                <property name="value">0.5</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -162,11 +162,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="dls_denoise">
-                              <property name="step-increment">0.1</property>
-                              <property name="upper">1.0</property>
-                              <property name="value">0.1</property>
-                            </object>
+                              <object class="GtkAdjustment" id="dls_denoise">
+                                <property name="step-increment">0.1</property>
+                                <property name="upper">1.0</property>
+                                <property name="value">0.1</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -205,11 +205,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="fxaa_subpixel_quality">
-                              <property name="step-increment">0.25</property>
-                              <property name="upper">1.0</property>
-                              <property name="value">0.75</property>
-                            </object>
+                              <object class="GtkAdjustment" id="fxaa_subpixel_quality">
+                                <property name="step-increment">0.25</property>
+                                <property name="upper">1.0</property>
+                                <property name="value">0.75</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -242,11 +242,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="fxaa_quality_edge_threshold">
-                              <property name="step-increment">0.025</property>
-                              <property name="upper">0.5</property>
-                              <property name="value">0.125</property>
-                            </object>
+                              <object class="GtkAdjustment" id="fxaa_quality_edge_threshold">
+                                <property name="step-increment">0.025</property>
+                                <property name="upper">0.5</property>
+                                <property name="value">0.125</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -279,11 +279,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="fxaa_quality_edge_threshold_min">
-                              <property name="step-increment">0.005</property>
-                              <property name="upper">0.1</property>
-                              <property name="value">0.025</property>
-                            </object>
+                              <object class="GtkAdjustment" id="fxaa_quality_edge_threshold_min">
+                                <property name="step-increment">0.005</property>
+                                <property name="upper">0.1</property>
+                                <property name="value">0.025</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -322,11 +322,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="smaa_edge_detection">
-                              <property name="step-increment">0.025</property>
-                              <property name="upper">0.5</property>
-                              <property name="value">0.05</property>
-                            </object>
+                              <object class="GtkAdjustment" id="smaa_edge_detection">
+                                <property name="step-increment">0.025</property>
+                                <property name="upper">0.5</property>
+                                <property name="value">0.05</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -359,11 +359,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="smaa_threshold">
-                              <property name="step-increment">0.025</property>
-                              <property name="upper">0.5</property>
-                              <property name="value">0.05</property>
-                            </object>
+                              <object class="GtkAdjustment" id="smaa_threshold">
+                                <property name="step-increment">0.025</property>
+                                <property name="upper">0.5</property>
+                                <property name="value">0.05</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -396,11 +396,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="smaa_max_search_steps">
-                              <property name="step-increment">2.0</property>
-                              <property name="upper">112.0</property>
-                              <property name="value">32.0</property>
-                            </object>
+                              <object class="GtkAdjustment" id="smaa_max_search_steps">
+                                <property name="step-increment">2.0</property>
+                                <property name="upper">112.0</property>
+                                <property name="value">32.0</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -433,11 +433,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="smaa_max_search_steps_diagonal">
-                              <property name="step-increment">2.0</property>
-                              <property name="upper">20.0</property>
-                              <property name="value">16.0</property>
-                            </object>
+                              <object class="GtkAdjustment" id="smaa_max_search_steps_diagonal">
+                                <property name="step-increment">2.0</property>
+                                <property name="upper">20.0</property>
+                                <property name="value">16.0</property>
+                              </object>
                             </property>
                           </object>
                         </child>
@@ -470,11 +470,11 @@
                             <property name="value-pos">bottom</property>
                             <property name="width-request">280</property>
                             <property name="adjustment">
-                            <object class="GtkAdjustment" id="smaa_corner_rounding">
-                              <property name="step-increment">5.0</property>
-                              <property name="upper">100.0</property>
-                              <property name="value">25.0</property>
-                            </object>
+                              <object class="GtkAdjustment" id="smaa_corner_rounding">
+                                <property name="step-increment">5.0</property>
+                                <property name="upper">100.0</property>
+                                <property name="value">25.0</property>
+                              </object>
                             </property>
                           </object>
                         </child>
