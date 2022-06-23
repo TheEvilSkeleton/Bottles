@@ -70,7 +70,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Contrast Adaptive Sharpening Sharpness</property>
+                            <property name="label" translatable="yes">Sharpness</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -113,7 +113,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Denoised Luma Sharpening Sharpness</property>
+                            <property name="label" translatable="yes">Sharpness</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -150,7 +150,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Denoised Luma Sharpening Denoise</property>
+                            <property name="label" translatable="yes">Denoise</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -193,7 +193,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Fast Approximate Anti-Aliasing Subpixel Quality</property>
+                            <property name="label" translatable="yes">Quality</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -230,7 +230,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Fast Approximate Anti-Aliasing Quality Edge Threshold</property>
+                            <property name="label" translatable="yes">Quality Edge Threshold</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -267,7 +267,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Fast Approximate Anti-Aliasing Quality Edge Threshold Minimum</property>
+                            <property name="label" translatable="yes">Quality Edge Threshold Minimum</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -310,7 +310,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Edge Detection</property>
+                            <property name="label" translatable="yes">Edge Detection</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -347,7 +347,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Threshold</property>
+                            <property name="label" translatable="yes">Threshold</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -384,7 +384,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Max Search Steps</property>
+                            <property name="label" translatable="yes">Max Search Steps</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -421,7 +421,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Max Search Steps Diagonal</property>
+                            <property name="label" translatable="yes">Max Search Steps Diagonal</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -458,7 +458,7 @@
                         <child>
                           <object class="GtkLabel">
                             <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Subpixel Morphological Anti-Aliasing Max Corner Rounding</property>
+                            <property name="label" translatable="yes">Max Corner Rounding</property>
                             <property name="xalign">0.0</property>
                           </object>
                         </child>
@@ -493,7 +493,7 @@
                 <property name="title">Miscellaneous</property>
                 <child>
                   <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Disable on Launch</property>
+                    <property name="title" translatable="yes">Disable On Launch</property>
                     <child>
                       <object class="GtkSwitch" id="disable_on_launch">
                         <property name="valign">center</property>
