@@ -5,7 +5,6 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
   <template class="vkBasaltDialog" parent="AdwWindow">
-    <property name="default-height">720</property>
     <property name="default-width">550</property>
     <property name="deletable">False</property>
     <property name="modal">True</property>
@@ -57,52 +56,9 @@
                 <property name="description" translatable="yes">Layers are applied according to the list order.</property>
                 <property name="title">Layers</property>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwExpanderRow" id="cas">
+                    <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
-                    <child>
-                      <object class="GtkSwitch" id="cas">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Denoised Luma Sharpening</property>
-                    <child>
-                      <object class="GtkSwitch" id="dls">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
-                    <child>
-                      <object class="GtkSwitch" id="fxaa">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Subpixel Morphological Anti-Aliasing</property>
-                    <child>
-                      <object class="GtkSwitch" id="smaa">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwPreferencesGroup">
-                <property name="title">Configure Layers</property>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -143,7 +99,9 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwPreferencesRow">
+                  <object class="AdwExpanderRow" id="dls">
+                    <property name="show_enable_switch">True</property>
+                    <property name="title" translatable="yes">Denoised Luma Sharpening</property>
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -181,10 +139,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -225,7 +179,9 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwPreferencesRow">
+                  <object class="AdwExpanderRow" id="fxaa">
+                    <property name="show_enable_switch">True</property>
+                    <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -263,10 +219,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -304,10 +256,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -348,7 +296,9 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwPreferencesRow">
+                  <object class="AdwExpanderRow" id="smaa">
+                    <property name="show_enable_switch">True</property>
+                    <property name="title" translatable="yes">Subpixel Morphological Anti-Aliasing</property>
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -386,10 +336,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -427,10 +373,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -468,10 +410,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
@@ -509,10 +447,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesRow">
                     <child>
                       <object class="GtkBox">
                         <property name="margin-bottom">12</property>
