@@ -493,7 +493,7 @@
                 <property name="title">Miscellaneous</property>
                 <child>
                   <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Disable On Launch</property>
+                    <property name="title" translatable="yes">Disable on Launch</property>
                     <child>
                       <object class="GtkSwitch" id="disable_on_launch">
                         <property name="valign">center</property>
