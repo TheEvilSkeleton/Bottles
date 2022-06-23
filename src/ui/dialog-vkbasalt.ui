@@ -41,6 +41,7 @@
                 <property name="title" translatable="yes">Default</property>
                 <child>
                   <object class="AdwActionRow">
+                    <property name="activatable-widget">default</property>
                     <property name="title" translatable="yes">Use Default Settings</property>
                     <child>
                       <object class="GtkSwitch" id="default">
@@ -493,6 +494,7 @@
                 <property name="title">Miscellaneous</property>
                 <child>
                   <object class="AdwActionRow">
+                    <property name="activatable-widget">disable_on_launch</property>
                     <property name="title" translatable="yes">Disable On Launch</property>
                     <child>
                       <object class="GtkSwitch" id="disable_on_launch">
