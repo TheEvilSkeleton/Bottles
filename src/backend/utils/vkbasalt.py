@@ -148,7 +148,7 @@ def parse(args):
         # Output file
         if args.output:
             if path.isdir(args.output):
-                f = open(f"{args.output}/vkBasalt.conf", "w")
+                f = open(path.join(args.output, "vkBasalt.conf"), "w")
             else:
                 stderr.write("Error: No such directory\n")
                 exit(1)
