@@ -512,7 +512,8 @@ class Manager:
         program_layer.sweep()
         program_layer.save()
 
-    def get_programs(self, config: dict) -> list:
+    @staticmethod
+    def get_programs(config: dict) -> list:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -571,14 +572,16 @@ class Manager:
                 "arguments": _program.get("arguments", ""),
                 "name": _program["name"],
                 "path": _program["path"],
-                "folder": program_folder,
+                "folder": _program.get("folder", program_folder),
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
                 "dxvk": _program.get("dxvk", config["Parameters"]["dxvk"]),
                 "vkd3d": _program.get("vkd3d", config["Parameters"]["vkd3d"]),
                 "dxvk_nvapi": _program.get("dxvk_nvapi", config["Parameters"]["dxvk_nvapi"]),
+                "fsr": _program.get("fsr", config["Parameters"]["fsr"]),
+                "pulseaudio_latency": _program.get("pulseaudio_latency", config["Parameters"]["pulseaudio_latency"]),
                 "removed": _program.get("removed"),
-                "id": program
+                "id": _program.get("id")
             })
 
         for program in results:
@@ -618,11 +621,13 @@ class Manager:
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
-                        "id": executable_name,
+                        "id": str(uuid.uuid4()),
                         "script": "",
                         "dxvk": config["Parameters"]["dxvk"],
                         "vkd3d": config["Parameters"]["vkd3d"],
                         "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                        "fsr": config["Parameters"]["fsr"],
+                        "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
                         "auto_discovered": True
                     })
                     found.append(executable_name)
@@ -677,6 +682,24 @@ class Manager:
             # Clear Latest_Executables on new session start
             if conf_file_yaml.get("Latest_Executables"):
                 conf_file_yaml["Latest_Executables"] = []
+
+            # Migrate old programs to [id] and [name]
+            _temp = conf_file_yaml.get("External_Programs").copy()
+            _changed = False
+            for k, v in _temp.items():
+                _uuid = str (uuid.uuid4())
+                if "id" not in v:
+                    _temp[k]["id"] = _uuid
+                    _changed = True
+                if "name" not in v:
+                    _temp[k]["name"] = _temp[k]["executable"].split(".")[0]
+            if _changed:
+                self.update_config(
+                    config=conf_file_yaml,
+                    key="External_Programs",
+                    value=_temp
+                )
+                conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
