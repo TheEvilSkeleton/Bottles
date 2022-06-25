@@ -16,7 +16,8 @@
           <object class="AdwHeaderBar">
             <child type="start">
               <object class="GtkButton" id="btn_cancel">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
+                <property name="use_underline">True</property>
               </object>
             </child>
             <child type="end">
