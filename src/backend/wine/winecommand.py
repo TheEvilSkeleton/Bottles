@@ -10,7 +10,7 @@ from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
+from bottles.backend.globals import Paths, gamemode_available, gamescope_available, vkbasalt_available, mangohud_available, \
     obs_vkc_available
 from bottles.backend.logger import Logger
 

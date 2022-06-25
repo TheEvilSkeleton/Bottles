@@ -23,7 +23,7 @@ from gi.repository import Gtk, Adw
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.gtk import GtkUtils
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available, vkbasalt_available, mangohud_available, obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
@@ -186,6 +186,8 @@ class PreferencesView(Adw.PreferencesPage):
         '''Toggle some utilities according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
+        self.switch_vkbasalt.set_sensitive(vkbasalt_available)
+        self.btn_manage_vkbasalt.set_sensitive(vkbasalt_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         _not_available = _("This feature is not available on your system.")
@@ -193,6 +195,9 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_gamemode.set_tooltip_text(_not_available)
         if not gamescope_available:
             self.switch_gamescope.set_tooltip_text(_not_available)
+        if not vkbasalt_available:
+            self.switch_vkbasalt.set_tooltip_text(_not_available)
+            self.btn_manage_vkbasalt.set_tooltip_text(_not_available)
         if not mangohud_available:
             self.switch_mangohud.set_tooltip_text(_not_available)
         if not obs_vkc_available:
