@@ -52,8 +52,7 @@ def VkBasaltPath():
     for path in range(len(vkbasalt_paths)):
         if os.path.isfile(vkbasalt_paths[path]):
             return True
-        else:
-            return False
+        return False
 
 @lru_cache
 class Paths:
