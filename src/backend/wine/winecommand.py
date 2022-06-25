@@ -171,7 +171,7 @@ class WineCommand:
 
         # Get Runtime libraries
         if (params.get("use_runtime") or params.get("use_eac_runtime") or params.get("use_be_runtime")) \
-                and not self.terminal:
+                and not self.terminal and not return_steam_env:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
                 _eac = RuntimeManager.get_eac()
@@ -207,7 +207,7 @@ class WineCommand:
                 ld.append(f"{runner_path}/{lib}")
 
         # DXVK environment variables
-        if params["dxvk"]:
+        if params["dxvk"] and not return_steam_env:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add("DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state"))
             env.add("STAGING_SHARED_MEMORY", "1")
@@ -218,17 +218,17 @@ class WineCommand:
             env.add("MESA_SHADER_CACHE_DIR", os.path.join(bottle, "cache", "mesa_shader"))
 
         # VKD£D environment variables
-        if params["vkd3d"]:
+        if params["vkd3d"] and not return_steam_env:
             env.add("VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader"))
 
         # LatencyFleX environment variables
-        if params["latencyflex"]:
+        if params["latencyflex"] and not return_steam_env:
             _lf_path = ManagerUtils.get_latencyflex_path(config.get("LatencyFleX"))
             _lf_icd = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
             env.concat("VK_ICD_FILENAMES", _lf_icd)
 
         # Mangohud environment variables
-        if params["mangohud"] and not self.minimal:
+        if params["mangohud"] and not self.minimal and not (gamescope_available and params.get("gamescope")):
             env.add("MANGOHUD", "1")
 
         # vkBasalt environment variables
@@ -244,7 +244,7 @@ class WineCommand:
                 env.add("OBS_USE_EGL", "1")
 
         # DXVK-Nvapi environment variables
-        if not return_steam_env and params["dxvk_nvapi"]:
+        if params["dxvk_nvapi"] and not return_steam_env:
             conf = self.__set_dxvk_nvapi_conf(bottle)
             env.add("DXVK_CONFIG_FILE", conf)
             # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
@@ -280,7 +280,7 @@ class WineCommand:
             env.add("WINEDEBUG", debug_level)
 
         # LatencyFleX
-        if not return_steam_env and params["latencyflex"] and params["dxvk_nvapi"]:
+        if params["latencyflex"] and params["dxvk_nvapi"] and not return_steam_env:
             _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
             ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
@@ -342,6 +342,7 @@ class WineCommand:
         # Wine arch
         if not return_steam_env:
             env.add("WINEARCH", arch)
+
         return env.get()["envs"]
 
     def __get_runner(self) -> str:
@@ -406,14 +407,14 @@ class WineCommand:
                 else:
                     command = f"gamemode {command}"
 
-            if gamescope_available and params.get("gamescope"):
-                command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
-
             if mangohud_available and params.get("mangohud"):
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
                     command = f"mangohud {command}"
+
+            if gamescope_available and params.get("gamescope"):
+                command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
 
             if obs_vkc_available and params.get("obsvkc"):
                 command = f"{obs_vkc_available} {command}"
