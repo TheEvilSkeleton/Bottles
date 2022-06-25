@@ -23,12 +23,11 @@ def parse(args):
     # Apply default settings if possible
     if args.default:
         install_paths = [
-            "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
-            "/usr/local",
-            "/usr/share/vkBasalt"
+            "/usr/lib/extensions/vulkan/vkBasalt/share/vulkan/implicit_layer.d/vkBasalt.json",
+            "/usr/share/vulkan/implicit_layer.d/vkBasalt.json"
         ]
         for i in range(len(install_paths)):
-            if path.exists(path.join(install_paths[i], "vkBasalt.conf")):
+            if path.isfile(path.join(install_paths[i], "vkBasalt.conf")):
                 if args.output:
                     copyfile(path.join(install_paths[i], "vkBasalt.conf"), path.join(args.output, "vkBasalt.conf"))
                 if args.exec:
@@ -148,32 +147,28 @@ def parse(args):
         # Output file
         if args.output:
             if path.isdir(args.output):
-                f = open(path.join(args.output, "vkBasalt.conf"), "w")
+                vkbasalt_conf = path.join(args.output, "vkBasalt.conf")
             else:
                 stderr.write("Error: No such directory\n")
                 exit(1)
         else:
-            tmp_dir = "/tmp/vkBasalt.conf"
-            f = open(tmp_dir, "w")
-        output = len(args.effects)
-        if output > 0:
-            file.append(f"effects = {':'.join(args.effects)}\n")
+            vkbasalt_conf = "/tmp/vkBasalt.conf"
+            tmp = True
 
         # Write and close file
-        f.write("".join(file))
-        f.close()
+        with open(vkbasalt_conf, "w") as f:
+            if args.effects:
+                file.append(f"effects = {':'.join(args.effects)}\n")
+            f.write("".join(file))
 
         # --exec
         if args.exec:
             environ["ENABLE_VKBASALT"] = "1"
-            if args.output:
-                environ["VKBASALT_CONFIG_FILE"] = path.join(args.output, "vkBasalt.conf")
-            else:
-                environ["VKBASALT_CONFIG_FILE"] = tmp_dir
+            environ["VKBASALT_CONFIG_FILE"] = vkbasalt_conf
             system(f"{args.exec}")
 
-            if environ["VKBASALT_CONFIG_FILE"] == tmp_dir:
-                remove(tmp_dir)
+            if tmp:
+                remove(vkbasalt_conf)
 
     else:
         stderr.write("Please specify one or more effects.\n")
