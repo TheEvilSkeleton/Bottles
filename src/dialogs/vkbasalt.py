@@ -53,7 +53,7 @@ class VkBasaltDialog(Adw.Window):
 
     # disable_on_launch = Gtk.Template.Child()
     # toggle_key = Gtk.Template.Child()
-    # cas_sharpness = Gtk.Template.Child()
+    cas_sharpness = Gtk.Template.Child()
     # dls_sharpness = Gtk.Template.Child()
     # dls_denoise = Gtk.Template.Child()
     # fxaa_subpixel_quality = Gtk.Template.Child()
@@ -93,6 +93,9 @@ class VkBasaltDialog(Adw.Window):
     def __idle_save(self, *args):
 
         config = ManagerUtils.get_bottle_path(self.config)
+
+        self.cas.get_expanded()
+        Gtk.Adjustment.get_value(self.cas_sharpness)
 
         # Applies default settings and closes dialog.
         if self.default.get_state() is True:
