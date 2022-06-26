@@ -57,38 +57,16 @@
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Sharpness</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="cas_sharpness">
-                                <property name="lower">-1.0</property>
-                                <property name="step-increment">0.1</property>
-                                <property name="upper">1.0</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Sharpness</property>
+                            <child>
+                              <object class="GtkSpinButton" id="cas_sharpness">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -100,75 +78,31 @@
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Denoised Luma Sharpening</property>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Sharpness</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="dls_sharpness">
-                                <property name="step-increment">0.1</property>
-                                <property name="upper">1.0</property>
-                                <property name="value">0.5</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Sharpness</property>
+                            <child>
+                              <object class="GtkSpinButton" id="dls_sharpness">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Denoise</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="dls_denoise">
-                                <property name="step-increment">0.1</property>
-                                <property name="upper">1.0</property>
-                                <property name="value">0.1</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Denoise</property>
+                            <child>
+                              <object class="GtkSpinButton" id="dls_denoise">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -180,112 +114,46 @@
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Quality</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="fxaa_subpixel_quality">
-                                <property name="step-increment">0.25</property>
-                                <property name="upper">1.0</property>
-                                <property name="value">0.75</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Subpixel Quality</property>
+                            <child>
+                              <object class="GtkSpinButton" id="fxaa_subpixel_quality">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Quality Edge Threshold</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="fxaa_quality_edge_threshold">
-                                <property name="step-increment">0.025</property>
-                                <property name="upper">0.5</property>
-                                <property name="value">0.125</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Quality Edge Threshold</property>
+                            <child>
+                              <object class="GtkSpinButton" id="fxaa_quality_edge_threshold">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Quality Edge Threshold Minimum</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="fxaa_quality_edge_threshold_min">
-                                <property name="step-increment">0.005</property>
-                                <property name="upper">0.1</property>
-                                <property name="value">0.025</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Quality Edge Threshold Minimum</property>
+                            <child>
+                              <object class="GtkSpinButton" id="fxaa_quality_edge_threshold_min">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -297,186 +165,76 @@
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Subpixel Morphological Anti-Aliasing</property>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Edge Detection</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="smaa_edge_detection">
-                                <property name="step-increment">0.025</property>
-                                <property name="upper">0.5</property>
-                                <property name="value">0.05</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Edge Detection</property>
+                            <child>
+                              <object class="GtkSpinButton" id="smaa_edge_detection">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Threshold</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="smaa_threshold">
-                                <property name="step-increment">0.025</property>
-                                <property name="upper">0.5</property>
-                                <property name="value">0.05</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Threshold</property>
+                            <child>
+                              <object class="GtkSpinButton" id="smaa_threshold">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Max Search Steps</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="smaa_max_search_steps">
-                                <property name="step-increment">2.0</property>
-                                <property name="upper">112.0</property>
-                                <property name="value">32.0</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Max Search Steps</property>
+                            <child>
+                              <object class="GtkSpinButton" id="smaa_max_search_steps">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Max Search Steps Diagonal</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="smaa_max_search_steps_diagonal">
-                                <property name="step-increment">2.0</property>
-                                <property name="upper">20.0</property>
-                                <property name="value">16.0</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Max Search Steps Diagonal</property>
+                            <child>
+                              <object class="GtkSpinButton" id="smaa_max_search_steps_diagonal">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <property name="margin-bottom">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
+                      <object class="AdwPreferencesRow">
                         <child>
-                          <object class="GtkLabel">
-                            <property name="ellipsize">none</property>
-                            <property name="label" translatable="yes">Max Corner Rounding</property>
-                            <property name="xalign">0.0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale">
-                            <property name="digits">0</property>
-                            <property name="draw-value">False</property>
-                            <property name="fill-level">1</property>
-                            <property name="has-origin">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="inverted">False</property>
-                            <property name="restrict-to-fill-level">False</property>
-                            <property name="value-pos">bottom</property>
-                            <property name="width-request">280</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment" id="smaa_corner_rounding">
-                                <property name="step-increment">5.0</property>
-                                <property name="upper">100.0</property>
-                                <property name="value">25.0</property>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Max Corner Rounding</property>
+                            <child>
+                              <object class="GtkSpinButton" id="smaa_corner_rounding">
+                                <property name='numeric'>true</property>
+                                <property name='valign'>center</property>
                               </object>
-                            </property>
+                            </child>
                           </object>
                         </child>
                       </object>
