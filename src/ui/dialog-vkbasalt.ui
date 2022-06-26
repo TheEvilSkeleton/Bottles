@@ -207,15 +207,23 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Edge Detection</property>
                             <child>
-                              <object class="GtkSpinButton">
-                                <property name='numeric'>true</property>
-                                <property name='valign'>center</property>
-                                <property name="adjustment">
-                                  <object class="GtkAdjustment" id="smaa_edge_detection">
-                                    <property name="step-increment">0.1</property>
-                                    <property name="upper">1.0</property>
+                              <object class="GtkBox">
+                                <child>
+                                  <object class="GtkToggleButton" id="luma">
+                                    <property name="label" translatable="yes">Luma</property>
+                                    <property name="active">True</property>
+                                    <property name="valign">center</property>
                                   </object>
-                                </property>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="color">
+                                    <property name="label" translatable="yes">Color</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="linked"/>
+                                </style>
                               </object>
                             </child>
                           </object>
