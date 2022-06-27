@@ -23,8 +23,9 @@ def parse(args):
     # Apply default settings if possible
     if args.default:
         install_paths = [
-            "/usr/lib/extensions/vulkan/vkBasalt/share/vulkan/implicit_layer.d/vkBasalt.json",
-            "/usr/share/vulkan/implicit_layer.d/vkBasalt.json"
+            "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
+            "/usr/local",
+            "/usr/share/vkBasalt"
         ]
         for i in range(len(install_paths)):
             if path.isfile(path.join(install_paths[i], "vkBasalt.conf")):

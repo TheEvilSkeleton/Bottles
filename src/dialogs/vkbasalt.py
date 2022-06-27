@@ -94,8 +94,8 @@ class VkBasaltDialog(Adw.Window):
 
         config = ManagerUtils.get_bottle_path(self.config)
 
-        self.cas.get_expanded()
-        Gtk.Adjustment.get_value(self.cas_sharpness)
+        print(self.cas.get_enable_expansion())
+        print(Gtk.Adjustment.get_value(self.cas_sharpness))
 
         # Applies default settings and closes dialog.
         if self.default.get_state() is True:
