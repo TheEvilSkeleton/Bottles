@@ -107,6 +107,7 @@ class VkBasaltDialog(Adw.Window):
 
         # Checks filter settings.
         if self.cas.get_enable_expansion() is True or self.dls.get_enable_expansion() is True or self.fxaa.get_enable_expansion() is True or self.smaa.get_enable_expansion() is True:
+            VkBasaltSettings.default = False
             effects = []
             if self.cas.get_enable_expansion() is True:
                 effects.append("cas")
@@ -142,5 +143,4 @@ class VkBasaltDialog(Adw.Window):
 
     def __close_window(self, *args):
         self.destroy()
-
 
