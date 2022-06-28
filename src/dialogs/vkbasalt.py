@@ -50,15 +50,16 @@ class VkBasaltDialog(Adw.Window):
     dls = Gtk.Template.Child()
     fxaa = Gtk.Template.Child()
     smaa = Gtk.Template.Child()
+
     disable_on_launch = Gtk.Template.Child()
-    toggle_key = Gtk.Template.Child()
+    # toggle_key = Gtk.Template.Child()
     cas_sharpness = Gtk.Template.Child()
     dls_sharpness = Gtk.Template.Child()
     dls_denoise = Gtk.Template.Child()
     fxaa_subpixel_quality = Gtk.Template.Child()
     fxaa_quality_edge_threshold = Gtk.Template.Child()
     fxaa_quality_edge_threshold_min = Gtk.Template.Child()
-    smaa_edge_detection = Gtk.Template.Child()
+    # smaa_edge_detection = Gtk.Template.Child()
     smaa_threshold = Gtk.Template.Child()
     smaa_max_search_steps = Gtk.Template.Child()
     smaa_max_search_steps_diagonal = Gtk.Template.Child()
@@ -93,14 +94,10 @@ class VkBasaltDialog(Adw.Window):
 
         config = ManagerUtils.get_bottle_path(self.config)
 
-        print(self.default.get_state())
-
-        # print(self.cas.get_enable_expansion())
-        # print(Gtk.Adjustment.get_value(self.cas_sharpness))
-
         # Applies default settings and closes dialog.
         if self.default.get_state() is True:
             VkBasaltSettings.default = True
+            VkBasaltSettings.output = False
             config = os.path.join(config, "vkBasalt.conf")
             if os.path.isfile(config):
                 os.remove(config)
@@ -111,25 +108,27 @@ class VkBasaltDialog(Adw.Window):
         # Checks filter settings.
         if self.cas.get_enable_expansion() is True or self.dls.get_enable_expansion() is True or self.fxaa.get_enable_expansion() is True or self.smaa.get_enable_expansion() is True:
             effects = []
-            if self.cas.get_state() is True:
+            if self.cas.get_enable_expansion() is True:
                 effects.append("cas")
                 VkBasaltSettings.cas_sharpness = Gtk.Adjustment.get_value(self.cas_sharpness)
-            if self.dls.get_state() is True:
+            if self.dls.get_enable_expansion() is True:
                 effects.append("dls")
                 VkBasaltSettings.dls_sharpness = Gtk.Adjustment.get_value(self.dls_sharpness)
                 VkBasaltSettings.dls_denoise = Gtk.Adjustment.get_value(self.dls_denoise)
-            if self.fxaa.get_state() is True:
+            if self.fxaa.get_enable_expansion() is True:
                 effects.append("fxaa")
                 VkBasaltSettings.fxaa_subpixel_quality = Gtk.Adjustment.get_value(self.fxaa_subpixel_quality)
                 VkBasaltSettings.fxaa_quality_edge_threshold = Gtk.Adjustment.get_value(self.fxaa_quality_edge_threshold)
                 VkBasaltSettings.fxaa_quality_edge_threshold_min = Gtk.Adjustment.get_value(self.fxaa_quality_edge_threshold_min)
-            if self.smaa.get_state() is True:
+            if self.smaa.get_enable_expansion() is True:
                 effects.append("smaa")
                 VkBasaltSettings.smaa_threshold = Gtk.Adjustment.get_value(self.smaa_threshold)
-                VkBasaltSettings.smaa_edge_detection = Gtk.Adjustment.get_value(self.smaa_edge_detection)
+                # VkBasaltSettings.smaa_edge_detection = Gtk.Adjustment.get_value(self.smaa_edge_detection)
                 VkBasaltSettings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.smaa_corner_rounding)
                 VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.smaa_max_search_steps)
                 VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
+
+            VkBasaltSettings.disable_on_launch = self.disable_on_launch.get_state()
 
         VkBasaltSettings.effects = tuple(effects)
 

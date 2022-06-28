@@ -322,11 +322,11 @@
               <object class="AdwPreferencesGroup">
                 <property name="title" translatable="yes">Miscellaneous</property>
                 <child>
-                  <object class="AdwActionRow" id="disable_on_launch">
+                  <object class="AdwActionRow">
                     <property name="activatable-widget">disable_on_launch</property>
                     <property name="title" translatable="yes">Disable On Launch</property>
                     <child>
-                      <object class="GtkSwitch">
+                      <object class="GtkSwitch" id="disable_on_launch">
                         <property name="valign">center</property>
                       </object>
                     </child>
