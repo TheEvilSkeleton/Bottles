@@ -96,7 +96,7 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, window, is_cli=False, **kwargs):
+    def __init__(self, window, is_cli=False, repo_fn_update=None, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
@@ -108,7 +108,7 @@ class Manager:
         self.is_cli = is_cli
         _offline = not window.utils_conn.check_connection()
 
-        self.repository_manager = RepositoryManager()
+        self.repository_manager = RepositoryManager(repo_fn_update)
         times["RepositoryManager"] = time.time()
 
         self.versioning_manager = VersioningManager(window, self)
@@ -145,7 +145,7 @@ class Manager:
             logging.info(times_str)
 
     def checks(self, install_latest=False, first_run=False):
-        logging.info("Performing Bottles checks...")
+        logging.info("Performing Bottles checks…")
         times = {}
 
         self.check_app_dirs()
@@ -318,7 +318,7 @@ class Manager:
             Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
-        config["Installed_Dependencies"].remove(dependency)
+        config["Installed_Dependencies"].pop(dependency, None)
         self.update_config(
             config,
             key="Installed_Dependencies",
@@ -536,7 +536,7 @@ class Manager:
     @staticmethod
     def launch_layer_program(config, layer):
         """Mount a layer and launch the program on it."""
-        logging.info(f"Preparing {len(layer['mounts'])} layer(s)..")
+        logging.info(f"Preparing {len(layer['mounts'])} layer(s)…")
         layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
         if not layer_conf:
             logging.error("Layer not found.")
@@ -553,16 +553,16 @@ class Manager:
             mounts.append(_layer["UUID"])
 
         for mount in mounts:
-            logging.info("Mounting layers..")
+            logging.info("Mounting layers…")
             program_layer.mount(_uuid=mount)
 
-        logging.info("Launching program..")
+        logging.info("Launching program…")
         runtime_conf = program_layer.runtime_conf
         wineboot = WineBoot(runtime_conf)
         wineboot.update()
         Runner.run_layer_executable(runtime_conf, layer)
 
-        logging.info("Program exited, unmounting layers..")
+        logging.info("Program exited, unmounting layers…")
         program_layer.sweep()
         program_layer.save()
 
@@ -634,6 +634,7 @@ class Manager:
                 "dxvk_nvapi": _program.get("dxvk_nvapi", config["Parameters"]["dxvk_nvapi"]),
                 "fsr": _program.get("fsr", config["Parameters"]["fsr"]),
                 "pulseaudio_latency": _program.get("pulseaudio_latency", config["Parameters"]["pulseaudio_latency"]),
+                "virtual_desktop": _program.get("virtual_desktop", config["Parameters"]["virtual_desktop"]),
                 "removed": _program.get("removed"),
                 "id": _program.get("id")
             })
@@ -682,6 +683,7 @@ class Manager:
                         "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
                         "fsr": config["Parameters"]["fsr"],
                         "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                        "virtual_desktop": config["Parameters"]["virtual_desktop"],
                         "auto_discovered": True
                     })
                     found.append(executable_name)
@@ -696,11 +698,7 @@ class Manager:
         """
         bottles = os.listdir(Paths.bottles)
 
-        for bottle in bottles:
-            '''
-            For each bottle add the path name to the `local_bottles` variable
-            and append the config.
-            '''
+        def process_bottle(bottle):
             _name = bottle
             _bottle = os.path.join(Paths.bottles, bottle)
             _placeholder = os.path.join(_bottle, "placeholder.yml")
@@ -715,9 +713,7 @@ class Manager:
                         else:
                             raise Exception("Missing Path in placeholder.yml")
                     except (yaml.YAMLError, Exception):
-                        if not silent:
-                            logging.error("Placeholder found but could not be parsed")
-                        continue
+                        return
 
             try:
                 if not os.path.exists(_config):
@@ -725,13 +721,10 @@ class Manager:
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
             except (FileNotFoundError, AttributeError, yaml.YAMLError):
-                if not silent:
-                    logging.warning(f"Bottle {_name} is missing a config file")
-                continue
+                return
 
             if conf_file_yaml is None:
-                logging.warning(f"Config file is empty: {_config}")
-                continue
+                return
 
             # Clear Latest_Executables on new session start
             if conf_file_yaml.get("Latest_Executables"):
@@ -741,7 +734,7 @@ class Manager:
             _temp = conf_file_yaml.get("External_Programs").copy()
             _changed = False
             for k, v in _temp.items():
-                _uuid = str (uuid.uuid4())
+                _uuid = str(uuid.uuid4())
                 if "id" not in v:
                     _temp[k]["id"] = _uuid
                     _changed = True
@@ -790,12 +783,20 @@ class Manager:
                     os.makedirs(p)
 
             for c in os.listdir(_bottle):
+                c = str(c)
                 if c.endswith(".dxvk-cache"):
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
                 elif "vkd3d-proton.cache" in c:
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "vkd3d_shader"))
                 elif c == "GLCache":
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
+
+        for b in bottles:
+            '''
+            For each bottle add the path name to the `local_bottles` variable
+            and append the config.
+            '''
+            process_bottle(b)
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
@@ -1346,12 +1347,12 @@ class Manager:
         wineserver.wait()
 
         if config.get("Path"):
-            logging.info(f"Removing applications installed with the bottle ..")
+            logging.info(f"Removing applications installed with the bottle…")
             for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
                 os.remove(inst)
 
             if config.get("Custom_Path"):
-                logging.info(f"Removing placeholder ..")
+                logging.info(f"Removing placeholder…")
                 try:
                     os.remove(os.path.join(
                         Paths.bottles,

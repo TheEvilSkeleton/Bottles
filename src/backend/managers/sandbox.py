@@ -32,7 +32,10 @@ class SandboxManager:
             share_paths_rw: list = None,
             share_net: bool = False,
             share_user: bool = False,
-            share_host_ro: bool = True
+            share_host_ro: bool = True,
+            share_display: bool = True,
+            share_sound: bool = True,
+            share_gpu: bool = True,
     ):
         self.envs = envs
         self.chdir = chdir
@@ -42,6 +45,10 @@ class SandboxManager:
         self.share_net = share_net
         self.share_user = share_user
         self.share_host_ro = share_host_ro
+        self.share_display = share_display
+        self.share_sound = share_sound
+        self.share_gpu = share_gpu
+        self.__uid = os.environ.get("UID", "1000")
 
     def __get_bwrap(self, cmd: str):
         _cmd = ["bwrap"]
@@ -64,6 +71,15 @@ class SandboxManager:
 
         if self.share_paths_rw:
             _cmd += [f"--bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro]
+
+        if self.share_sound:
+            _cmd.append(f"--ro-bind /run/user/{self.__uid}/pulse /run/user/{self.__uid}/pulse")
+
+        if self.share_gpu:
+            pass  # not implemented yet
+
+        if self.share_display:
+            _cmd.append("--dev-bind /dev/video0 /dev/video0")
 
         _cmd.append("--share-net" if self.share_net else "--unshare-net")
         _cmd.append("--share-user" if self.share_user else "--unshare-user")
@@ -97,9 +113,14 @@ class SandboxManager:
         if not self.share_net:
             _cmd.append("--no-network")
 
-        _cmd.append("--sandbox-flag=share-display")
-        _cmd.append("--sandbox-flag=share-sound")
-        _cmd.append("--sandbox-flag=share-gpu")
+        if self.share_display:
+            _cmd.append("--sandbox-flag=share-display")
+
+        if self.share_sound:
+            _cmd.append("--sandbox-flag=share-sound")
+
+        if self.share_gpu:
+            _cmd.append("--sandbox-flag=share-gpu")
 
         _cmd.append(cmd)
 
@@ -114,5 +135,4 @@ class SandboxManager:
         return " ".join(_cmd)
 
     def run(self, cmd: str):
-        print(self.get_cmd(cmd))
         return subprocess.Popen(self.get_cmd(cmd), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

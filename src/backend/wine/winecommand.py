@@ -150,7 +150,7 @@ class WineCommand:
             for var in config.get("Environment_Variables").items():
                 env.add(var[0], var[1], override=True)
 
-        # Environment variables from argument 
+        # Environment variables from argument
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
                 dll_overrides.append(environment["WINEDLLOVERRIDES"])
@@ -158,6 +158,10 @@ class WineCommand:
 
             for e in environment:
                 env.add(e, environment[e], override=True)
+
+        # Language
+        if config["Language"] != "sys":
+            env.add("LC_ALL", config["Language"])
 
         # Bottle DLL_Overrides
         if config["DLL_Overrides"]:
@@ -324,7 +328,7 @@ class WineCommand:
                         _first = list(gpu["vendors"].keys())[0]
                         env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                     else:
-                        logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..")
+                        logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES…")
 
             # Add ld to LD_LIBRARY_PATH
             if ld:
@@ -488,37 +492,36 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        '''
-        sandbox = SandboxManager(
-            envs=self.env,
-            chdir=self.cwd,
-            clear_env=True,
-            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[
-                Paths.runners,
-                Paths.temp
-            ],
-            share_net=True
-        )
-        if self.terminal:
-            return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors)
+        if self.config["Parameters"].get("sandbox"):
+            permissions = self.config["Sandbox"]
+            sandbox = SandboxManager(
+                envs=self.env,
+                chdir=self.cwd,
+                share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
+                share_paths_ro=[
+                    Paths.runners,
+                    Paths.temp
+                ],
+                share_net=permissions.get("share_net", False),
+                share_sound=permissions.get("share_sound", False),
+            )
+            if self.terminal:
+                return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors)
 
-        proc = sandbox.run(self.command)
-        print(proc.communicate()[0].decode("utf-8"))
-        print(proc.communicate()[1].decode("utf-8"))
-        '''
+            proc = sandbox.run(self.command)
 
-        if self.terminal:
-            return TerminalUtils().execute(self.command, self.env, self.colors)
+        else:
+            if self.terminal:
+                return TerminalUtils().execute(self.command, self.env, self.colors)
 
-        proc = subprocess.Popen(
-            self.command,
-            stdout=subprocess.PIPE,
-            shell=True,
-            env=self.env,
-            cwd=self.cwd
-        )
-        proc.wait()
+            proc = subprocess.Popen(
+                self.command,
+                stdout=subprocess.PIPE,
+                shell=True,
+                env=self.env,
+                cwd=self.cwd
+            )
+            proc.wait()
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 

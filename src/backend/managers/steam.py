@@ -87,6 +87,7 @@ class SteamManager:
         return confs[0]
 
     @staticmethod
+    @lru_cache
     def get_library_folders() -> Union[list, None]:
         steam_path = SteamManager.find_steam_path("steamapps")
         libraryfolders_path = os.path.join(steam_path, "libraryfolders.vdf")
@@ -117,6 +118,7 @@ class SteamManager:
         return libraryfolders if len(libraryfolders) > 0 else None
 
     @staticmethod
+    @lru_cache
     def get_appid_library_path(appid: str) -> Union[str, None]:
         libraryfolders = SteamManager.get_library_folders()
 
@@ -159,6 +161,7 @@ class SteamManager:
         logging.info(f"Steam config saved")
 
     @staticmethod
+    @lru_cache
     def get_runner_path(pfx_path: str) -> Union[tuple, None]:
         """Get runner path from config_info file"""
         config_info = os.path.join(pfx_path, "config_info")
@@ -254,7 +257,7 @@ class SteamManager:
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
             if _acf is None or not _acf.get("AppState"):
-                logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping...")
+                logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
             if _acf["AppState"]["name"] == "Proton Experimental":
@@ -262,7 +265,7 @@ class SteamManager:
                 continue
 
             if _runner is None:
-                logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping...")
+                logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping…")
                 continue
 
             _conf = Samples.config.copy()
@@ -301,7 +304,6 @@ class SteamManager:
             _name, _conf = prefix
             _bottle = os.path.join(Paths.steam, _conf["CompatData"])
 
-            logging.info(f"Creating bottle for Steam prefix {_conf['CompatData']}...")
             os.makedirs(_bottle, exist_ok=True)
 
             with open(os.path.join(_bottle, "bottle.yml"), "w") as f:
