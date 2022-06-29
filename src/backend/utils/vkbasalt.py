@@ -1,6 +1,6 @@
 # vkbasalt.py: library supplying the logics and functions to generate configs
 #
-# Copyright 2022 Hari Rana
+# Copyright 2022 Hari Rana / TheEvilSkeleton <theevilskeleton@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by

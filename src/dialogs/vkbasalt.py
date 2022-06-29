@@ -1,6 +1,6 @@
 # vkbasalt.py
 #
-# Copyright 2022 Hari Rana <theevilskeleton@riseup.net>
+# Copyright 2022 Hari Rana / TheEvilSkeleton <theevilskeleton@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
