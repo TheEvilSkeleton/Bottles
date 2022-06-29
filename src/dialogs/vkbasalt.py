@@ -17,7 +17,7 @@
 
 import os
 from gi.repository import Gtk, GLib, Adw
-from bottles.backend.utils.vkbasalt import parse
+from bottles.backend.utils.vkbasalt import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 
 class VkBasaltSettings:
@@ -84,6 +84,79 @@ class VkBasaltDialog(Adw.Window):
         self.btn_save.connect("clicked", self.__save)
         self.btn_cancel.connect("clicked", self.__close_window)
 
+        config = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
+
+        if os.path.isfile(config):
+            VkBasaltSettings = ParseConfig(config)
+
+            if "cas" not in VkBasaltSettings.effects:
+                self.cas.set_enable_expansion(False)
+            if "dls" not in VkBasaltSettings.effects:
+                self.dls.set_enable_expansion(False)
+            if "fxaa" not in VkBasaltSettings.effects:
+                self.fxaa.set_enable_expansion(False)
+            if "smaa" not in VkBasaltSettings.effects:
+                self.smaa.set_enable_expansion(False)
+
+            try:
+                if VkBasaltSettings.casSharpness:
+                    self.cas_sharpness.set_value(float(VkBasaltSettings.casSharpness))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.dlsSharpness:
+                    self.dls_sharpness.set_value(float(VkBasaltSettings.dlsSharpness))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.dlsDenoise:
+                    self.dls_denoise.set_value(float(VkBasaltSettings.dlsDenoise))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.fxaaQualitySubpix:
+                    self.fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaaQualitySubpix))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.fxaaQualityEdgeThreshold:
+                    self.fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaaQualityEdgeThreshold))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.fxaaQualityEdgeThresholdMin:
+                    self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaaQualityEdgeThresholdMin))
+            except AttributeError:
+                pass
+            # try:
+            #     if VkBasaltSettings.smaaEdgeDetection:
+            #         self.smaa_edge_detection.set_value(float(VkBasaltSettings.smaaEdgeDetection))
+            # except AttributeError:
+            #     pass
+            try:
+                if VkBasaltSettings.smaaThreshold:
+                    self.smaa_threshold.set_value(float(VkBasaltSettings.smaaThreshold))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.smaaMaxSearchSteps:
+                    self.smaa_max_search_steps.set_value(float(VkBasaltSettings.smaaMaxSearchSteps))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.smaaMaxSearchStepsDiag:
+                    self.smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaaMaxSearchStepsDiag))
+            except AttributeError:
+                pass
+            try:
+                if VkBasaltSettings.smaaCornerRounding:
+                    self.smaa_corner_rounding.set_value(float(VkBasaltSettings.smaaCornerRounding))
+            except AttributeError:
+                pass
+            if VkBasaltSettings.enableOnLaunch == "False":
+                self.disable_on_launch.set_state(True)
+        else:
+            self.default.set_state(True)
 
     def __update(self, config):
 

@@ -175,3 +175,55 @@ def parse(args):
         stderr.write("Please specify one or more effects.\n")
         exit(1)
 
+def ParseConfig(config):
+    class args:
+        default = False
+        effects = False
+        output = False
+        disable_on_launch = False
+        toggle_key = False
+        cas_sharpness = False
+        dls_sharpness = False
+        dls_denoise = False
+        fxaa_subpixel_quality = False
+        fxaa_quality_edge_threshold = False
+        fxaa_quality_edge_threshold_min = False
+        smaa_edge_detection = False
+        smaa_threshold = False
+        smaa_max_search_steps = False
+        smaa_max_search_steps_diagonal = False
+        smaa_corner_rounding = False
+        lut_file_path = False
+
+    with open(config, "r") as f:
+        for line in f:
+            name = [x.strip() for x in line.split('=')]
+            if name[0] == "effects":
+                name[1] = name[1].split(':')
+                args.effects = name[1]
+            elif name[0] == "toggleKey":
+                args.toggleKey = name[1]
+            elif name[0] == "enableOnLaunch":
+                args.enableOnLaunch = name[1]
+            elif name[0] == "casSharpness":
+                args.casSharpness = name[1]
+            elif name[0] == "dlsSharpness":
+                args.dlsSharpness = name[1]
+            elif name[0] == "dlsDenoise":
+                args.dlsDenoise = name[1]
+            elif name[0] == "fxaaQualitySubpix":
+                args.fxaaQualitySubpix = name[1]
+            elif name[0] == "fxaaQualityEdgeThreshold":
+                args.fxaaQualityEdgeThreshold = name[1]
+            elif name[0] == "fxaaQualityEdgeThresholdMin":
+                args.fxaaQualityEdgeThresholdMin = name[1]
+            elif name[0] == "smaaEdgeDetection":
+                args.smaaEdgeDetection = name[1]
+            elif name[0] == "smaaMaxSearchSteps":
+                args.smaaMaxSearchSteps = name[1]
+            elif name[0] == "smaaMaxSearchStepsDiag":
+                args.smaaMaxSearchStepsDiag = name[1]
+            elif name[0] == "smaaCornerRounding":
+                args.smaaCornerRounding = name[1]
+        return(args)
+
