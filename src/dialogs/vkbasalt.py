@@ -83,6 +83,7 @@ class VkBasaltDialog(Adw.Window):
         # connect signals
         self.btn_save.connect("clicked", self.__save)
         self.btn_cancel.connect("clicked", self.__close_window)
+        self.default.connect("state-set", self.__default)
 
         config = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
 
@@ -217,3 +218,16 @@ class VkBasaltDialog(Adw.Window):
     def __close_window(self, *args):
         self.destroy()
 
+    def __default(self, *args):
+        if self.default.get_state() is False:
+            self.cas.set_sensitive(False)
+            self.dls.set_sensitive(False)
+            self.fxaa.set_sensitive(False)
+            self.smaa.set_sensitive(False)
+            self.disable_on_launch.set_sensitive(False)
+        else:
+            self.cas.set_sensitive(True)
+            self.dls.set_sensitive(True)
+            self.fxaa.set_sensitive(True)
+            self.smaa.set_sensitive(True)
+            self.disable_on_launch.set_sensitive(True)
