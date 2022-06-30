@@ -86,10 +86,10 @@ class VkBasaltDialog(Adw.Window):
         self.btn_cancel.connect("clicked", self.__close_window)
         self.default.connect("state-set", self.__default)
 
-        config = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
+        conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
 
-        if os.path.isfile(config):
-            VkBasaltSettings = ParseConfig(config)
+        if os.path.isfile(conf):
+            VkBasaltSettings = ParseConfig(conf)
 
             if "cas" not in VkBasaltSettings.effects:
                 self.cas.set_enable_expansion(False)
@@ -161,22 +161,17 @@ class VkBasaltDialog(Adw.Window):
         else:
             self.default.set_state(True)
 
-    def __update(self, config):
-
-        parameters = config["Parameters"]
-        # self.default.set_text(str(parameters["default"]))
-
     def __idle_save(self, *args):
 
-        config = ManagerUtils.get_bottle_path(self.config)
+        conf = ManagerUtils.get_bottle_path(self.config)
 
         # Applies default settings and closes dialog.
         if self.default.get_state() is True:
             VkBasaltSettings.default = True
             VkBasaltSettings.output = False
-            config = os.path.join(config, "vkBasalt.conf")
-            if os.path.isfile(config):
-                os.remove(config)
+            conf = os.path.join(conf, "vkBasalt.conf")
+            if os.path.isfile(conf):
+                os.remove(conf)
             parse(VkBasaltSettings)
             self.destroy()
             return
@@ -209,7 +204,7 @@ class VkBasaltDialog(Adw.Window):
 
         VkBasaltSettings.effects = tuple(effects)
 
-        VkBasaltSettings.output = config
+        VkBasaltSettings.output = conf
 
         parse(VkBasaltSettings)
         self.destroy()
@@ -220,16 +215,10 @@ class VkBasaltDialog(Adw.Window):
     def __close_window(self, *args):
         self.destroy()
 
-    def __default(self, *args):
-        if self.default.get_state() is False:
-            self.cas.set_sensitive(False)
-            self.dls.set_sensitive(False)
-            self.fxaa.set_sensitive(False)
-            self.smaa.set_sensitive(False)
-            self.row_disable_on_launch.set_sensitive(False)
-        else:
-            self.cas.set_sensitive(True)
-            self.dls.set_sensitive(True)
-            self.fxaa.set_sensitive(True)
-            self.smaa.set_sensitive(True)
-            self.row_disable_on_launch.set_sensitive(True)
+    def __default(self, widget, state):
+        self.cas.set_sensitive(not state)
+        self.dls.set_sensitive(not state)
+        self.fxaa.set_sensitive(not state)
+        self.smaa.set_sensitive(not state)
+        self.row_disable_on_launch.set_sensitive(not state)
+
