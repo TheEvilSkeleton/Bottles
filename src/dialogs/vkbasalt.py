@@ -51,7 +51,8 @@ class VkBasaltDialog(Adw.Window):
     fxaa = Gtk.Template.Child()
     smaa = Gtk.Template.Child()
 
-    disable_on_launch = Gtk.Template.Child()
+    row_disable_on_launch = Gtk.Template.Child()
+    switch_disable_on_launch = Gtk.Template.Child()
     # toggle_key = Gtk.Template.Child()
     cas_sharpness = Gtk.Template.Child()
     dls_sharpness = Gtk.Template.Child()
@@ -156,7 +157,7 @@ class VkBasaltDialog(Adw.Window):
                 pass
 
             if VkBasaltSettings.disable_on_launch == "True":
-                self.disable_on_launch.set_state(True)
+                self.switch_disable_on_launch.set_state(True)
         else:
             self.default.set_state(True)
 
@@ -204,7 +205,7 @@ class VkBasaltDialog(Adw.Window):
                 VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.smaa_max_search_steps)
                 VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
 
-            VkBasaltSettings.disable_on_launch = self.disable_on_launch.get_state()
+            VkBasaltSettings.disable_on_launch = self.switch_disable_on_launch.get_state()
 
         VkBasaltSettings.effects = tuple(effects)
 
@@ -225,10 +226,10 @@ class VkBasaltDialog(Adw.Window):
             self.dls.set_sensitive(False)
             self.fxaa.set_sensitive(False)
             self.smaa.set_sensitive(False)
-            self.disable_on_launch.set_sensitive(False)
+            self.row_disable_on_launch.set_sensitive(False)
         else:
             self.cas.set_sensitive(True)
             self.dls.set_sensitive(True)
             self.fxaa.set_sensitive(True)
             self.smaa.set_sensitive(True)
-            self.disable_on_launch.set_sensitive(True)
+            self.row_disable_on_launch.set_sensitive(True)
