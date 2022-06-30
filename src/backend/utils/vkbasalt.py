@@ -1,6 +1,6 @@
 # vkbasalt.py: library supplying the logics and functions to generate configs
 #
-# Copyright 2022 Hari Rana / TheEvilSkeleton <theevilskeleton@riseup.net>
+# Copyright 2022 vkbasalt-cli Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
@@ -18,6 +18,8 @@
 from os import path, environ, system, remove
 from sys import stderr, exit
 from shutil import copyfile
+import configparser
+
 
 def parse(args):
     # Apply default settings if possible
@@ -25,7 +27,7 @@ def parse(args):
         install_paths = [
             "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
             "/usr/local",
-            "/usr/share/vkBasalt"
+            "/usr/share/vkBasalt",
         ]
         for i in range(len(install_paths)):
             if path.isfile(path.join(install_paths[i], "vkBasalt.conf")):
@@ -175,6 +177,16 @@ def parse(args):
         stderr.write("Please specify one or more effects.\n")
         exit(1)
 
+def getConfigValue(config, value):
+    with open(config, "r") as f:
+        file = "[config]\n"+f.read()
+        config = configparser.ConfigParser(allow_no_value=True)
+        config.read_string(file)
+        try:
+            return config['config'][value]
+        except:
+            pass
+
 def ParseConfig(config):
     class args:
         default = False
@@ -194,36 +206,18 @@ def ParseConfig(config):
         smaa_max_search_steps_diagonal = False
         smaa_corner_rounding = False
         lut_file_path = False
+    args.effects = getConfigValue(config, 'effects')
+    args.toggle_key = getConfigValue(config, 'toggleKey')
+    args.disable_on_launch = "True" if getConfigValue(config, 'enableOnLaunch') == "False" else "False"
+    args.cas_sharpness = getConfigValue(config, 'casSharpness')
+    args.dls_sharpness = getConfigValue(config, 'dlsSharpness')
+    args.dls_denoise = getConfigValue(config, 'dlsDenoise')
+    args.fxaa_subpixel_quality = getConfigValue(config, 'fxaaQualitySubpix')
+    args.fxaa_quality_edge_threshold = getConfigValue(config, 'fxaaQualityEdgeThreshold')
+    args.fxaa_quality_edge_threshold_min = getConfigValue(config, 'fxaaQualityEdgeThresholdMin')
+    args.smaa_edge_detection = getConfigValue(config, 'smaaEdgeDetection')
+    args.smaa_max_search_steps = getConfigValue(config, 'smaaMaxSearchSteps')
+    args.smaa_max_search_steps_diagonal = getConfigValue(config, 'smaaMaxSearchStepsDiag')
+    args.smaa_corner_rounding = getConfigValue(config, 'smaaCornerRounding')
 
-    with open(config, "r") as f:
-        for line in f:
-            name = [x.strip() for x in line.split('=')]
-            if name[0] == "effects":
-                name[1] = name[1].split(':')
-                args.effects = name[1]
-            elif name[0] == "toggleKey":
-                args.toggleKey = name[1]
-            elif name[0] == "enableOnLaunch":
-                args.enableOnLaunch = name[1]
-            elif name[0] == "casSharpness":
-                args.casSharpness = name[1]
-            elif name[0] == "dlsSharpness":
-                args.dlsSharpness = name[1]
-            elif name[0] == "dlsDenoise":
-                args.dlsDenoise = name[1]
-            elif name[0] == "fxaaQualitySubpix":
-                args.fxaaQualitySubpix = name[1]
-            elif name[0] == "fxaaQualityEdgeThreshold":
-                args.fxaaQualityEdgeThreshold = name[1]
-            elif name[0] == "fxaaQualityEdgeThresholdMin":
-                args.fxaaQualityEdgeThresholdMin = name[1]
-            elif name[0] == "smaaEdgeDetection":
-                args.smaaEdgeDetection = name[1]
-            elif name[0] == "smaaMaxSearchSteps":
-                args.smaaMaxSearchSteps = name[1]
-            elif name[0] == "smaaMaxSearchStepsDiag":
-                args.smaaMaxSearchStepsDiag = name[1]
-            elif name[0] == "smaaCornerRounding":
-                args.smaaCornerRounding = name[1]
-        return(args)
-
+    return(args)

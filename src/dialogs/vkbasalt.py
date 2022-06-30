@@ -100,61 +100,62 @@ class VkBasaltDialog(Adw.Window):
                 self.smaa.set_enable_expansion(False)
 
             try:
-                if VkBasaltSettings.casSharpness:
-                    self.cas_sharpness.set_value(float(VkBasaltSettings.casSharpness))
+                if VkBasaltSettings.cas_sharpness:
+                    self.cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.dlsSharpness:
-                    self.dls_sharpness.set_value(float(VkBasaltSettings.dlsSharpness))
+                if VkBasaltSettings.dls_sharpness:
+                    self.dls_sharpness.set_value(float(VkBasaltSettings.dls_sharpness))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.dlsDenoise:
-                    self.dls_denoise.set_value(float(VkBasaltSettings.dlsDenoise))
+                if VkBasaltSettings.dls_denoise:
+                    self.dls_denoise.set_value(float(VkBasaltSettings.dls_denoise))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.fxaaQualitySubpix:
-                    self.fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaaQualitySubpix))
+                if VkBasaltSettings.fxaa_subpixel_quality:
+                    self.fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaa_subpixel_quality))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.fxaaQualityEdgeThreshold:
-                    self.fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaaQualityEdgeThreshold))
+                if VkBasaltSettings.fxaa_quality_edge_threshold:
+                    self.fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.fxaaQualityEdgeThresholdMin:
-                    self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaaQualityEdgeThresholdMin))
+                if VkBasaltSettings.fxaa_quality_edge_threshold_min:
+                    self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
             except AttributeError:
                 pass
             # try:
-            #     if VkBasaltSettings.smaaEdgeDetection:
-            #         self.smaa_edge_detection.set_value(float(VkBasaltSettings.smaaEdgeDetection))
+            #     if VkBasaltSettings.smaa_edge_detection:
+            #         self.smaa_edge_detection.set_value(float(VkBasaltSettings.smaa_edge_detection))
             # except AttributeError:
             #     pass
             try:
-                if VkBasaltSettings.smaaThreshold:
-                    self.smaa_threshold.set_value(float(VkBasaltSettings.smaaThreshold))
+                if VkBasaltSettings.smaa_threshold:
+                    self.smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.smaaMaxSearchSteps:
-                    self.smaa_max_search_steps.set_value(float(VkBasaltSettings.smaaMaxSearchSteps))
+                if VkBasaltSettings.smaa_max_search_steps:
+                    self.smaa_max_search_steps.set_value(float(VkBasaltSettings.smaa_max_search_steps))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.smaaMaxSearchStepsDiag:
-                    self.smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaaMaxSearchStepsDiag))
+                if VkBasaltSettings.smaa_max_search_steps_diagonal:
+                    self.smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaa_max_search_steps_diagonal))
             except AttributeError:
                 pass
             try:
-                if VkBasaltSettings.smaaCornerRounding:
-                    self.smaa_corner_rounding.set_value(float(VkBasaltSettings.smaaCornerRounding))
+                if VkBasaltSettings.smaa_corner_rounding:
+                    self.smaa_corner_rounding.set_value(float(VkBasaltSettings.smaa_corner_rounding))
             except AttributeError:
                 pass
-            if VkBasaltSettings.enableOnLaunch == "False":
+
+            if VkBasaltSettings.disable_on_launch == "True":
                 self.disable_on_launch.set_state(True)
         else:
             self.default.set_state(True)
