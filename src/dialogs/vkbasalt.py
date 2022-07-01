@@ -160,6 +160,10 @@ class VkBasaltDialog(Adw.Window):
                 self.switch_disable_on_launch.set_state(True)
         else:
             self.default.set_state(True)
+            self.cas.set_enable_expansion(False)
+            self.dls.set_enable_expansion(False)
+            self.fxaa.set_enable_expansion(False)
+            self.smaa.set_enable_expansion(False)
 
     def __idle_save(self, *args):
 
