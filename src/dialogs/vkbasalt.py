@@ -82,6 +82,8 @@ class VkBasaltDialog(Adw.Window):
         self.window = window
         self.manager = window.manager
         self.config = config
+        conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
+        global smaa_edge_detection
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
@@ -89,9 +91,6 @@ class VkBasaltDialog(Adw.Window):
         self.default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
         self.color.connect("toggled", self.__change_edge_detection_type, "color")
-
-        conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
-        global smaa_edge_detection
 
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
@@ -105,36 +104,18 @@ class VkBasaltDialog(Adw.Window):
             if "smaa" not in VkBasaltSettings.effects:
                 self.smaa.set_enable_expansion(False)
 
-            try:
-                if VkBasaltSettings.cas_sharpness:
-                    self.cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.dls_sharpness:
-                    self.dls_sharpness.set_value(float(VkBasaltSettings.dls_sharpness))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.dls_denoise:
-                    self.dls_denoise.set_value(float(VkBasaltSettings.dls_denoise))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.fxaa_subpixel_quality:
-                    self.fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaa_subpixel_quality))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.fxaa_quality_edge_threshold:
-                    self.fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.fxaa_quality_edge_threshold_min:
-                    self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
-            except AttributeError:
-                pass
+            if VkBasaltSettings.cas_sharpness != None:
+                self.cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
+            if VkBasaltSettings.dls_sharpness != None:
+                self.dls_sharpness.set_value(float(VkBasaltSettings.dls_sharpness))
+            if VkBasaltSettings.dls_denoise != None:
+                self.dls_denoise.set_value(float(VkBasaltSettings.dls_denoise))
+            if VkBasaltSettings.fxaa_subpixel_quality != None:
+                self.fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaa_subpixel_quality))
+            if VkBasaltSettings.fxaa_quality_edge_threshold != None:
+                self.fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold))
+            if VkBasaltSettings.fxaa_quality_edge_threshold_min != None:
+                self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
 
             if VkBasaltSettings.smaa_edge_detection != None:
                 if VkBasaltSettings.smaa_edge_detection == "color":
@@ -147,26 +128,15 @@ class VkBasaltDialog(Adw.Window):
                 self.luma.set_active(True)
                 smaa_edge_detection = "luma"
                 print(smaa_edge_detection)
-            try:
-                if VkBasaltSettings.smaa_threshold:
-                    self.smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.smaa_max_search_steps:
-                    self.smaa_max_search_steps.set_value(float(VkBasaltSettings.smaa_max_search_steps))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.smaa_max_search_steps_diagonal:
-                    self.smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaa_max_search_steps_diagonal))
-            except AttributeError:
-                pass
-            try:
-                if VkBasaltSettings.smaa_corner_rounding:
-                    self.smaa_corner_rounding.set_value(float(VkBasaltSettings.smaa_corner_rounding))
-            except AttributeError:
-                pass
+
+            if VkBasaltSettings.smaa_threshold != None:
+                self.smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
+            if VkBasaltSettings.smaa_max_search_steps != None:
+                self.smaa_max_search_steps.set_value(float(VkBasaltSettings.smaa_max_search_steps))
+            if VkBasaltSettings.smaa_max_search_steps_diagonal != None:
+                self.smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaa_max_search_steps_diagonal))
+            if VkBasaltSettings.smaa_corner_rounding != None:
+                self.smaa_corner_rounding.set_value(float(VkBasaltSettings.smaa_corner_rounding))
 
             if VkBasaltSettings.disable_on_launch == "True":
                 self.switch_disable_on_launch.set_state(True)
