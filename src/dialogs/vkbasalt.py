@@ -116,19 +116,6 @@ class VkBasaltDialog(Adw.Window):
                 self.fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold))
             if VkBasaltSettings.fxaa_quality_edge_threshold_min != None:
                 self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
-
-            if VkBasaltSettings.smaa_edge_detection != None:
-                if VkBasaltSettings.smaa_edge_detection == "color":
-                    self.color.set_active(True)
-                    smaa_edge_detection = "color"
-                else:
-                    self.luma.set_active(True)
-                    smaa_edge_detection = "luma"
-            else:
-                self.luma.set_active(True)
-                smaa_edge_detection = "luma"
-                print(smaa_edge_detection)
-
             if VkBasaltSettings.smaa_threshold != None:
                 self.smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
             if VkBasaltSettings.smaa_max_search_steps != None:
@@ -137,9 +124,16 @@ class VkBasaltDialog(Adw.Window):
                 self.smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaa_max_search_steps_diagonal))
             if VkBasaltSettings.smaa_corner_rounding != None:
                 self.smaa_corner_rounding.set_value(float(VkBasaltSettings.smaa_corner_rounding))
-
             if VkBasaltSettings.disable_on_launch == "True":
                 self.switch_disable_on_launch.set_state(True)
+            if VkBasaltSettings.smaa_edge_detection != None:
+                if VkBasaltSettings.smaa_edge_detection == "color":
+                    self.color.set_active(True)
+                    smaa_edge_detection = "color"
+                else:
+                    smaa_edge_detection = "luma"
+            else:
+                smaa_edge_detection = "luma"
         else:
             self.default.set_state(True)
             smaa_edge_detection = "luma"
