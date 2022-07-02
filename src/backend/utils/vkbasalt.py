@@ -182,10 +182,7 @@ def getConfigValue(config, value):
         file = "[config]\n"+f.read()
         config = configparser.ConfigParser(allow_no_value=True)
         config.read_string(file)
-        try:
-            return config['config'][value]
-        except:
-            pass
+        return config['config'].get(value)
 
 def ParseConfig(config):
     class args:
@@ -221,3 +218,4 @@ def ParseConfig(config):
     args.smaa_corner_rounding = getConfigValue(config, 'smaaCornerRounding')
 
     return(args)
+

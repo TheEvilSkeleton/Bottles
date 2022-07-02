@@ -61,6 +61,8 @@ class VkBasaltDialog(Adw.Window):
     fxaa_quality_edge_threshold = Gtk.Template.Child()
     fxaa_quality_edge_threshold_min = Gtk.Template.Child()
     # smaa_edge_detection = Gtk.Template.Child()
+    luma = Gtk.Template.Child()
+    color = Gtk.Template.Child()
     smaa_threshold = Gtk.Template.Child()
     smaa_max_search_steps = Gtk.Template.Child()
     smaa_max_search_steps_diagonal = Gtk.Template.Child()
@@ -85,8 +87,11 @@ class VkBasaltDialog(Adw.Window):
         self.btn_save.connect("clicked", self.__save)
         self.btn_cancel.connect("clicked", self.__close_window)
         self.default.connect("state-set", self.__default)
+        self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
+        self.color.connect("toggled", self.__change_edge_detection_type, "color")
 
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
+        global smaa_edge_detection
 
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
@@ -130,11 +135,18 @@ class VkBasaltDialog(Adw.Window):
                     self.fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
             except AttributeError:
                 pass
-            # try:
-            #     if VkBasaltSettings.smaa_edge_detection:
-            #         self.smaa_edge_detection.set_value(float(VkBasaltSettings.smaa_edge_detection))
-            # except AttributeError:
-            #     pass
+
+            if VkBasaltSettings.smaa_edge_detection != None:
+                if VkBasaltSettings.smaa_edge_detection == "color":
+                    self.color.set_active(True)
+                    smaa_edge_detection = "color"
+                else:
+                    self.luma.set_active(True)
+                    smaa_edge_detection = "luma"
+            else:
+                self.luma.set_active(True)
+                smaa_edge_detection = "luma"
+                print(smaa_edge_detection)
             try:
                 if VkBasaltSettings.smaa_threshold:
                     self.smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
@@ -160,6 +172,7 @@ class VkBasaltDialog(Adw.Window):
                 self.switch_disable_on_launch.set_state(True)
         else:
             self.default.set_state(True)
+            smaa_edge_detection = "luma"
             self.cas.set_enable_expansion(False)
             self.dls.set_enable_expansion(False)
             self.fxaa.set_enable_expansion(False)
@@ -199,7 +212,7 @@ class VkBasaltDialog(Adw.Window):
             if self.smaa.get_enable_expansion() is True:
                 effects.append("smaa")
                 VkBasaltSettings.smaa_threshold = Gtk.Adjustment.get_value(self.smaa_threshold)
-                # VkBasaltSettings.smaa_edge_detection = Gtk.Adjustment.get_value(self.smaa_edge_detection)
+                VkBasaltSettings.smaa_edge_detection = smaa_edge_detection
                 VkBasaltSettings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.smaa_corner_rounding)
                 VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.smaa_max_search_steps)
                 VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
@@ -226,3 +239,17 @@ class VkBasaltDialog(Adw.Window):
         self.smaa.set_sensitive(not state)
         self.row_disable_on_launch.set_sensitive(not state)
 
+    def __change_edge_detection_type(self, widget, edge_detection_type):
+        global smaa_edge_detection
+        smaa_edge_detection = edge_detection_type
+        self.luma.handler_block_by_func(self.__change_edge_detection_type)
+        self.color.handler_block_by_func(self.__change_edge_detection_type)
+        if edge_detection_type == "luma":
+            self.color.set_active(False)
+            self.luma.set_active(True)
+        elif edge_detection_type == "color":
+            self.color.set_active(True)
+            self.luma.set_active(False)
+
+        self.luma.handler_unblock_by_func(self.__change_edge_detection_type)
+        self.color.handler_unblock_by_func(self.__change_edge_detection_type)
