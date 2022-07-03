@@ -65,6 +65,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="cas_sharpness">
                                     <property name="lower">-1.0</property>
@@ -93,6 +94,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="dls_sharpness">
                                     <property name="step-increment">0.1</property>
@@ -114,6 +116,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="dls_denoise">
                                     <property name="step-increment">0.1</property>
@@ -141,6 +144,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="fxaa_subpixel_quality">
                                     <property name="step-increment">0.1</property>
@@ -162,6 +166,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="fxaa_quality_edge_threshold">
                                     <property name="step-increment">0.1</property>
@@ -183,6 +188,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="fxaa_quality_edge_threshold_min">
                                     <property name="step-increment">0.1</property>
@@ -239,6 +245,7 @@
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
+                                <property name="digits">2</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="smaa_threshold">
                                     <property name="step-increment">0.05</property>
@@ -262,7 +269,7 @@
                                 <property name='valign'>center</property>
                                 <property name="adjustment">
                                   <object class="GtkAdjustment" id="smaa_max_search_steps">
-                                    <property name="step-increment">11.2</property>
+                                    <property name="step-increment">10</property>
                                     <property name="upper">112</property>
                                   </object>
                                 </property>
