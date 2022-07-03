@@ -16,9 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from os import path, environ, system, remove
-from sys import stderr, exit
+from sys import exit
 from shutil import copyfile
 import configparser
+import logging
 
 
 def parse(args):
@@ -38,7 +39,7 @@ def parse(args):
                     environ["VKBASALT_CONFIG_FILE"] = path.join(install_paths[i], "vkBasalt.conf")
                     system(f"{args.exec}")
                 return
-        stderr.write("No such path for vkBasalt exists\n")
+        logging.error("No such path for vkBasalt exists\n")
         exit(1)
 
     # Generate config and check for errors
@@ -64,7 +65,7 @@ def parse(args):
             if -1 <= args.cas_sharpness <= 1:
                 file.append(f"casSharpness = {args.cas_sharpness}\n")
             else:
-                stderr.write("Error: CAS sharpness must be above -1 and below 1\n")
+                logging.error("Error: CAS sharpness must be above -1 and below 1\n")
                 exit(1)
 
         # --dls-sharpness
@@ -72,7 +73,7 @@ def parse(args):
             if 0 <= args.dls_sharpness <= 1:
                 file.append(f"dlsSharpness = {args.dls_sharpness}\n")
             else:
-                stderr.write("Error: DLS sharpness must be above 0 and below 1\n")
+                logging.error("Error: DLS sharpness must be above 0 and below 1\n")
                 exit(1)
 
         # --dls-denoise
@@ -80,7 +81,7 @@ def parse(args):
             if 0 <= args.dls_denoise <= 1:
                 file.append(f"dlsDenoise = {args.dls_denoise}\n")
             else:
-                stderr.write("Error: DLS denoise must be above 0 and below 1\n")
+                logging.error("Error: DLS denoise must be above 0 and below 1\n")
                 exit(1)
 
         # --fxaa-subpixel-quality
@@ -88,7 +89,7 @@ def parse(args):
             if 0 <= args.fxaa_subpixel_quality <= 1:
                 file.append(f"fxaaQualitySubpix = {args.fxaa_subpixel_quality}\n")
             else:
-                stderr.write("Error: FXAA subpixel quality must be above 0 and below 1\n")
+                logging.error("Error: FXAA subpixel quality must be above 0 and below 1\n")
                 exit(1)
 
         # --fxaa-edge-quality-threshold
@@ -96,7 +97,7 @@ def parse(args):
             if 0 <= args.fxaa_quality_edge_threshold <= 1:
                 file.append(f"fxaaQualityEdgeThreshold = {args.fxaa_quality_edge_threshold}\n")
             else:
-                stderr.write("Error: FXAA edge quality threshold must be above 0 and below 1\n")
+                logging.error("Error: FXAA edge quality threshold must be above 0 and below 1\n")
                 exit(1)
 
         # --fxaa-quality-edge-threshold-min
@@ -104,7 +105,7 @@ def parse(args):
             if 0 <= args.fxaa_quality_edge_threshold_min <= 0.1:
                 file.append(f"fxaaQualityEdgeThresholdMin = {args.fxaa_quality_edge_threshold_min}\n")
             else:
-                stderr.write("Error: FXAA edge quality threshold minimum must be above 0 and below 0.1\n")
+                logging.error("Error: FXAA edge quality threshold minimum must be above 0 and below 0.1\n")
                 exit(1)
 
         # --smaa-edge-detection
@@ -116,7 +117,7 @@ def parse(args):
             if 0 <= args.smaa_threshold <= 0.5:
                 file.append(f"smaaThreshold = {args.smaa_threshold}\n")
             else:
-                stderr.write("Error: SMAA threshold must be above 0 and below 0.5\n")
+                logging.error("Error: SMAA threshold must be above 0 and below 0.5\n")
                 exit(1)
 
         # --smaa-max-search-steps
@@ -124,7 +125,7 @@ def parse(args):
             if 0 <= args.smaa_max_search_steps <= 112:
                 file.append(f"smaaMaxSearchSteps = {args.smaa_max_search_steps}\n")
             else:
-                stderr.write("Error: SMAA max search steps must be above 0 and below 112\n")
+                logging.error("Error: SMAA max search steps must be above 0 and below 112\n")
                 exit(1)
 
         # --smaa-max-search-steps-diagonal
@@ -132,7 +133,7 @@ def parse(args):
             if 0 <= args.smaa_max_search_steps_diagonal <= 20:
                 file.append(f"smaaMaxSearchStepsDiag = {args.smaa_max_search_steps_diagonal}\n")
             else:
-                stderr.write("Error: SMAA max search steps diagonal must be above 0 and below 20\n")
+                logging.error("Error: SMAA max search steps diagonal must be above 0 and below 20\n")
                 exit(1)
 
         # --smaa-corner-rounding
@@ -140,7 +141,7 @@ def parse(args):
             if 0 <= args.smaa_corner_rounding <= 100:
                 file.append(f"smaaCornerRounding = {args.smaa_corner_rounding}\n")
             else:
-                stderr.write("Error: SMAA corner rounding must be above 0 and below 100\n")
+                logging.error("Error: SMAA corner rounding must be above 0 and below 100\n")
                 exit(1)
 
         # --lut-file-path
@@ -152,7 +153,7 @@ def parse(args):
             if path.isdir(args.output):
                 vkbasalt_conf = path.join(args.output, "vkBasalt.conf")
             else:
-                stderr.write("Error: No such directory\n")
+                logging.error("Error: No such directory\n")
                 exit(1)
         else:
             vkbasalt_conf = "/tmp/vkBasalt.conf"
@@ -174,7 +175,7 @@ def parse(args):
                 remove(vkbasalt_conf)
 
     else:
-        stderr.write("Please specify one or more effects.\n")
+        logging.error("Please specify one or more effects.\n")
         exit(1)
 
 def getConfigValue(config, value):
