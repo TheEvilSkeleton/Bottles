@@ -474,7 +474,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_vkbasalt_settings(self, widget):
         new_window = VkBasaltDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()

@@ -74,12 +74,12 @@ class VkBasaltDialog(Adw.Window):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, parent_window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
+        self.set_transient_for(parent_window)
 
         # common variables and references
-        self.window = window
+        self.window = parent_window
         self.manager = window.manager
         self.config = config
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
