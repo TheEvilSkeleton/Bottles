@@ -214,6 +214,7 @@ def ParseConfig(config):
     args.fxaa_quality_edge_threshold = getConfigValue(config, 'fxaaQualityEdgeThreshold')
     args.fxaa_quality_edge_threshold_min = getConfigValue(config, 'fxaaQualityEdgeThresholdMin')
     args.smaa_edge_detection = getConfigValue(config, 'smaaEdgeDetection')
+    args.smaa_threshold = getConfigValue(config, 'smaaThreshold')
     args.smaa_max_search_steps = getConfigValue(config, 'smaaMaxSearchSteps')
     args.smaa_max_search_steps_diagonal = getConfigValue(config, 'smaaMaxSearchStepsDiag')
     args.smaa_corner_rounding = getConfigValue(config, 'smaaCornerRounding')
