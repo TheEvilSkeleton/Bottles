@@ -80,7 +80,7 @@ class VkBasaltDialog(Adw.Window):
 
         # common variables and references
         self.window = parent_window
-        self.manager = window.manager
+        self.manager = parent_window.manager
         self.config = config
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
         global smaa_edge_detection
