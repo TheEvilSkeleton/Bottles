@@ -63,7 +63,7 @@ def parse(args):
         # --cas-sharpness
         if args.cas_sharpness:
             if -1 <= args.cas_sharpness <= 1:
-                file.append(f"casSharpness = {args.cas_sharpness}\n")
+                file.append(f"casSharpness = {round(args.cas_sharpness, 2)}\n")
             else:
                 logging.error(f"Error: CAS sharpness must be above -1 and below 1")
                 exit(1)
@@ -71,7 +71,7 @@ def parse(args):
         # --dls-sharpness
         if args.dls_sharpness:
             if 0 <= args.dls_sharpness <= 1:
-                file.append(f"dlsSharpness = {args.dls_sharpness}\n")
+                file.append(f"dlsSharpness = {round(args.dls_sharpness, 2)}\n")
             else:
                 logging.error(f"Error: DLS sharpness must be above 0 and below 1")
                 exit(1)
@@ -79,7 +79,7 @@ def parse(args):
         # --dls-denoise
         if args.dls_denoise:
             if 0 <= args.dls_denoise <= 1:
-                file.append(f"dlsDenoise = {args.dls_denoise}\n")
+                file.append(f"dlsDenoise = {round(args.dls_denoise, 2)}\n")
             else:
                 logging.error(f"Error: DLS denoise must be above 0 and below 1")
                 exit(1)
@@ -87,7 +87,7 @@ def parse(args):
         # --fxaa-subpixel-quality
         if args.fxaa_subpixel_quality:
             if 0 <= args.fxaa_subpixel_quality <= 1:
-                file.append(f"fxaaQualitySubpix = {args.fxaa_subpixel_quality}\n")
+                file.append(f"fxaaQualitySubpix = {round(args.fxaa_subpixel_quality, 2)}\n")
             else:
                 logging.error(f"Error: FXAA subpixel quality must be above 0 and below 1")
                 exit(1)
@@ -95,7 +95,7 @@ def parse(args):
         # --fxaa-edge-quality-threshold
         if args.fxaa_quality_edge_threshold:
             if 0 <= args.fxaa_quality_edge_threshold <= 1:
-                file.append(f"fxaaQualityEdgeThreshold = {args.fxaa_quality_edge_threshold}\n")
+                file.append(f"fxaaQualityEdgeThreshold = {round(args.fxaa_quality_edge_threshold, 2)}\n")
             else:
                 logging.error(f"Error: FXAA edge quality threshold must be above 0 and below 1")
                 exit(1)
@@ -103,7 +103,7 @@ def parse(args):
         # --fxaa-quality-edge-threshold-min
         if args.fxaa_quality_edge_threshold_min:
             if 0 <= args.fxaa_quality_edge_threshold_min <= 0.1:
-                file.append(f"fxaaQualityEdgeThresholdMin = {args.fxaa_quality_edge_threshold_min}\n")
+                file.append(f"fxaaQualityEdgeThresholdMin = {round(args.fxaa_quality_edge_threshold_min, 3)}\n")
             else:
                 logging.error(f"Error: FXAA edge quality threshold minimum must be above 0 and below 0.1")
                 exit(1)
@@ -115,7 +115,7 @@ def parse(args):
         # --smaa-threshold
         if args.smaa_threshold:
             if 0 <= args.smaa_threshold <= 0.5:
-                file.append(f"smaaThreshold = {args.smaa_threshold}\n")
+                file.append(f"smaaThreshold = {round(args.smaa_threshold, 3)}\n")
             else:
                 logging.error(f"Error: SMAA threshold must be above 0 and below 0.5")
                 exit(1)
@@ -123,7 +123,7 @@ def parse(args):
         # --smaa-max-search-steps
         if args.smaa_max_search_steps:
             if 0 <= args.smaa_max_search_steps <= 112:
-                file.append(f"smaaMaxSearchSteps = {args.smaa_max_search_steps}\n")
+                file.append(f"smaaMaxSearchSteps = {round(args.smaa_max_search_steps)}\n")
             else:
                 logging.error(f"Error: SMAA max search steps must be above 0 and below 112")
                 exit(1)
@@ -131,7 +131,7 @@ def parse(args):
         # --smaa-max-search-steps-diagonal
         if args.smaa_max_search_steps_diagonal:
             if 0 <= args.smaa_max_search_steps_diagonal <= 20:
-                file.append(f"smaaMaxSearchStepsDiag = {args.smaa_max_search_steps_diagonal}\n")
+                file.append(f"smaaMaxSearchStepsDiag = {round(args.smaa_max_search_steps_diagonal)}\n")
             else:
                 logging.error(f"Error: SMAA max search steps diagonal must be above 0 and below 20")
                 exit(1)
@@ -139,7 +139,7 @@ def parse(args):
         # --smaa-corner-rounding
         if args.smaa_corner_rounding:
             if 0 <= args.smaa_corner_rounding <= 100:
-                file.append(f"smaaCornerRounding = {args.smaa_corner_rounding}\n")
+                file.append(f"smaaCornerRounding = {round(args.smaa_corner_rounding)}\n")
             else:
                 logging.error(f"Error: SMAA corner rounding must be above 0 and below 100")
                 exit(1)
