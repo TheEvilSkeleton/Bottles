@@ -331,7 +331,7 @@
                 <child>
                   <object class="AdwActionRow" id="row_disable_on_launch">
                     <property name="activatable-widget">switch_disable_on_launch</property>
-                    <property name="title" translatable="yes">Disable On Launch</property>
+                    <property name="title" translatable="yes">Disable on Launch</property>
                     <child>
                       <object class="GtkSwitch" id="switch_disable_on_launch">
                         <property name="valign">center</property>
