@@ -323,6 +323,28 @@
                     </child>
                   </object>
                 </child>
+                <child>
+                  <object class="AdwExpanderRow" id="clut">
+                    <property name="show_enable_switch">True</property>
+                    <property name="title" translatable="yes">Color Lookup Table</property>
+                    <child>
+                      <object class="AdwPreferencesRow">
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes">Path</property>
+                            <child>
+                              <object class="GtkButton" id="lut_file_path">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">paper-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
