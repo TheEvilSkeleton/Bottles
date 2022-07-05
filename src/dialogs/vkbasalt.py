@@ -228,13 +228,16 @@ class VkBasaltDialog(Adw.Window):
     def __import_clut(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
-                _file = _file_dialog.get_file()
+                global file_path
+                file_path = _file_dialog.get_file()
+                # print(file_path.get_path())
+
 
         FileChooser(
             parent=self.window,
             title=_("Choose a configuration file"),
             action=Gtk.FileChooserAction.OPEN,
             buttons=(_("Cancel"), _("Import")),
-            filters=["CUBE", "png"],
+            filters=["png", "CUBE"],
             callback=set_path
         )
