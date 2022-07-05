@@ -92,7 +92,7 @@ class VkBasaltDialog(Adw.Window):
         self.default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
         self.color.connect("toggled", self.__change_edge_detection_type, "color")
-        # self.lut_file_path("clicked", self.__import_clut)
+        self.lut_file_path.connect("clicked", self.__import_clut)
 
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
@@ -221,17 +221,16 @@ class VkBasaltDialog(Adw.Window):
         self.color.handler_unblock_by_func(self.__change_edge_detection_type)
 
     def __import_clut(self, *args):
-        print("test")
-        # def set_path(_dialog, response, _file_dialog):
-        #     if response == -3:
-        #         _file = _file_dialog.get_file()
-        #         self.window.show_toast(_("Importing backup…"))
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                self.window.show_toast(_("Importing backup…"))
 
-        # FileChooser(
-        #     parent=self.parent_window,
-        #     title=_("Choose a configuration file"),
-        #     action=Gtk.FileChooserAction.OPEN,
-        #     buttons=(_("Cancel"), _("Import")),
-        #     filters=["CUBE", "png"],
-        #     callback=set_path
-        # )
+        FileChooser(
+            parent=self.window,
+            title=_("Choose a configuration file"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Import")),
+            filters=["CUBE", "png"],
+            callback=set_path
+        )
