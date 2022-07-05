@@ -337,6 +337,9 @@
                                 <property name='valign'>center</property>
                                 <property name="tooltip-text" translatable="yes">Select</property>
                                 <property name="icon-name">paper-symbolic</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
                               </object>
                             </child>
                           </object>

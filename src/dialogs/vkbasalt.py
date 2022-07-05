@@ -68,6 +68,7 @@ class VkBasaltDialog(Adw.Window):
     smaa_max_search_steps = Gtk.Template.Child()
     smaa_max_search_steps_diagonal = Gtk.Template.Child()
     smaa_corner_rounding = Gtk.Template.Child()
+    clut = Gtk.Template.Child()
     lut_file_path = Gtk.Template.Child()
     # output = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
@@ -105,6 +106,8 @@ class VkBasaltDialog(Adw.Window):
                 self.fxaa.set_enable_expansion(False)
             if "smaa" not in VkBasaltSettings.effects:
                 self.smaa.set_enable_expansion(False)
+            if VkBasaltSettings.lut_file_path is None:
+                self.clut.set_enable_expansion(False)
 
             if VkBasaltSettings.cas_sharpness != None:
                 self.cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
@@ -143,6 +146,7 @@ class VkBasaltDialog(Adw.Window):
             self.dls.set_enable_expansion(False)
             self.fxaa.set_enable_expansion(False)
             self.smaa.set_enable_expansion(False)
+            self.clut.set_enable_expansion(False)
 
     def __idle_save(self, *args):
 
@@ -204,6 +208,7 @@ class VkBasaltDialog(Adw.Window):
         self.fxaa.set_sensitive(not state)
         self.smaa.set_sensitive(not state)
         self.row_disable_on_launch.set_sensitive(not state)
+        self.clut.set_sensitive(not state)
 
     def __change_edge_detection_type(self, widget, edge_detection_type):
         global smaa_edge_detection
@@ -224,7 +229,6 @@ class VkBasaltDialog(Adw.Window):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
-                self.window.show_toast(_("Importing backup…"))
 
         FileChooser(
             parent=self.window,

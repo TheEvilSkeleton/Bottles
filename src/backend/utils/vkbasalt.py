@@ -218,6 +218,7 @@ def ParseConfig(config):
     args.smaa_max_search_steps = getConfigValue(config, 'smaaMaxSearchSteps')
     args.smaa_max_search_steps_diagonal = getConfigValue(config, 'smaaMaxSearchStepsDiag')
     args.smaa_corner_rounding = getConfigValue(config, 'smaaCornerRounding')
+    args.lut_file_path = getConfigValue(config, 'lutFile')
 
     return(args)
 
