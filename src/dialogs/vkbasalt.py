@@ -20,6 +20,7 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.backend.utils.vkbasalt import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+import logging
 
 class VkBasaltSettings:
     default = False
@@ -186,6 +187,9 @@ class VkBasaltDialog(Adw.Window):
                 VkBasaltSettings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.smaa_corner_rounding)
                 VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.smaa_max_search_steps)
                 VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
+            if self.clut.get_enable_expansion() is True:
+                VkBasaltSettings.lut_file_path = file_path.get_path()
+                print(VkBasaltSettings.lut_file_path)
 
             VkBasaltSettings.disable_on_launch = self.switch_disable_on_launch.get_state()
 
@@ -228,10 +232,9 @@ class VkBasaltDialog(Adw.Window):
     def __import_clut(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
+                _file_path = _file_dialog.get_file()
                 global file_path
-                file_path = _file_dialog.get_file()
-                # print(file_path.get_path())
-
+                file_path = _file_path
 
         FileChooser(
             parent=self.window,

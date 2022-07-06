@@ -335,6 +335,7 @@
                             <child>
                               <object class="GtkEntry">
                                 <property name="valign">center</property>
+                                <property name="sensitive">False</property>
                               </object>
                             </child>
                             <child>
