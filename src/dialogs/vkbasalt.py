@@ -74,6 +74,7 @@ class VkBasaltDialog(Adw.Window):
     # output = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
+    input_entry = Gtk.Template.Child()
 
     # endregion
 
@@ -233,8 +234,12 @@ class VkBasaltDialog(Adw.Window):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file_path = _file_dialog.get_file()
+                # if " " in _file_path.get_path():
+                #     logging.error("Error: CLUT must not contain any whitespace")
+                # else:
                 global file_path
                 file_path = _file_path
+                self.input_entry.set_text(file_path.get_path())
 
         FileChooser(
             parent=self.window,
