@@ -146,7 +146,7 @@ def parse(args):
 
         # --lut-file-path
         if args.lut_file_path:
-            if not " " in lut_file_path:
+            if not " " in args.lut_file_path:
                 file.append(f"lutFile = {args.lut_file_path}\n")
             else:
                 logging.error("Error: CLUT must not contain any whitespace")

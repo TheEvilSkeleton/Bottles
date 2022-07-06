@@ -110,6 +110,8 @@ class VkBasaltDialog(Adw.Window):
                 self.smaa.set_enable_expansion(False)
             if VkBasaltSettings.lut_file_path is None:
                 self.clut.set_enable_expansion(False)
+            else:
+                self.input_entry.set_text(VkBasaltSettings.lut_file_path)
 
             if VkBasaltSettings.cas_sharpness != None:
                 self.cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
@@ -190,7 +192,6 @@ class VkBasaltDialog(Adw.Window):
                 VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
             if self.clut.get_enable_expansion() is True:
                 VkBasaltSettings.lut_file_path = file_path.get_path()
-                print(VkBasaltSettings.lut_file_path)
 
             VkBasaltSettings.disable_on_launch = self.switch_disable_on_launch.get_state()
 
