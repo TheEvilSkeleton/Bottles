@@ -46,11 +46,12 @@ def get_apps_dir():
 
 def VkBasaltPath():
     vkbasalt_paths = [
-        "/usr/lib/extensions/vulkan/vkBasalt/share/vulkan/implicit_layer.d/vkBasalt.json",
-        "/usr/share/vulkan/implicit_layer.d/vkBasalt.json"
+            "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
+            "/usr/local",
+            "/usr/share/vkBasalt",
     ]
     for path in range(len(vkbasalt_paths)):
-        if os.path.isfile(vkbasalt_paths[path]):
+        if os.path.exists(vkbasalt_paths[path]):
             return True
     return False
 
