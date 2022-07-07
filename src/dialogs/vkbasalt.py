@@ -82,6 +82,7 @@ class VkBasaltDialog(Adw.Window):
     input_entry = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
+    btn_help = Gtk.Template.Child()
 
     # endregion
 
@@ -94,7 +95,6 @@ class VkBasaltDialog(Adw.Window):
         self.manager = parent_window.manager
         self.config = config
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
-        global smaa_edge_detection
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
@@ -121,6 +121,7 @@ class VkBasaltDialog(Adw.Window):
                 self.clut.set_enable_expansion(False)
             else:
                 self.input_entry.set_text(VkBasaltSettings.lut_file_path)
+                self.lut_file_path = VkBasaltSettings.lut_file_path
 
             if VkBasaltSettings.cas_sharpness != None:
                 self.cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
@@ -147,14 +148,14 @@ class VkBasaltDialog(Adw.Window):
             if VkBasaltSettings.smaa_edge_detection != None:
                 if VkBasaltSettings.smaa_edge_detection == "color":
                     self.color.set_active(True)
-                    smaa_edge_detection = "color"
+                    self.smaa_edge_detection = "color"
                 else:
-                    smaa_edge_detection = "luma"
+                    self.smaa_edge_detection = "luma"
             else:
-                smaa_edge_detection = "luma"
+                self.smaa_edge_detection = "luma"
         else:
             self.default.set_state(True)
-            smaa_edge_detection = "luma"
+            self.smaa_edge_detection = "luma"
             self.cas.set_enable_expansion(False)
             self.dls.set_enable_expansion(False)
             self.fxaa.set_enable_expansion(False)
@@ -195,12 +196,12 @@ class VkBasaltDialog(Adw.Window):
             if self.smaa.get_enable_expansion() is True:
                 effects.append("smaa")
                 VkBasaltSettings.smaa_threshold = Gtk.Adjustment.get_value(self.smaa_threshold)
-                VkBasaltSettings.smaa_edge_detection = smaa_edge_detection
+                VkBasaltSettings.smaa_edge_detection = self.smaa_edge_detection
                 VkBasaltSettings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.smaa_corner_rounding)
                 VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.smaa_max_search_steps)
                 VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
             if self.clut.get_enable_expansion() is True:
-                VkBasaltSettings.lut_file_path = file_path.get_path()
+                VkBasaltSettings.lut_file_path = self.lut_file_path
 
             VkBasaltSettings.disable_on_launch = self.switch_disable_on_launch.get_state()
 
@@ -226,8 +227,7 @@ class VkBasaltDialog(Adw.Window):
         self.clut.set_sensitive(not state)
 
     def __change_edge_detection_type(self, widget, edge_detection_type):
-        global smaa_edge_detection
-        smaa_edge_detection = edge_detection_type
+        self.smaa_edge_detection = edge_detection_type
         self.luma.handler_block_by_func(self.__change_edge_detection_type)
         self.color.handler_block_by_func(self.__change_edge_detection_type)
         if edge_detection_type == "luma":
@@ -243,13 +243,12 @@ class VkBasaltDialog(Adw.Window):
     def __import_clut(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
-                _file_path = _file_dialog.get_file()
+                self.lut_file_path = _file_dialog.get_file().get_path()
+                # self.lut_file_path = _lut_file_path.get_path()
                 # if " " in _file_path.get_path():
                 #     logging.error("Error: CLUT must not contain any whitespace")
                 # else:
-                global file_path
-                file_path = _file_path
-                self.input_entry.set_text(file_path.get_path())
+                self.input_entry.set_text(self.lut_file_path)
 
         FileChooser(
             parent=self.window,
