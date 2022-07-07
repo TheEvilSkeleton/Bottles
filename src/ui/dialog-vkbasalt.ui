@@ -6,7 +6,6 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="VkBasaltDialog" parent="AdwWindow">
     <property name="default-width">550</property>
-    <property name="deletable">False</property>
     <property name="modal">True</property>
     <property name="title" translatable="yes">vkBasalt Settings</property>
     <child>
@@ -14,6 +13,7 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="AdwHeaderBar">
+            <property name="show-end-title-buttons">False</property>
             <child type="start">
               <object class="GtkBox">
                 <property name="spacing">6</property>
@@ -390,4 +390,5 @@
     </child>
   </template>
 </interface>
+
 
