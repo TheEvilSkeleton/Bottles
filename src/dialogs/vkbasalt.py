@@ -15,6 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+'''
+Terminologies:
+--------------
+cas: Contrast Adaptive Sharpening
+dls: Denoised Luma Sharpening
+fxaa: Fast Approximate Anti-Aliasing
+smaa: Subpixel Morphological Anti-Aliasing
+clut (or lut): Color Lookup Table
+'''
+
 import os
 from gi.repository import Gtk, GLib, Adw
 from bottles.backend.utils.vkbasalt import parse, ParseConfig
@@ -52,7 +62,6 @@ class VkBasaltDialog(Adw.Window):
     dls = Gtk.Template.Child()
     fxaa = Gtk.Template.Child()
     smaa = Gtk.Template.Child()
-
     row_disable_on_launch = Gtk.Template.Child()
     switch_disable_on_launch = Gtk.Template.Child()
     # toggle_key = Gtk.Template.Child()
@@ -62,7 +71,6 @@ class VkBasaltDialog(Adw.Window):
     fxaa_subpixel_quality = Gtk.Template.Child()
     fxaa_quality_edge_threshold = Gtk.Template.Child()
     fxaa_quality_edge_threshold_min = Gtk.Template.Child()
-    # smaa_edge_detection = Gtk.Template.Child()
     luma = Gtk.Template.Child()
     color = Gtk.Template.Child()
     smaa_threshold = Gtk.Template.Child()
@@ -71,10 +79,9 @@ class VkBasaltDialog(Adw.Window):
     smaa_corner_rounding = Gtk.Template.Child()
     clut = Gtk.Template.Child()
     lut_file_path = Gtk.Template.Child()
-    # output = Gtk.Template.Child()
+    input_entry = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
-    input_entry = Gtk.Template.Child()
 
     # endregion
 
@@ -100,6 +107,7 @@ class VkBasaltDialog(Adw.Window):
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
 
+            # Check if effects are used.
             if "cas" not in VkBasaltSettings.effects:
                 self.cas.set_enable_expansion(False)
             if "dls" not in VkBasaltSettings.effects:
@@ -108,6 +116,7 @@ class VkBasaltDialog(Adw.Window):
                 self.fxaa.set_enable_expansion(False)
             if "smaa" not in VkBasaltSettings.effects:
                 self.smaa.set_enable_expansion(False)
+            # Check if clut is used.
             if VkBasaltSettings.lut_file_path is None:
                 self.clut.set_enable_expansion(False)
             else:
