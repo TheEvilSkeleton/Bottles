@@ -81,7 +81,6 @@ class VkBasaltDialog(Adw.Window):
     lut_file_path = Gtk.Template.Child()
     input_entry = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
-    btn_cancel = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
 
     # endregion
@@ -98,7 +97,6 @@ class VkBasaltDialog(Adw.Window):
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
-        self.btn_cancel.connect("clicked", self.__close_window)
         self.default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
         self.color.connect("toggled", self.__change_edge_detection_type, "color")
@@ -174,7 +172,7 @@ class VkBasaltDialog(Adw.Window):
             if os.path.isfile(conf):
                 os.remove(conf)
             parse(VkBasaltSettings)
-            self.destroy()
+            self.close()
             return
 
         # Checks filter settings.
@@ -210,13 +208,10 @@ class VkBasaltDialog(Adw.Window):
         VkBasaltSettings.output = conf
 
         parse(VkBasaltSettings)
-        self.destroy()
+        self.close()
 
     def __save(self, *args):
         GLib.idle_add(self.__idle_save)
-
-    def __close_window(self, *args):
-        self.destroy()
 
     def __default(self, widget, state):
         self.cas.set_sensitive(not state)
@@ -257,7 +252,7 @@ class VkBasaltDialog(Adw.Window):
                       )
 
                     def __close_error(*args):
-                        dialog.destroy()
+                        dialog.close()
 
                     dialog.present()
                     dialog.connect("response", __close_error)
