@@ -243,28 +243,17 @@ class VkBasaltDialog(Adw.Window):
 
                 img = Image.open(self.lut_file_path)
 
-                def __error_dialog(message):
-                    dialog = Gtk.MessageDialog(
-                        parent=self.window,
-                        transient_for=self,
-                        message_type=Gtk.MessageType.ERROR,
-                        buttons=Gtk.ButtonsType.CLOSE,
-                        text=f"{message}"
-                      )
-
-                    def __close_error(*args):
-                        dialog.close()
-
+                def error_dialog(title, message):
+                    dialog = Adw.MessageDialog.new(self.window, title, message)
+                    dialog.add_response("cancel", "Close")
                     dialog.present()
-                    dialog.connect("response", __close_error)
 
                 if " " in self.lut_file_path:
-                    __error_dialog("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
+                    error_dialog("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
                 elif img.width != img.height:
-                    __error_dialog("Image must have the same dimension.")
+                    error_dialog("Inequal Image Dimension", "Image must have the same dimension.")
                 else:
                     self.input_entry.set_text(self.lut_file_path)
-
 
         FileChooser(
             parent=self.window,
