@@ -25,7 +25,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="btn_help">
-                    <property name="label" translatable="yes">_Help</property>
+                    <property name="label" translatable="yes">_?</property>
                     <property name="use_underline">True</property>
                   </object>
                 </child>

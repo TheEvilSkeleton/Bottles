@@ -244,11 +244,23 @@ class VkBasaltDialog(Adw.Window):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 self.lut_file_path = _file_dialog.get_file().get_path()
-                # self.lut_file_path = _lut_file_path.get_path()
-                # if " " in _file_path.get_path():
-                #     logging.error("Error: CLUT must not contain any whitespace")
-                # else:
-                self.input_entry.set_text(self.lut_file_path)
+                if " " not in self.lut_file_path:
+                    self.input_entry.set_text(self.lut_file_path)
+                else:
+                    logging.error("Error: CLUT must not contain any whitespace")
+                    dialog = Gtk.MessageDialog(
+                        parent=self.window,
+                        transient_for=self,
+                        message_type=Gtk.MessageType.ERROR,
+                        buttons=Gtk.ButtonsType.CLOSE,
+                        text="Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."
+                      )
+
+                    def __close_error(*args):
+                        dialog.destroy()
+
+                    dialog.present()
+                    dialog.connect("response", __close_error)
 
         FileChooser(
             parent=self.window,
