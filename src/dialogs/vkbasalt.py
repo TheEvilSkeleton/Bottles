@@ -30,6 +30,7 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.backend.utils.vkbasalt import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+from PIL import Image
 import logging
 
 class VkBasaltSettings:
@@ -239,16 +240,16 @@ class VkBasaltDialog(Adw.Window):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 self.lut_file_path = _file_dialog.get_file().get_path()
-                if " " not in self.lut_file_path:
-                    self.input_entry.set_text(self.lut_file_path)
-                else:
-                    logging.error("Error: CLUT must not contain any whitespace")
+
+                img = Image.open(self.lut_file_path)
+
+                def __error_dialog(message):
                     dialog = Gtk.MessageDialog(
                         parent=self.window,
                         transient_for=self,
                         message_type=Gtk.MessageType.ERROR,
                         buttons=Gtk.ButtonsType.CLOSE,
-                        text="Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."
+                        text=f"{message}"
                       )
 
                     def __close_error(*args):
@@ -256,6 +257,14 @@ class VkBasaltDialog(Adw.Window):
 
                     dialog.present()
                     dialog.connect("response", __close_error)
+
+                if " " in self.lut_file_path:
+                    __error_dialog("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
+                elif img.width != img.height:
+                    __error_dialog("Image must have the same dimension.")
+                else:
+                    self.input_entry.set_text(self.lut_file_path)
+
 
         FileChooser(
             parent=self.window,
