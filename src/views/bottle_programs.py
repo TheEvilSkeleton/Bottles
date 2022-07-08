@@ -1,11 +1,10 @@
 # bottle_programs.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -40,13 +39,13 @@ class ProgramsView(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, parent, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.parent = parent
-        self.window = parent.window
-        self.manager = parent.manager
+        self.parent = details
+        self.window = details.window
+        self.manager = details.manager
         self.config = config
         self.show_removed = False
 

@@ -1,11 +1,10 @@
 # data.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,6 +16,7 @@
 
 import os
 import yaml
+import contextlib
 from pathlib import Path
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -77,21 +77,17 @@ class DataManager:
             else:
                 self.__data[key] = value
 
-        try:
+        with contextlib.suppress(FileNotFoundError):
             with open(self.__p_data, 'w') as s:
                 yaml.dump(self.__data, s)
-        except FileNotFoundError:
-            pass
 
     def remove(self, key):
         """Removes a key from the data dictionary."""
         if self.__data.get(key):
             del self.__data[key]
-            try:
+            with contextlib.suppress(FileNotFoundError):
                 with open(self.__p_data, 'w') as s:
                     yaml.dump(self.__data, s)
-            except FileNotFoundError:
-                pass
 
     def get(self, key):
         """Returns the value of a key in the data dictionary."""

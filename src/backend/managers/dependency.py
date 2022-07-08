@@ -1,11 +1,10 @@
 # dependency.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -178,12 +177,13 @@ class DependencyManager:
             '''
             uninstaller = manifest.get("Uninstaller")
 
-        self.__manager.update_config(
-            config,
-            dependency[0],
-            uninstaller,
-            "Uninstallers"
-        )
+        if dependency[0] not in config["Installed_Dependencies"]:
+            self.__manager.update_config(
+                config,
+                dependency[0],
+                uninstaller,
+                "Uninstallers"
+            )
 
         # Remove entry from operation manager
         GLib.idle_add(self.__operation_manager.remove_task, task_id)

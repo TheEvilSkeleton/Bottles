@@ -1,11 +1,10 @@
 # runtime.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -128,19 +127,19 @@ class RuntimeManager:
     def __get_steam_runtime():
         from bottles.backend.managers.steam import SteamManager
         available_runtimes = {}
-        steam_path = SteamManager.find_steam_path()
+        steam_manager = SteamManager(check_only=True)
 
-        if not steam_path:
+        if not steam_manager.is_steam_supported:
             return available_runtimes
 
         lookup = {
             "soldier": {
                 "name": "soldier",
-                "entry_point": os.path.join(steam_path, "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point"),
+                "entry_point": os.path.join(steam_manager.steam_path, "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point"),
             },
             "scout": {
                 "name": "scout",
-                "entry_point": os.path.join(steam_path, "ubuntu12_32/steam-runtime/run.sh"),
+                "entry_point": os.path.join(steam_manager.steam_path, "ubuntu12_32/steam-runtime/run.sh"),
             }
         }
 

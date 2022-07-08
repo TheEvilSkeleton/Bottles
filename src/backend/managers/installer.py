@@ -1,11 +1,10 @@
 # installer_manager.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -96,6 +95,10 @@ class InstallerManager:
 
         catalog = dict(sorted(catalog.items()))
         return catalog
+
+    def get_icon_url(self, installer):
+        '''Wrapper for the repo method.'''
+        return self.__repo.get_icon(installer)
 
     def __download_icon(self, config, executable: dict, manifest):
         """
@@ -375,19 +378,26 @@ class InstallerManager:
                 scope="Parameters"
             )
 
-    def count_steps(self, installer):
+    def count_steps(self, installer) -> dict:
         manifest = self.get_installer(installer[0])
-        steps = 0
+        steps = {"total": 0, "sections": []}
         if manifest.get("Dependencies"):
-            steps += int(len(manifest.get("Dependencies")))
+            i = int(len(manifest.get("Dependencies")))
+            steps["sections"] += i * ["deps"]
+            steps["total"] += i
         if manifest.get("Parameters"):
-            steps += 1
+            steps["sections"].append("params")
+            steps["total"] += 1
         if manifest.get("Steps"):
-            steps += int(len(manifest.get("Steps")))
+            i = int(len(manifest.get("Steps")))
+            steps["sections"] += i * ["steps"]
+            steps["total"] += i
         if manifest.get("Executable"):
-            steps += 1
+            steps["sections"].append("exe")
+            steps["total"] += 1
         if manifest.get("Checks"):
-            steps += 1
+            steps["sections"].append("checks")
+            steps["total"] += 1
 
         return steps
 
@@ -402,7 +412,8 @@ class InstallerManager:
         files = [s.get("file_name", "") for s in exe_msi_steps]
         return files
 
-    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True, local_resources: list = None):
+    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True,
+                local_resources: dict = None):
         if config.get("Environment") == "Layered":
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
@@ -483,7 +494,7 @@ class InstallerManager:
                 _userdir = WineUtils.get_user_dir(bottle)
                 executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
             _path = f'C:\\{executable["path"]}'.replace("/", "\\")
-            _uuid = str (uuid.uuid4())
+            _uuid = str(uuid.uuid4())
             _program = {
                 "executable": executable["file"],
                 "arguments": executable.get("arguments", ""),
@@ -499,12 +510,24 @@ class InstallerManager:
             if "dxvk_nvapi" in executable:
                 _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
 
-            self.__manager.update_config(
-                config=config,
-                key=_uuid,
-                value=_program,
-                scope="External_Programs"
-            )
+            duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
+            ext = config["External_Programs"]
+            if duplicates:
+                for d in duplicates:
+                    del ext[d]
+                ext[_uuid] = _program
+                self.__manager.update_config(
+                    config=config,
+                    key="External_Programs",
+                    value=ext
+                )
+            else:
+                self.__manager.update_config(
+                    config=config,
+                    key=_uuid,
+                    value=_program,
+                    scope="External_Programs"
+                )
 
             # create Desktop entry
             bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")

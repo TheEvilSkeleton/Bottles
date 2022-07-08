@@ -1,11 +1,10 @@
 # preferences.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,7 +21,6 @@ from gi.repository import Gtk, Adw
 from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
 from bottles.dialogs.filechooser import FileChooser
 
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.data import DataManager
 
 
@@ -42,6 +40,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
+    switch_ubisoft_connect = Gtk.Template.Child()
     list_winebridge = Gtk.Template.Child()
     list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
@@ -88,6 +87,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
         self.switch_steam_programs.set_active(self.settings.get_boolean("steam-programs"))
         self.switch_epic_games.set_active(self.settings.get_boolean("epic-games"))
+        self.switch_ubisoft_connect.set_active(self.settings.get_boolean("ubisoft-connect"))
         self.populate_runtimes_list()
         self.populate_winebridge_list()
         self.populate_runners_list()
@@ -107,10 +107,11 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
         self.switch_steam_programs.connect('state-set', self.__toggle_steam_programs)
         self.switch_epic_games.connect('state-set', self.__toggle_epic_games)
+        self.switch_ubisoft_connect.connect('state-set', self.__toggle_ubisoft_connect)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
 
-        if not SteamManager.is_steam_supported():
+        if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
             self.action_steam_proton.set_tooltip_text(
                 _("Steam was not found or Bottles does not have enough permissions.\
@@ -125,6 +126,9 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __toggle_epic_games(self, widget, state):
         self.settings.set_boolean("epic-games", state)
+
+    def __toggle_ubisoft_connect(self, widget, state):
+        self.settings.set_boolean("ubisoft-connect", state)
 
     def __toggle_notify(self, widget, state):
         self.settings.set_boolean("notifications", state)
@@ -205,14 +209,16 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
             if parent:
                 parent.remove(w)
 
-        exp_caffe = ComponentExpander("Caffe")
-        exp_soda = ComponentExpander("Soda")
+        exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes staging and Proton patches."))
+        exp_caffe = ComponentExpander("Caffe", _("Based on Wine upstream, includes staging and Proton patches."))
         exp_wine_ge = ComponentExpander("GE Wine")
         exp_lutris = ComponentExpander("Lutris")
-        exp_proton = ComponentExpander("GE Proton")
+        exp_vaniglia = ComponentExpander("Vaniglia", _("Based on Wine upstream, includes staging patches."))
+        exp_proton = ComponentExpander("GE Proton", _("Based on Valve's Wine, includes staging, Proton and "
+                                                      "Steam-specific patches. Requires the Steam Runtime turned on."))
         exp_other = ComponentExpander(_("Other"))
 
-        count = {"caffe": 0, "soda": 0, "wine-ge": 0, "lutris": 0, "proton": 0, "other": 0}
+        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "vaniglia": 0, "proton": 0, "other": 0}
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
@@ -221,18 +227,21 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
                 continue
 
             _entry = ComponentEntry(self.window, runner, "runner")
-            if _runner_name.startswith("caffe"):
-                exp_caffe.add_row(_entry)
-                count["caffe"] += 1
-            elif _runner_name.startswith("soda"):
+            if _runner_name.startswith("soda"):
                 exp_soda.add_row(_entry)
                 count["soda"] += 1
+            elif _runner_name.startswith("caffe"):
+                exp_caffe.add_row(_entry)
+                count["caffe"] += 1
             elif _runner_name.startswith("wine-ge"):
                 exp_wine_ge.add_row(_entry)
                 count["wine-ge"] += 1
             elif _runner_name.startswith("lutris"):
                 exp_lutris.add_row(_entry)
                 count["lutris"] += 1
+            elif _runner_name.startswith("vaniglia"):
+                exp_lutris.add_row(_entry)
+                count["vaniglia"] += 1
             else:
                 exp_other.add_row(_entry)
                 count["other"] += 1
@@ -246,18 +255,21 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
             exp_proton.add_row(_entry)
             count["proton"] += 1
 
-        if count["caffe"] > 0:
-            self.list_runners.add(exp_caffe)
-            self.__registry.append(exp_caffe)
         if count["soda"] > 0:
             self.list_runners.add(exp_soda)
             self.__registry.append(exp_soda)
+        if count["caffe"] > 0:
+            self.list_runners.add(exp_caffe)
+            self.__registry.append(exp_caffe)
         if count["wine-ge"] > 0:
             self.list_runners.add(exp_wine_ge)
             self.__registry.append(exp_wine_ge)
         if count["lutris"] > 0:
             self.list_runners.add(exp_lutris)
             self.__registry.append(exp_lutris)
+        if count["vaniglia"] > 0:
+            self.list_runners.add(exp_vaniglia)
+            self.__registry.append(exp_vaniglia)
         if count["proton"] > 0:
             self.list_runners.add(exp_proton)
             self.__registry.append(exp_proton)

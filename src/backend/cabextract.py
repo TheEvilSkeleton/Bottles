@@ -1,11 +1,10 @@
 # cabextract.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -39,11 +38,13 @@ class CabExtract:
     files: list
     destination: str
 
+    def __init__(self):
+        self.cabextract_bin = shutil.which("cabextract")
+
     def run(self, path: str, name: str = "", files: list = None, destination: str = ""):
         if files is None:
             files = []
 
-        self.cabextract_bin = shutil.which("cabextract")
         self.path = path
         self.name = name
         self.files = files

@@ -1,11 +1,10 @@
 # bottle_versioning.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -44,13 +43,13 @@ class VersioningView(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.versioning_manager = window.manager.versioning_manager
+        self.window = details.window
+        self.manager = details.window.manager
+        self.versioning_manager = details.window.manager.versioning_manager
         self.config = config
 
         self.ev_controller.connect("key-released", self.check_entry_state_comment)
@@ -66,16 +65,17 @@ class VersioningView(Adw.PreferencesPage):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None):
+    def update(self, widget=False, config=None, states=None):
         """
         This function update the states list with the
         ones from the bottle configuration.
         """
         if config is None:
             config = {}
-        self.config = config
-        states = self.versioning_manager.list_states(self.config)
+        if states is None:
+            states = self.versioning_manager.list_states(config)
 
+        self.config = config
         self.list_states.set_sensitive(False)
 
         def new_state(_state):
@@ -107,7 +107,7 @@ class VersioningView(Adw.PreferencesPage):
 
         RunAsync(process_states, callback)
 
-    def check_entry_state_comment(self, widget, event_key):
+    def check_entry_state_comment(self, *args):
         """
         This function check if the entry state comment is valid,
         looking for special characters. It also toggles the widget icon

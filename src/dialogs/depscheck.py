@@ -1,4 +1,4 @@
-# dxvk.py
+# depscheck.py
 #
 # Copyright 2022 brombinmirko <send@mirko.pm>
 #
@@ -14,18 +14,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from bottles.backend.dlls.dll import DLLComponent  # pyright: reportMissingImports=false
-from bottles.backend.utils.manager import ManagerUtils
+from gi.repository import Gtk, GLib, Adw
 
 
-class LatencyFleXComponent(DLLComponent):
-    dlls = {
-        "wine/usr/lib/wine/x86_64-windows": [
-            "latencyflex_layer.dll",
-            "latencyflex_wine.dll",
-        ]
-    }
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-deps-check.ui')
+class DependenciesCheckDialog(Adw.Window):
+    __gtype_name__ = 'DependenciesCheckDialog'
 
-    @staticmethod
-    def get_base_path(version: str):
-        return ManagerUtils.get_latencyflex_path(version)
+    # region widgets
+    btn_quit = Gtk.Template.Child()
+
+    # endregion
+
+    def __init__(self, window, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+        self.window = window
+
+        self.btn_quit.connect("clicked", self.__quit)
+
+    def __quit(self, *args):
+        self.window.proper_close()

@@ -1,11 +1,10 @@
 # new.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -53,7 +52,6 @@ class NewView(Adw.Window):
     row_sandbox = Gtk.Template.Child()
     title = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -71,7 +69,6 @@ class NewView(Adw.Window):
         self.runner = None
 
         # connect signals
-        self.entry_name.add_controller(self.ev_controller)
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_close_pill.connect("clicked", self.__close_window)
@@ -79,25 +76,36 @@ class NewView(Adw.Window):
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
-        self.ev_controller.connect("key-released", self.__check_entry_name)
+        self.entry_name.connect('changed', self.__check_entry_name)
 
         # populate combo_runner with runner versions from the manager
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
 
-        rc = [i for i in self.manager.runners_available if i.startswith('caffe')]
-        rv = [i for i in self.manager.runners_available if i.startswith('vaniglia')]
-        rl = [i for i in self.manager.runners_available if i.startswith('lutris')]
-        rs = [i for i in self.manager.runners_available if i.startswith('sys-')]
+        rs, rc, rv, rl, ry = [], [], [], [], []
 
-        if len(rc) > 0:  # use the latest from caffe
+        for i in self.manager.runners_available:
+            if i.startswith('soda'):
+                rs.append(i)
+            elif i.startswith('caffe'):
+                rc.append(i)
+            elif i.startswith('vaniglia'):
+                rv.append(i)
+            elif i.startswith('lutris'):
+                rl.append(i)
+            elif i.startswith('sys-'):
+                ry.append(i)
+
+        if len(rs) > 0:  # use the latest from Soda
+            self.runner = rs[0]
+        elif len(rc) > 0:  # use the latest from caffe
             self.runner = rc[0]
         elif len(rv) > 0:  # use the latest from vaniglia
             self.runner = rv[0]
         elif len(rl) > 0:  # use the latest from lutris
             self.runner = rl[0]
-        elif len(rs) > 0:  # use the latest from system
-            self.runner = rs[0]
+        elif len(ry) > 0:  # use the latest from system
+            self.runner = ry[0]
         else:  # use any other runner available
             self.runner = self.manager.runners_available[0]
 

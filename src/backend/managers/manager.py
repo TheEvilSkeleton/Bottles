@@ -1,11 +1,10 @@
 # manager.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,6 +23,7 @@ import uuid
 import yaml
 import shutil
 import fnmatch
+import contextlib
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
@@ -126,6 +126,9 @@ class Manager:
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
 
+        self.steam_manager = SteamManager()
+        times["SteamManager"] = time.time()
+
         if not is_cli:
             times.update(self.checks(install_latest=False, first_run=True))
         else:
@@ -205,10 +208,8 @@ class Manager:
         """Checks for new bottles and update the list view.
         TODO: list view should not be updated by the backend"""
         self.check_bottles(silent)
-        try:
+        with contextlib.suppress(AttributeError):
             self.window.page_list.update_bottles()
-        except AttributeError:
-            pass
 
     def check_app_dirs(self):
         """
@@ -231,7 +232,7 @@ class Manager:
             logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
-        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported():
+        if self.settings.get_boolean("steam-proton-support") and self.steam_manager.is_steam_supported:
             if not os.path.isdir(Paths.steam):
                 logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
@@ -318,7 +319,9 @@ class Manager:
             Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
-        config["Installed_Dependencies"].pop(dependency, None)
+        if dependency in config["Installed_Dependencies"]:
+            config["Installed_Dependencies"].remove(dependency)
+
         self.update_config(
             config,
             key="Installed_Dependencies",
@@ -604,6 +607,7 @@ class Manager:
             "*err*",
             "_*",
             "start",
+            "OriginEr",
             "*website*",
             "*web site*",
             "*user_manual*"
@@ -615,8 +619,8 @@ class Manager:
         Process External_Programs
         '''
         for program in ext_programs:
-            found.append(program)
             _program = ext_programs[program]
+            found.append(_program["executable"] )
             if winepath.is_windows(_program["path"]):
                 program_folder = ManagerUtils.get_exe_parent_dir(config, _program["path"])
             else:
@@ -711,8 +715,8 @@ class Manager:
                         if placeholder_yaml.get("Path"):
                             _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
                         else:
-                            raise Exception("Missing Path in placeholder.yml")
-                    except (yaml.YAMLError, Exception):
+                            raise ValueError("Missing Path in placeholder.yml")
+                    except (yaml.YAMLError, ValueError):
                         return
 
             try:
@@ -731,22 +735,32 @@ class Manager:
                 conf_file_yaml["Latest_Executables"] = []
 
             # Migrate old programs to [id] and [name]
-            _temp = conf_file_yaml.get("External_Programs").copy()
+            _temp = {}
             _changed = False
-            for k, v in _temp.items():
+            for k, v in conf_file_yaml.get("External_Programs").items():
                 _uuid = str(uuid.uuid4())
+                _k = k
+                _v = v
+                try:
+                    uuid.UUID(k)
+                except ValueError:
+                    _k = _uuid
+                    _changed = True
                 if "id" not in v:
-                    _temp[k]["id"] = _uuid
+                    _v["id"] = _uuid
                     _changed = True
                 if "name" not in v:
-                    _temp[k]["name"] = _temp[k]["executable"].split(".")[0]
+                    _v["name"] = _v["executable"].split(".")[0]
+                    _changed = True
+                _temp[_k] = _v
+
             if _changed:
                 self.update_config(
                     config=conf_file_yaml,
                     key="External_Programs",
                     value=_temp
                 )
-                conf_file_yaml["External_Programs"] = _temp
+            conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
@@ -801,20 +815,22 @@ class Manager:
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
 
-        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported() and not self.is_cli:
-            SteamManager.update_bottles()
-            self.local_bottles.update(SteamManager.list_prefixes())
+        if self.settings.get_boolean("steam-proton-support") \
+                and self.steam_manager.is_steam_supported \
+                and not self.is_cli:
+            self.steam_manager.update_bottles()
+            self.local_bottles.update(self.steam_manager.list_prefixes())
 
     # Update parameters in bottle config
-    @staticmethod
     def update_config(
+            self,
             config: dict,
             key: str,
-            value: str,
+            value: Any,
             scope: str = "",
             remove: bool = False,
             fallback: bool = False
-    ) -> dict:
+    ) -> Union[Result, dict]:
         """
         Update parameters in bottle config. Use the scope argument to
         update the parameters in the specified scope (e.g. Parameters).
@@ -864,7 +880,7 @@ class Manager:
         config["Update_Date"] = str(datetime.now())
 
         if config.get("Environment") == "Steam":
-            config = SteamManager.update_bottle(config)
+            config = self.steam_manager.update_bottle(config)
 
         return Result(status=True, data={"config": config})
 
@@ -887,7 +903,7 @@ class Manager:
         if config["Runner"] not in self.runners_available:
             '''
             If the runner is not in the list of available runners, set it
-            to latest Caffe. If there is no Caffe, set it to the
+            to latest Soda. If there is no Soda, set it to the
             first one.
             '''
             config["Runner"] = self.get_latest_runner("wine")
@@ -1167,11 +1183,9 @@ class Manager:
 
             for user_path in users_dir:
                 if os.path.islink(user_path):
-                    try:
+                    with contextlib.suppress(IOError, OSError):
                         os.unlink(user_path)
                         os.makedirs(user_path)
-                    except (OSError, IOError):
-                        pass
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
@@ -1180,7 +1194,8 @@ class Manager:
         if not template and not custom_environment:
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            if "caffe" not in runner_name.lower():  # Caffe came with win10 and doesn't need this
+            if "soda" not in runner_name.lower() \
+                    and "caffe" not in runner_name.lower():  # Caffe/Soda came with win10 by default
                 rk.set_windows(config["Windows"])
                 wineboot.update()
 
@@ -1329,7 +1344,7 @@ class Manager:
         """Return the latest available runner for a given type."""
         try:
             if runner_type in ["", "wine"]:
-                return self.__sort_runners("caffe")
+                return self.__sort_runners("soda")
             return self.__sort_runners("proton")
         except IndexError:
             return []
@@ -1353,24 +1368,19 @@ class Manager:
 
             if config.get("Custom_Path"):
                 logging.info(f"Removing placeholder…")
-                try:
+                with contextlib.suppress(FileNotFoundError):
                     os.remove(os.path.join(
                         Paths.bottles,
                         os.path.basename(config.get("Path")),
                         "placeholder.yml"
                     ))
-                except FileNotFoundError:
-                    pass
 
             logging.info(f"Removing the bottle…")
             path = ManagerUtils.get_bottle_path(config)
             shutil.rmtree(path, ignore_errors=True)
 
-            try:
+            if config.get("Path") in self.local_bottles:
                 del self.local_bottles[config.get("Path")]
-            except KeyError:
-                # ref: #676
-                pass
 
             logging.info(f"Deleted the bottle in: {path}")
             GLib.idle_add(self.window.page_list.update_bottles)

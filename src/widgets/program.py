@@ -1,11 +1,10 @@
 # program.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,7 +25,6 @@ from bottles.dialogs.rename import RenameDialog
 from bottles.dialogs.generic import MessageDialog
 
 from bottles.backend.globals import user_apps_dir
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.library import LibraryManager
 
 from bottles.backend.utils.manager import ManagerUtils
@@ -102,7 +100,7 @@ class ProgramEntry(Adw.ActionRow):
         if window.settings.get_boolean("experiments-library"):
             self.btn_add_library.set_visible(True)
 
-        if SteamManager.is_steam_supported():
+        if self.manager.steam_manager.is_steam_supported:
             self.btn_add_steam.set_visible(True)
 
         external_programs = []
@@ -137,7 +135,8 @@ class ProgramEntry(Adw.ActionRow):
             self.config,
             self.program
         )
-        new_window.present()
+        new_window.run()
+        self.config = new_window.get_config()
         self.update_programs()
 
     def __reset_buttons(self, result=False, error=False):
@@ -179,6 +178,7 @@ class ProgramEntry(Adw.ActionRow):
                 config=self.config,
                 layer=self.program
             )
+        self.pop_actions.popdown()  # workaround #1640
 
         def _run():
             dxvk = self.config["Parameters"]["dxvk"]
@@ -223,8 +223,9 @@ class ProgramEntry(Adw.ActionRow):
         self.__reset_buttons()
 
     def run_steam(self, widget):
-        SteamManager.launch_app(self.config["CompatData"])
+        self.manager.steam_manager.launch_app(self.config["CompatData"])
         self.window.show_toast(_("'{0}' launched with Steam.").format(self.program["name"]))
+        self.pop_actions.popdown()  # workaround #1640
 
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)
@@ -333,7 +334,7 @@ class ProgramEntry(Adw.ActionRow):
                 self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
 
         RunAsync(
-            SteamManager.add_shortcut,
+            self.manager.steam_manager.add_shortcut,
             update,
             self.config,
             self.program["name"],

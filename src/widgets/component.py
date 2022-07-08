@@ -1,11 +1,10 @@
 # component.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -77,7 +76,7 @@ class ComponentEntry(Adw.ActionRow):
 
     def download(self, widget):
         def update(result, error=False):
-            if result.status:
+            if not result or result.status:
                 return self.set_installed()
 
             return self.update_status(failed=True)
@@ -169,7 +168,9 @@ class ComponentEntry(Adw.ActionRow):
 
 class ComponentExpander(Adw.ExpanderRow):
 
-    def __init__(self, title, **kwargs):
+    def __init__(self, title, subtitle=None, **kwargs):
         super().__init__(**kwargs)
 
         self.set_title(title)
+        if subtitle:
+            self.set_subtitle(subtitle)

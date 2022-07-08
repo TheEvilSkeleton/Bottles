@@ -1,11 +1,10 @@
 # state.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -40,6 +39,7 @@ class StateEntry(Adw.ActionRow):
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.queue = window.page_details.queue
         self.state = state
         self.state_name = "State: {0}".format(state[0])
         self.config = config
@@ -66,6 +66,7 @@ class StateEntry(Adw.ActionRow):
         """
         Set the bottle state to this one.
         """
+        self.queue.add_task()
         widget.set_sensitive(False)
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
@@ -100,3 +101,4 @@ class StateEntry(Adw.ActionRow):
         self.spinner.stop()
         self.btn_restore.set_visible(False)
         self.set_sensitive(True)
+        self.queue.end_task()

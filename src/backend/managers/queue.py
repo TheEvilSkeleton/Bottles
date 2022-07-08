@@ -1,4 +1,4 @@
-# dxvk.py
+# queue.py
 #
 # Copyright 2022 brombinmirko <send@mirko.pm>
 #
@@ -14,18 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from bottles.backend.dlls.dll import DLLComponent  # pyright: reportMissingImports=false
-from bottles.backend.utils.manager import ManagerUtils
+
+from gi.repository import GLib
 
 
-class LatencyFleXComponent(DLLComponent):
-    dlls = {
-        "wine/usr/lib/wine/x86_64-windows": [
-            "latencyflex_layer.dll",
-            "latencyflex_wine.dll",
-        ]
-    }
+class QueueManager:
+    __queue = 0
 
-    @staticmethod
-    def get_base_path(version: str):
-        return ManagerUtils.get_latencyflex_path(version)
+    def __init__(self, end_fn, add_fn=None):
+        self.__add_fn = add_fn
+        self.__end_fn = end_fn
+
+    def add_task(self):
+        self.__queue += 1
+        if self.__add_fn and self.__queue == 1:
+            GLib.idle_add(self.__add_fn)
+
+    def end_task(self):
+        self.__queue -= 1
+        if self.__queue <= 0:
+            GLib.idle_add(self.__end_fn)

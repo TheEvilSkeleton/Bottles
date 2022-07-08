@@ -1,11 +1,10 @@
 # generic.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,6 +16,7 @@
 
 import re
 import sys
+import contextlib
 import subprocess
 
 
@@ -78,11 +78,9 @@ def detect_encoding(text: bytes):
         encodings.append(sys.stdout.encoding)
 
     for encoding in encodings:
-        try:
+        with contextlib.suppress(UnicodeDecodeError):
             text.decode(encoding)
             return encoding
-        except UnicodeDecodeError:
-            pass
 
     return None
 
@@ -114,10 +112,8 @@ def sort_by_version(_list: list, extra_check: str = "async"):
 
 def get_mime(path: str):
     """Get the mime type of file."""
-    try:
+    with contextlib.suppress(FileNotFoundError):
         res = subprocess.check_output(["file", "--mime-type", path])
         if res:
             return res.decode('utf-8').split(':')[1].strip()
-    except:
-        pass
     return None

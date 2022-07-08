@@ -1,11 +1,10 @@
 # journal.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,6 +18,7 @@ import os
 import yaml
 import uuid
 import shutil
+import contextlib
 from pathlib import Path
 from datetime import datetime, timedelta
 
@@ -95,11 +95,9 @@ class JournalManager:
         """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()
-        try:
+        with contextlib.suppress(IOError, OSError):
             with open(JournalManager.path, "w") as f:
                 yaml.dump(journal, f)
-        except:
-            pass  # TODO: Handle this
 
     @staticmethod
     def get(period: str = "today", plain: bool = False):

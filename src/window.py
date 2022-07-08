@@ -1,11 +1,10 @@
 # window.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,6 +16,7 @@
 
 import os
 import time
+import contextlib
 import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
@@ -44,6 +44,7 @@ from bottles.dialogs.crash import CrashReportDialog
 from bottles.dialogs.generic import AboutDialog, SourceDialog
 from bottles.dialogs.onboard import OnboardDialog
 from bottles.dialogs.journal import JournalDialog
+from bottles.dialogs.depscheck import DependenciesCheckDialog
 
 logging = Logger()
 
@@ -53,7 +54,6 @@ class MainWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'MainWindow'
 
     # region Widgets
-    grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
@@ -66,10 +66,9 @@ class MainWindow(Adw.ApplicationWindow):
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     btn_health = Gtk.Template.Child()
-    btn_library = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    window_title = Gtk.Template.Child()
+    view_switcher = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
     # endregion
@@ -83,6 +82,7 @@ class MainWindow(Adw.ApplicationWindow):
     def __init__(self, arg_exe, arg_bottle, arg_passed, **kwargs):
         super().__init__(**kwargs)
 
+        self.disable_onboard = False
         self.utils_conn = ConnectionUtils(self)
         self.manager = None
         self.arg_bottle = arg_bottle
@@ -92,10 +92,6 @@ class MainWindow(Adw.ApplicationWindow):
         if self.settings.get_boolean("dark-theme"):
             manager = Adw.StyleManager.get_default()
             manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
-
-        # Set Library view according to user settings
-        if self.settings.get_boolean("experiments-library"):
-            self.btn_library.set_visible(True)
 
         # Validate arg_exe extension
         if not str(arg_exe).endswith(EXECUTABLE_EXTS):
@@ -123,15 +119,11 @@ class MainWindow(Adw.ApplicationWindow):
         self.page_loading = LoadingView()
 
         # Populate stack
-        self.stack_main.add_titled(
+        self.stack_main.add_named(
             child=self.page_loading,
-            name="page_loading",
-            title=_("Loading…")
-        )
+            name="page_loading"
+        ).set_visible(False)
         self.headerbar.add_css_class("flat")
-
-        # Add the main stack to the main grid
-        self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
 
         # Signal connections
         self.btn_add.connect("clicked", self.show_add_view, self.arg_exe)
@@ -141,7 +133,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_forum.connect("clicked", self.open_url, FORUMS_URL)
         self.btn_preferences.connect("clicked", self.show_prefs_view)
         self.btn_importer.connect("clicked", self.show_importer_view)
-        self.btn_library.connect('clicked', self.show_library_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
         self.__on_start()
@@ -161,8 +152,8 @@ class MainWindow(Adw.ApplicationWindow):
         GLib.idle_add(self.page_library.update)
 
     def set_title(self, title, subtitle: str = ""):
-        self.window_title.set_title(title)
-        self.window_title.set_subtitle(subtitle)
+        self.view_switcher.set_title(title)
+        self.view_switcher.set_subtitle(subtitle)
 
     def check_for_connection(self, status):
         """
@@ -198,17 +189,21 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.main_leaf.append(self.page_details)
             self.main_leaf.append(self.page_importer)
-            self.main_leaf.append(self.page_library)
 
             self.main_leaf.get_page(self.page_details).set_navigatable(False)
             self.main_leaf.get_page(self.page_importer).set_navigatable(False)
-            self.main_leaf.get_page(self.page_library).set_navigatable(False)
 
             self.stack_main.add_titled(
                 child=self.page_list,
                 name="page_list",
                 title=_("Bottles")
-            )
+            ).set_icon_name("com.usebottles.bottles-symbolic")
+            if self.settings.get_boolean("experiments-library"):
+                self.stack_main.add_titled(
+                    child=self.page_library,
+                    name="page_library",
+                    title=_("Library")
+                ).set_icon_name("emote-love-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
@@ -243,6 +238,7 @@ class MainWindow(Adw.ApplicationWindow):
             mng = Manager(window=window, repo_fn_update=repo_fn_update)
             return mng
 
+        self.check_core_deps()
         self.show_loading_view()
         repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
         RunAsync(get_manager, callback=set_manager, window=self, repo_fn_update=repo_fn_update)
@@ -298,6 +294,9 @@ class MainWindow(Adw.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_loading")
 
     def show_onboard_view(self, widget=False):
+        if self.disable_onboard:
+            return
+
         onboard_window = OnboardDialog(self)
         onboard_window.present()
 
@@ -315,9 +314,6 @@ class MainWindow(Adw.ApplicationWindow):
     def show_importer_view(self, widget=False):
         self.main_leaf.set_visible_child(self.page_importer)
 
-    def show_library_view(self, widget=False):
-        self.main_leaf.set_visible_child(self.page_library)
-
     def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)
         preferences_window.present()
@@ -331,17 +327,14 @@ class MainWindow(Adw.ApplicationWindow):
     def check_crash_log(self):
         xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
         log_path = f"{xdg_data_home}/bottles/crash.log"
-        crash_log = False
 
-        try:
+        with contextlib.suppress(FileNotFoundError):
             with open(log_path, "r") as log_file:
                 crash_log = log_file.readlines()
                 os.remove(log_path)
 
             if crash_log:
                 CrashReportDialog(self, crash_log).present()
-        except FileNotFoundError:
-            pass
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
@@ -354,7 +347,7 @@ class MainWindow(Adw.ApplicationWindow):
         widgets = [
             self.btn_add,
             self.btn_menu,
-            self.window_title,
+            self.view_switcher,
             self.btn_search
         ]
         if self.btn_noconnection.get_visible():
@@ -366,6 +359,11 @@ class MainWindow(Adw.ApplicationWindow):
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
         self.toasts.add_toast(toast)
+
+    def check_core_deps(self):
+        if "FLATPAK_ID" not in os.environ and not HealthChecker().has_core_deps():
+            self.disable_onboard = True
+            DependenciesCheckDialog(self).present()
 
     @staticmethod
     def proper_close():

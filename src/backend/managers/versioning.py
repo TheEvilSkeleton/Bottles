@@ -1,11 +1,10 @@
 # versioning.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,6 +37,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
+# noinspection PyTypeChecker
 class VersioningManager:
 
     def __init__(self, window, manager):
@@ -87,10 +87,7 @@ class VersioningManager:
                                     )
             state_index = yaml.safe_load(state_index_file)
             state_index_file.close()
-            state_index_files = state_index["Additions"] + \
-                                state_index["Removed"] + \
-                                state_index["Changes"]
-
+            state_index_files = state_index["Additions"] + state_index["Removed"] + state_index["Changes"]
             state_temp_checksums = [f["checksum"] for f in state_index_files]
             state_temp_files = [
                 tuple([f["file"], f["checksum"]])
@@ -327,7 +324,6 @@ class VersioningManager:
     def get_index(config: dict):
         """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
-
         cur_index = {
             "Update_Date": str(datetime.now()),
             "Files": []

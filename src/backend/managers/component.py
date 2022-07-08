@@ -1,11 +1,10 @@
 # component.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,6 +19,7 @@ import uuid
 import shutil
 import tarfile
 import requests
+import contextlib
 from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
@@ -40,6 +40,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
+# noinspection PyTypeChecker
 class ComponentManager:
 
     def __init__(self, manager, offline: bool = False):
@@ -92,21 +93,14 @@ class ComponentManager:
             '''
 
             if component[1]["Category"] == "runners":
-                if "FLATPAK_ID" in os.environ and "-lol" in component[0].lower():
-                    '''
-                    Hide the lutris-lol runner if Bottles is running as 
-                    Flatpak  because it is not compatible under sandbox
-                    https://github.com/bottlesdevs/components/issues/54
-                    '''
-                    continue
-                if "caffe" in component[0].lower():
+                if "soda" in component[0].lower() or "caffe" in component[0].lower():
                     if not is_glibc_min_available():
                         logging.warning(f"{component[0]} was found but it requires "
                                         "glibc >= 2.32 and your system is running an older "
                                         "version. Use the Flatpak instead if you can't "
                                         "upgrade your system. This runner will be ignored, "
                                         "please keep in mind that Bottles and all our "
-                                        "installers are only tested with Caffe runners.")
+                                        "installers are only tested with Soda and Caffe runners.")
                         continue
 
                 sub_category = component[1]["Sub-category"]
@@ -303,18 +297,11 @@ class ComponentManager:
             else:
                 tar.extractall(path)
             tar.close()
-        except:
-            if os.path.isfile(os.path.join(Paths.temp, archive)):
-                try:
-                    os.remove(os.path.join(Paths.temp, archive))
-                except:
-                    pass  # safely ignore the error, there is nothing to remove
-
-            if os.path.isdir(os.path.join(path, archive[:-7])):
-                try:
-                    shutil.rmtree(os.path.join(path, archive[:-7]))
-                except:
-                    pass  # safely ignore the error, there is nothing to remove
+        except (tarfile.TarError, IOError, EOFError):
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(os.path.join(Paths.temp, archive))
+            with contextlib.suppress(FileNotFoundError):
+                shutil.rmtree(os.path.join(path, archive[:-7]))
 
             logging.error("Extraction failed! Archive ends earlier than expected.")
             return False
@@ -352,13 +339,13 @@ class ComponentManager:
             return Result(False)
 
         logging.info(f"Installing component: [{component_name}].")
-
+        file = manifest["File"][0]
         # Download component
         download = self.download(
-            download_url=manifest["File"][0]["url"],
-            file=manifest["File"][0]["file_name"],
-            rename=manifest["File"][0]["rename"],
-            checksum=manifest["File"][0]["file_checksum"],
+            download_url=file["url"],
+            file=file["file_name"],
+            rename=file["rename"],
+            checksum=file["file_checksum"],
             func=func
         )
 
@@ -397,10 +384,8 @@ class ComponentManager:
         please give feedback if you know a better way to avoid this.
         '''
         if component_type in ["runtime", "winebridge"]:
-            try:
+            with contextlib.suppress(FileNotFoundError):
                 os.remove(os.path.join(Paths.temp, archive))
-            except FileNotFoundError:
-                pass  # safely ignore the error, there is nothing to remove
 
         if component_type in ["runner", "runner:proton"]:
             self.__manager.check_runners()

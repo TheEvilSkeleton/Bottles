@@ -21,6 +21,8 @@ bottles_sources = [
   'sandbox.py',
   'steam.py',
   'epicgamesstore.py',
+  'ubisoftconnect.py',
+  'queue.py',
 ]
 
 install_data(bottles_sources, install_dir: managersdir)

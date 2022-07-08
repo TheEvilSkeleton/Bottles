@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-20 16:30+0000\n"
-"Last-Translator: Corvurius <corvurius@gmail.com>\n"
+"PO-Revision-Date: 2022-07-08 18:02+0000\n"
+"Last-Translator: Вадим Илларионов <gbimobou@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
@@ -44,11 +44,11 @@ msgstr "Мирко Бромбин"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Запуск программ Windows на Linux с помощью Bottles!"
+msgstr "Запускайте программы Windows на Linux с помощью Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Разливайте ПО по «бутылкам» и наслаждайтесь на досуге!"
+msgstr "Разливайте ПО по «бутылкам» и наслаждайтесь на досуге"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -57,16 +57,15 @@ msgid ""
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
 "Встроенная система установки зависимостей предоставляет автоматический "
-"доступ к компонентам совместимости ПО. Используйте менеджер загрузок, чтобы "
-"загрузить официальные компоненты: раннер (Wine, Proton), DXVK, зависимости и "
-"т. д."
+"доступ к компонентам совместимости ПО. Загружайте менеджером загрузок "
+"официальные компоненты: пускатель (Wine, Proton), DXVK, зависимости и т. д."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Система управления версиями «бутылок» обеспечит сохранность вашей текущей "
-"работы и при необходимости позволит восстановить её в будущем."
+"Система управления версиями «бутылок» обеспечивает сохранность вашей текущей "
+"работы, а при необходимости позволяет её восстановить."
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
@@ -83,12 +82,12 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Запуск исполняемых файлов (.exe/.msi) в ваших «бутылках» прямо из "
-"контекстного меню файл-менеджера"
+"Запуск исполняемых файлов (.exe/.msi) в «бутылках» прямо из контекстного "
+"меню файл-менеджера"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Автообнаружение приложений, установленных в ваших «бутылках»"
+msgstr "Автообнаружение приложений, установленных в «бутылках»"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -101,7 +100,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Смена раннера на лету для любой «бутылки»"
+msgstr "Замена пускателя для любой «бутылки» на лету"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
 msgid ""
@@ -150,7 +149,7 @@ msgstr "Версионирование «бутылок»"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "... и многое другое, что вы найдёте, установив Bottles!"
+msgstr "…и многое другое, что вы найдёте, установив Bottles!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -170,30 +169,27 @@ msgstr "Принудительное использование тёмной т�
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr "Показывать даты обновления в списке"
+msgstr "Дата обновления в списке"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "Показывать дату обновления в списке «бутылок»."
+msgstr "Отображение даты обновления в списке «бутылок»."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Список приложений Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Показывать даты обновления в списке"
+msgstr "Показывать приложения из Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store .."
+msgstr "Список приложений Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Показывать даты обновления в списке"
+msgstr "Показывать приложения Epic Games."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -217,7 +213,7 @@ msgstr "Уведомления"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Show notifications."
-msgstr "Включить уведомления."
+msgstr "Отображение уведомлений."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Temp cleaning"
@@ -233,7 +229,7 @@ msgstr "Предварительная версия"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Toggle release candidate for runners."
-msgstr "Использовать предварительную версию для раннеров."
+msgstr "Использовать предварительную версию для пускателей."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Startup view"
@@ -252,28 +248,24 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Включить экспериментальные функции, такие как установщики, версионирование "
-"«бутылок» и показ предварительных версий для раннеров."
+"Доступ к экспериментальным функциям, таким как установщики, версионирование "
+"«бутылок», показ предварительных версий для пускателей."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Поддержка Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Включить экспериментальную поддержку префиксов Steam Proton."
+msgstr "Доступ к префиксам Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Эксперименты:steam"
+msgstr "Эксперименты:песочница"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Включить экспериментальный режим Библиотеки."
+msgstr "Включить экспериментальный режим «песочницы» для отдельных «бутылок»."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -281,7 +273,7 @@ msgstr "Эксперименты:библиотека"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Library mode."
-msgstr "Включить экспериментальный режим Библиотеки."
+msgstr "Включить экспериментальный режим библиотеки."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -289,7 +281,7 @@ msgstr "Автоматическое закрытие Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "Закрывать Bottles после запуска исполняемого файла из файл-менеджера."
+msgstr "Закрывать Bottles после запуска программ из файл-менеджера."
 
 #: src/main.py:106
 msgid "Show version"
@@ -313,7 +305,7 @@ msgstr "Запуск с аргументами"
 
 #: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Некорректный URI (синтаксис: bottles:run/<bottle>/<program>)"
+msgstr "Некорректный ресурс (синтаксис: bottles:run/<бутылка>/<программа>)"
 
 #: src/main.py:246
 msgid "[Quit] request received."
@@ -328,12 +320,10 @@ msgid "[Refresh] request received."
 msgstr "[Обновить] запрос получен."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Вычисление..."
+msgstr "Вычисление…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
 msgstr "Загрузка…"
 
@@ -343,26 +333,24 @@ msgid ""
 "Preferences.\n"
 "Fall-backing to the default path; no bottles from that path will be listed!"
 msgstr ""
-"Пользовательский путь к «бутылкам» не найден. Пожалуйста, проверьте его в "
-"Настройках.\n"
-"Сейчас используется путь по умолчанию. «Бутылки» из этого пути не будут "
-"показаны!"
+"Пользовательский путь к «бутылкам» не найден, проверьте настройки.\n"
+"Задействован путь по умолчанию, «бутылки» из которого показаны не будут!"
 
 #: src/window.py:283
 msgid "Health check"
-msgstr "Проверка здоровья"
+msgstr "Проверка целостности"
 
 #: src/window.py:288 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
-msgstr "Браузер журнала"
+msgstr "Просмотр журнала"
 
 #: src/backend/managers/versioning.py:60
 msgid "Generating state files index …"
-msgstr "Создание индекса состояния файлов…"
+msgstr "Индексирование состояния файлов…"
 
 #: src/backend/managers/versioning.py:139
 msgid "Creating a restore point …"
-msgstr "Создание точки восстановления …"
+msgstr "Создание точки восстановления…"
 
 #: src/backend/managers/versioning.py:163
 msgid "Could not create the state folder."
@@ -370,7 +358,7 @@ msgstr "Не удалось создать папку состояния."
 
 #: src/backend/managers/versioning.py:170
 msgid "Updating index …"
-msgstr "Обновление индекса …"
+msgstr "Обновление индекса…"
 
 #: src/backend/managers/versioning.py:194
 msgid "Updating states …"
@@ -387,7 +375,7 @@ msgstr "Не удалось обновить индексный файл."
 #: src/backend/managers/versioning.py:263
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Новое состояние [{0}] успешно создано!"
+msgstr "Новое состояние [{0}] создано"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
@@ -409,15 +397,15 @@ msgstr "Ошибка установки компонентов, 3 неудачн
 
 #: src/backend/managers/manager.py:1024
 msgid "Missing essential components. Installing…"
-msgstr "Отсутствуют важные компоненты. Установка…"
+msgstr "Отсутствуют необходимые компоненты. Установка…"
 
 #: src/backend/managers/manager.py:1100
 msgid "Failed to create bottle directory."
-msgstr "Не удалось создать директорию для «бутылки»."
+msgstr "Не удалось создать каталог для «бутылки»."
 
 #: src/backend/managers/manager.py:1112
 msgid "Failed to create placeholder directory/file."
-msgstr "Не удалось создать директорию/файл-заглушку."
+msgstr "Не удалось создать каталог или файл-заглушку."
 
 #: src/backend/managers/manager.py:1117
 msgid "Generating bottle configuration…"
@@ -425,7 +413,7 @@ msgstr "Создание конфигурации для «бутылки»…"
 
 #: src/backend/managers/manager.py:1140
 msgid "Template found, applying…"
-msgstr "Шаблон найден, применение…"
+msgstr "Шаблон найден, применяется…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1152
@@ -434,7 +422,7 @@ msgstr "Конфигурация Wine обновляется…"
 
 #: src/backend/managers/manager.py:1154
 msgid "Wine config updated!"
-msgstr "Конфигурация Wine обновлена!"
+msgstr "Конфигурация Wine обновлена"
 
 #: src/backend/managers/manager.py:1162
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -464,11 +452,11 @@ msgstr "Применение среды: {0}…"
 
 #: src/backend/managers/manager.py:1220
 msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Использование пользовательского «рецепта» для среды…"
+msgstr "(!) Использование пользовательского рецепта для среды…"
 
 #: src/backend/managers/manager.py:1223
 msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) «Рецепт» не найден или недействителен…"
+msgstr "(!) Рецепт не найден или недействителен…"
 
 #: src/backend/managers/manager.py:1240
 msgid "Installing DXVK…"
@@ -542,9 +530,8 @@ msgid "Select"
 msgstr "Выбрать"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Нет сохранённых переменных среды"
+msgstr "Нет сохранённых переменных среды."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -564,12 +551,11 @@ msgstr "Копировать в буфер обмена"
 #. endregion
 #: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
-msgstr "Выберите скрипт, который должен быть выполнен после запуска программы."
+msgstr "Выберите скрипт, который следует выполнить после запуска программы."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Закрыть Bottles после запуска программы"
+msgstr "Выберите, откуда следует запускать программу."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -585,9 +571,8 @@ msgid "Choose the script"
 msgstr "Выберите скрипт"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Рабочий Каталог"
+msgstr "Задайте рабочий каталог"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -609,7 +594,7 @@ msgstr "Запустить"
 
 #: src/views/bottle_details.py:247
 msgid "Select the location where to save the backup config"
-msgstr "Выберите место для сохранения резервной копии конфигурации"
+msgstr "Выберите место для сохранения резервной копии настроек"
 
 #: src/views/bottle_details.py:251
 msgid "Select the location where to save the backup archive"
@@ -618,7 +603,7 @@ msgstr "Выберите место для сохранения архива р�
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr "Резервная копия создана для '{0}'."
+msgstr "Резервная копия '{0}' создана."
 
 #: src/views/bottle_details.py:258
 #, python-brace-format
@@ -631,14 +616,14 @@ msgstr "Экспорт"
 
 #: src/views/bottle_details.py:306
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Вы уверены, что хотите удалить эту «бутылку» и все файлы?"
+msgstr "Действительно удалить эту «бутылку» со всеми файлами?"
 
 #: src/views/bottle_details.py:382
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
-"Вы уверены, что хотите остановить все процессы?\n"
+"Действительно остановить все процессы?\n"
 "Это может привести к потере данных."
 
 #: src/views/bottle_preferences.py:198
@@ -652,7 +637,7 @@ msgstr "Путь к «бутылке» по умолчанию."
 
 #: src/views/bottle_preferences.py:249
 msgid "Choose working directory for executables"
-msgstr "Выберите рабочий каталог для исполняемых файлов"
+msgstr "Задайте рабочий каталог для исполняемых файлов"
 
 #: src/views/bottle_programs.py:83
 #, python-brace-format
@@ -661,7 +646,7 @@ msgstr "'{0}' добавлен."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
-msgstr "Выберите путь к исполняемому файлу"
+msgstr "Задайте путь к исполняемому файлу"
 
 #: src/views/bottle_programs.py:89
 msgid "Add"
@@ -701,16 +686,15 @@ msgstr "Диспетчер задач"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
-msgstr "Резервная копия успешно импортирована."
+msgstr "Резервная копия импортирована."
 
 #: src/views/importer.py:91
 msgid "Import failed."
 msgstr "Ошибка импорта."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "Импорт резервной копии.."
+msgstr "Импорт резервной копии…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -726,7 +710,7 @@ msgstr "Выберите конфигурационный файл"
 
 #: src/views/list.py:60 src/views/list.py:66
 msgid "N/A"
-msgstr "N/A"
+msgstr "Н/д"
 
 #: src/views/list.py:103
 #, python-brace-format
@@ -739,11 +723,11 @@ msgstr "Ваши «Бутылки»"
 
 #: src/views/new.py:135
 msgid "Choose a recipe file"
-msgstr "Выберите файл с «рецептом»"
+msgstr "Выберите файл с рецептом"
 
 #: src/views/new.py:151
 msgid "Choose where to store the bottle"
-msgstr "Выберите, где хранить «бутылку»"
+msgstr "Задайте место хранения «бутылки»"
 
 #: src/views/new.py:206
 msgid "There was an error creating the bottle."
@@ -752,24 +736,25 @@ msgstr "При создании «бутылки» произошла ошибк
 #: src/views/new.py:214
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "«Бутылка» с названием «{0}» создана"
+msgstr "«Бутылка» «{0}» создана"
 
 #: src/views/preferences.py:116
 msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Не удалось найти Steam ввиду возможной нехватки прав для Bottles (см. "
+"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager)"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"Выберите место для хранения новых «бутылок» (не затронет существующие)."
+msgstr "Задайте место хранения новых «бутылок» (не затронет существующие)."
 
 #: src/views/preferences.py:165
 msgid "Choose new bottles path"
-msgstr "Выберите новый путь к «бутылкам»"
+msgstr "Задайте новый путь к «бутылкам»"
 
 #: src/views/preferences.py:213
 msgid "Other"
@@ -780,9 +765,8 @@ msgid "Upgrade"
 msgstr "Обновить"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Установка DXVK …"
+msgstr "Установка…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -826,7 +810,7 @@ msgstr "'{0}' запущен."
 #: src/widgets/program.py:227
 #, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "'{0}' запущен с Steam."
+msgstr "'{0}' запущен посредством Steam."
 
 #: src/widgets/program.py:248
 #, python-brace-format
@@ -851,7 +835,7 @@ msgstr "'{0}' переименован в '{1}'."
 #: src/widgets/program.py:307
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr "Ярлык создан для '{0}'"
+msgstr "Ярлык для '{0}' создан"
 
 #: src/widgets/program.py:328
 #, python-brace-format
@@ -900,7 +884,7 @@ msgid ""
 msgstr ""
 "Не удалось выполнить установку. Это может быть связано с ошибкой "
 "репозитория, неполной загрузкой или несоответствием контрольной суммы. "
-"Нажмите, чтобы повторить попытку."
+"Нажмите для повторения попытки."
 
 #: src/ui/component-entry.ui:48
 msgid "Download & Install"
@@ -912,7 +896,7 @@ msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
 msgid "Show Manifest"
-msgstr "Показать Манифест"
+msgstr "Показать манифест"
 
 #: src/ui/dependency-entry.ui:23
 msgid "License"
@@ -924,7 +908,7 @@ msgstr "Переустановить"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr "Сообщить об Ошибке…"
+msgstr "Сообщить об ошибке…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -944,11 +928,11 @@ msgstr "Поиск неисправностей"
 
 #: src/ui/details-bottle.ui:26
 msgid "Browse Files…"
-msgstr "Обзор Файлов…"
+msgstr "Обзор файлов…"
 
 #: src/ui/details-bottle.ui:31
 msgid "Duplicate Bottle…"
-msgstr "Дублировать «Бутылку»…"
+msgstr "Дублировать «бутылку»…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
@@ -956,7 +940,7 @@ msgstr "Это полный архив вашей «бутылки», включ
 
 #: src/ui/details-bottle.ui:37
 msgid "Full Backup…"
-msgstr "Полная Резервная Копия…"
+msgstr "Полная резервная копия…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -968,15 +952,15 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:43
 msgid "Export Configuration…"
-msgstr "Экспорт Конфигурации…"
+msgstr "Экспорт настроек…"
 
 #: src/ui/details-bottle.ui:51
 msgid "Delete Bottle…"
-msgstr "Удалить «Бутылку»…"
+msgstr "Удалить «бутылку»…"
 
 #: src/ui/details-bottle.ui:86
 msgid "Kill all Processes"
-msgstr "Завершить все Процессы"
+msgstr "Завершить все процессы"
 
 #: src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
@@ -996,11 +980,11 @@ msgstr "Перезагрузка"
 
 #: src/ui/details-bottle.ui:117
 msgid "Run with Arguments…"
-msgstr "Запуск с Аргументами…"
+msgstr "Запуск с аргументами…"
 
 #: src/ui/details-bottle.ui:122
 msgid "Launch in Terminal…"
-msgstr "Запуск в Терминале…"
+msgstr "Запуск в терминале…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -1017,7 +1001,7 @@ msgstr "Среда"
 #: src/ui/details-bottle.ui:176 src/ui/details-preferences.ui:304
 #: src/ui/new.ui:140
 msgid "Runner"
-msgstr "Раннер"
+msgstr "Пускатель"
 
 #: src/ui/details-bottle.ui:184 src/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
@@ -1061,7 +1045,7 @@ msgstr "Редактировать внутренний реестр."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr "Устаревшие Инструменты"
+msgstr "Устаревший инструментарий"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
@@ -1093,11 +1077,11 @@ msgstr "Изменить внутренние настройки."
 
 #: src/ui/details-bottle.ui:316
 msgid "Uninstaller"
-msgstr "Деинсталлятор"
+msgstr "Дезинсталлятор"
 
 #: src/ui/details-bottle.ui:317
 msgid "Uninstall programs using Wine uninstaller."
-msgstr "Удаление программ с помощью деинсталлятора Wine."
+msgstr "Удаление программ с помощью дезинсталлятора Wine."
 
 #: src/ui/details-bottle.ui:328
 msgid "Control Panel"
@@ -1105,11 +1089,11 @@ msgstr "Панель управления"
 
 #: src/ui/details-bottle.ui:329
 msgid "Access the internal Wine Control Panel."
-msgstr "Доступ к внутренней Панели Управления Wine."
+msgstr "Доступ к внутренней панели управления Wine."
 
 #: src/ui/details-bottle.ui:348
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr "Используйте секцию Установщиков или кнопку \"Запустить файл\"."
+msgstr "Используйте секцию установщиков или кнопку «Запустить файл»."
 
 #: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
@@ -1121,9 +1105,9 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
-"Зависимости - это программы, библиотеки и кодеки, которые улучшают "
-"совместимость с Windows приложениями. Здесь вы можете установить их, чтобы "
-"удовлетворить требования ваших программ."
+"Зависимости — это программы, библиотеки и кодеки, улучшающие совместимость с "
+"приложениями Windows. Здесь можно их установить для удовлетворения "
+"требованиям таких приложений."
 
 #: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
 msgid ""
@@ -1154,17 +1138,17 @@ msgstr "Документация"
 
 #: src/ui/details-dependencies.ui:80
 msgid "Install Selected"
-msgstr "Установить Выбранные"
+msgstr "Установить выбранное"
 
 #: src/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
-"Мы настоятельно не рекомендуем устанавливать несколько зависимостей "
+"Настоятельно не рекомендуется устанавливать несколько зависимостей "
 "одновременно."
 
 #: src/ui/details-dependencies.ui:88
 msgid "Select Dependencies"
-msgstr "Множественный Выбор"
+msgstr "Множественный выбор"
 
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
@@ -1173,12 +1157,11 @@ msgstr "Поиск"
 
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
-msgstr "Поиск Программ…"
+msgstr "Поиск программ…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
-msgstr "Установщики не найдены"
+msgstr "Установщиков не найдено"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1243,9 +1226,7 @@ msgstr "FSR"
 #: src/ui/details-preferences.ui:81
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
-"FSR использует передовые технологии масштабирования для увеличения частоты "
-"кадров."
+msgstr "Масштабирование для увеличения частоты кадров."
 
 #: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
@@ -1269,7 +1250,7 @@ msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr "Альтернатива NVIDIA Reflex. Может быть обнаружен Античитами."
+msgstr "Альтернатива NVIDIA Reflex (может выявляться античитами)."
 
 #: src/ui/details-preferences.ui:128
 msgid "Discrete GPU"
@@ -1287,16 +1268,15 @@ msgstr "vkBasalt"
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
-msgstr ""
-"vkBasalt - это слой постобработки Vulkan для улучшения графики в играх."
+msgstr "Слой постобработки Vulkan для улучшения графики в играх."
 
 #: src/ui/details-preferences.ui:151
 msgid "Display Settings"
-msgstr "Настройки Экрана"
+msgstr "Настройки экрана"
 
 #: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:188
 msgid "Virtual Desktop"
-msgstr "Виртуальный Рабочий стол"
+msgstr "Виртуальный рабочий стол"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
@@ -1304,7 +1284,7 @@ msgstr "Виртуальный рабочий стол Wine."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr "Полноэкранный Захват Мыши"
+msgstr "Полноэкранный захват мыши"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
@@ -1312,7 +1292,7 @@ msgstr "Позволяет программе захватывать ввод м
 
 #: src/ui/details-preferences.ui:206
 msgid "Take Focus"
-msgstr "Забирать Фокус"
+msgstr "Захват фокуса"
 
 #: src/ui/details-preferences.ui:207
 msgid "Activate it if the program does not retake focus on switch."
@@ -1320,19 +1300,19 @@ msgstr "Активируйте, если программа не получае�
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr "Дёргающийся Курсор"
+msgstr "Дёргающийся курсор"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
-msgstr "Активируйте, если испытываете лаги или десинхронизации курсора."
+msgstr "Активируйте в случае задержек или десинхронизации курсора."
 
 #: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
-msgstr "Масштабирование Экрана"
+msgstr "Масштабирование экрана"
 
 #: src/ui/details-preferences.ui:232
 msgid "Set custom DPI."
-msgstr "Устанавливает пользовательский DPI."
+msgstr "Выбор пользовательского числа точек на дюйм."
 
 #: src/ui/details-preferences.ui:238
 msgid "96"
@@ -1384,7 +1364,7 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr "Рендерер"
+msgstr "Отрисовщик"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
@@ -1404,12 +1384,11 @@ msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
-msgstr "Система"
+msgstr "системный"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Версии компонентов"
+msgstr "Управление версиями компонентов"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1417,7 +1396,7 @@ msgstr "Компоненты"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
-msgstr "Обновление раннера и компонентов…"
+msgstr "Обновление пускателя и компонентов…"
 
 #. TODO: replace with ComboRow
 #: src/ui/details-preferences.ui:324
@@ -1439,7 +1418,7 @@ msgstr "Версия LatencyFleX"
 #: src/ui/details-preferences.ui:416
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
-"Включите синхронизацию для повышения производительности многоядерных "
+"Включить синхронизацию для повышения производительности многоядерных "
 "процессоров."
 
 #: src/ui/details-preferences.ui:417
@@ -1459,7 +1438,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Версия Windows"
 
@@ -1469,29 +1447,27 @@ msgstr "Обновление версии Windows…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Выберите новое имя для программы."
+msgstr "Выбор языка для программ."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "false"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Изолированная «песочница»"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Использовать для этой «бутылки» ограниченную/управляемую среду."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "Управление версиями DXVK"
+msgstr "Управление разрешениями «песочницы»"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1502,8 +1478,8 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
-"Предоставляет дополнительные библиотеки для большей совместимости. "
-"Отключите, если у вас возникли проблемы."
+"Предоставляет дополнительные библиотеки для большей совместимости (при "
+"возникновении проблем отключите)."
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
@@ -1511,7 +1487,7 @@ msgstr "Среда выполнения Steam"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
-msgstr "То же самое, что и Bottles, но предоставляется Steam."
+msgstr "То же, что и Bottles, но предоставляется Steam."
 
 #: src/ui/details-preferences.ui:544
 msgid "GameMode"
@@ -1535,7 +1511,7 @@ msgstr "Управление настройками Gamescope"
 
 #: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:90
 msgid "Working Directory"
-msgstr "Рабочий Каталог"
+msgstr "Рабочий каталог"
 
 #: src/ui/details-preferences.ui:579
 msgid "Defaults to the bottle path."
@@ -1562,7 +1538,7 @@ msgstr "Переменные среды"
 
 #: src/ui/details-preferences.ui:627
 msgid "Manage Drives"
-msgstr "Управление Дисками"
+msgstr "Управление дисками"
 
 #: src/ui/details-preferences.ui:639
 msgid "Audio"
@@ -1570,7 +1546,7 @@ msgstr "Аудио"
 
 #: src/ui/details-preferences.ui:643
 msgid "Reduce Latency"
-msgstr "Снизить Задержку"
+msgstr "Снижение задержки"
 
 #: src/ui/details-preferences.ui:644
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
@@ -1578,7 +1554,7 @@ msgstr "Снизить задержку PulseAudio до 60 мс для повы�
 
 #: src/ui/details-preferences.ui:656
 msgid "Development and Debugging"
-msgstr "Разработка и Отладка"
+msgstr "Разработка и отладка"
 
 #: src/ui/details-preferences.ui:660
 msgid "DXVK HUD"
@@ -1586,7 +1562,7 @@ msgstr "DXVK HUD"
 
 #: src/ui/details-preferences.ui:661
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
-msgstr "Слой DXVK, показывающий FPS и другие детали в приложениях D3D."
+msgstr "Слой DXVK с показом частоты кадров и других деталей в приложениях D3D."
 
 #: src/ui/details-preferences.ui:672
 msgid "MangoHud"
@@ -1608,7 +1584,7 @@ msgstr "Включить захват игр OBS для всех програм�
 
 #: src/ui/details-preferences.ui:696
 msgid "Wine 'fixme' Logs"
-msgstr "Журнал Wine 'fixme'"
+msgstr "Журнал Wine «fixme»"
 
 #: src/ui/details-preferences.ui:697
 msgid "Log code paths that are unimplemented in Wine."
@@ -1616,20 +1592,19 @@ msgstr "Журналировать случаи использования ко�
 
 #: src/ui/details-programs.ui:9
 msgid "No Programs found"
-msgstr "Программы не найдены"
+msgstr "Программ не найдено"
 
 #: src/ui/details-programs.ui:10
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
-"Установите программы из раздела Установщиков, запустите свой исполняемый "
-"файл установщика или вручную добавьте исполняемые файлы с помощью кнопки \"+"
-"\"."
+"Установите программы из раздела установщиков, запустите свой файл "
+"установщика или добавьте исполняемые файлы кнопкой «+»."
 
 #: src/ui/details-programs.ui:31
 msgid "Toggle Hidden"
-msgstr "Переключить Скрытие"
+msgstr "Отображение скрытого"
 
 #: src/ui/details-programs.ui:39
 msgid "Read documentation about programs"
@@ -1652,15 +1627,14 @@ msgid "Stop process"
 msgstr "Остановить процесс"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
-msgstr "Сохранённых состояний «бутылки» не найдено"
+msgstr "Состояний не найдено"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr ""
-"Создайте первое состояние с помощью кнопки сверху для начала использования "
-"версионирования."
+"Для начала пользования версионированием создайте первое состояние кнопкой "
+"сверху."
 
 #: src/ui/details-versioning.ui:43
 msgid "A short comment"
@@ -1701,14 +1675,14 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
-"Мы нашли несколько похожих или идентичных отчётов. Перед отправкой своего "
-"отчёта убедитесь, что он не дублирует существующие. Каждый отчёт требует от "
-"разработчиков усилий в проведении анализа — уважайте, пожалуйста, их труд и "
-"удостоверьтесь, что не отправляете дубликат."
+"Найдено несколько похожих или идентичных отчётов. Перед отправкой "
+"собственного убедитесь, что он не дублирует существующие. Каждый отчёт "
+"требует от разработчиков усилий в проведении анализа — уважайте, пожалуйста, "
+"их труд и удостоверьтесь, что не отправляете дубликат."
 
 #: src/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
-msgstr "Я всё ещё хочу отправить отчёт."
+msgstr "Да, хочу отправить отчёт."
 
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
@@ -1724,7 +1698,7 @@ msgstr ""
 
 #: src/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
-msgstr "Новое Переопределение"
+msgstr "Новое переопределение"
 
 #: src/ui/dialog-dll-overrides.ui:26
 msgid "Overrides"
@@ -1735,28 +1709,26 @@ msgid "Drives"
 msgstr "Диски"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
-"Здесь указываются каталоги вашей хост-системы, которые будут распознаны "
-"раннером как отдельные диски (напр. C: D:..).\n"
+"Каталоги вашей хост-системы, которые будут распознаваться как отдельные "
+"диски (C:, D: и т.п.).\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
-msgstr "Буква"
+msgstr "Буква диска"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
-msgstr "Существующие диски"
+msgstr "Заданные диски"
 
 #: src/ui/dialog-duplicate.ui:17
 msgid "Duplicate Bottle"
-msgstr "Дублировать «Бутылку»"
+msgstr "Дублировать «бутылку»"
 
 #: src/ui/dialog-duplicate.ui:38
 msgid "Duplicate"
@@ -1764,20 +1736,19 @@ msgstr "Создать копию"
 
 #: src/ui/dialog-duplicate.ui:52
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Введите название для копии «Бутылки»."
+msgstr "Введите название для копии «бутылки»."
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
 msgstr "Идёт копирование…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Сделайте перерыв, это может занять некоторое время"
+msgstr "Сделайте перерыв, это может занять некоторое время."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
-msgstr "«Бутылка» Дублирована"
+msgstr "«Бутылка» продублирована"
 
 #: src/ui/dialog-env-vars.ui:25
 msgid ""
@@ -1788,14 +1759,12 @@ msgstr ""
 "в «бутылке» процессов."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Имя переменной"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
-msgstr "Существующие переменные"
+msgstr "Заданные переменные"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
@@ -1872,7 +1841,7 @@ msgstr "Информация"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr "Браузер Журнала"
+msgstr "Просмотр журнала"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
@@ -1884,7 +1853,7 @@ msgstr ""
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr "Все"
+msgstr "Всё"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
@@ -1896,7 +1865,7 @@ msgstr "Эти аргументы будут переданы при запус�
 
 #: src/ui/dialog-launch-options.ui:47
 msgid "Custom Arguments"
-msgstr "Пользовательские Аргументы"
+msgstr "Пользовательские аргументы"
 
 #: src/ui/dialog-launch-options.ui:50
 msgid "Command Arguments"
@@ -1909,39 +1878,35 @@ msgstr "пример: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: src/ui/dialog-launch-options.ui:57
 msgid "Post-run Script"
-msgstr "Послестартовый Скрипт"
+msgstr "Послестартовый скрипт"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
 msgstr "Выберите скрипт"
 
 #: src/ui/dialog-launch-options.ui:124
 msgid "These settings will override the default settings for this executable."
-msgstr ""
-"Эти настройки будут переопределять настройки по умолчанию для данной "
-"программы."
+msgstr "Эти настройки будут переопределять умолчальные для данной программы."
 
 #: src/ui/dialog-launch-options.ui:125
 msgid "Preferences Overrides"
-msgstr "Переопределение Настроек"
+msgstr "Переопределение настроек"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
 msgstr "Восстановить значения по умолчанию"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr "Локальные Ресурсы"
+msgstr "Локальные ресурсы"
 
 #: src/ui/dialog-local-resources.ui:38
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
-"Этому установщику требуются некоторые локальные ресурсы, которые не могут "
-"быть предоставлены другим способом."
+"Установщику требуются локальные ресурсы, не предоставляющиеся другим "
+"способом."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1949,11 +1914,11 @@ msgstr "Переименовать"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr "Выберите новое имя для программы."
+msgstr "Измените название программы."
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr "Новое Имя"
+msgstr "Новое название"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
@@ -1977,15 +1942,15 @@ msgstr "Родной (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
 msgid "Builtin, then Native"
-msgstr "Встроенный, затем Родной"
+msgstr "Встроенный, затем родной"
 
 #: src/ui/dll-override-entry.ui:13
 msgid "Native, then Builtin"
-msgstr "Родной, затем Встроенный"
+msgstr "Родной, затем встроенный"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -1993,11 +1958,11 @@ msgstr "Удалить"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
-msgstr "/point/to/path"
+msgstr "/путь/до/места"
 
 #: src/ui/drive-entry.ui:24
 msgid "Choose a Directory"
-msgstr "Выбрать Каталог"
+msgstr "Выбрать каталог"
 
 #: src/ui/env-var-entry.ui:6
 msgid "Value"
@@ -2016,19 +1981,16 @@ msgid "Search again for prefixes"
 msgstr "Повторный поиск префиксов"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "Префиксы не обнаружены"
+msgstr "Префиксов не обнаружено"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "Не найдено префиксов для Lutris, PlayOnLinux, и т. д.\n"
-"                                    Используйте кнопку сверху для импорта "
-"«бутылки» из резервной копии"
+"Используйте кнопку сверху для импорта «бутылки» из резервной копии"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2036,15 +1998,15 @@ msgstr "Конфигурация"
 
 #: src/ui/importer.ui:87
 msgid "Full Archive"
-msgstr "Полный Архив"
+msgstr "Полный архив"
 
 #: src/ui/installer-entry.ui:18
 msgid "Show Manifest…"
-msgstr "Показать Манифест…"
+msgstr "Показать манифест…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
-msgstr "Прочитать Отзывы…"
+msgstr "Почитать отзывы…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
@@ -2052,15 +2014,15 @@ msgstr "Установить эту программу"
 
 #: src/ui/library-entry.ui:14
 msgid "Remove from Library"
-msgstr "Удалить из Библиотеки"
+msgstr "Удалить из библиотеки"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
-msgstr "Запуск с Steam"
+msgstr "Запуск посредством Steam"
 
 #: src/ui/library.ui:22
 msgid "Search for Prefixes"
-msgstr "Поиск Префиксов"
+msgstr "Поиск префиксов"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:222
 msgid "Library"
@@ -2068,11 +2030,11 @@ msgstr "Библиотека"
 
 #: src/ui/library.ui:43
 msgid "Add items here from your bottle's program list"
-msgstr "Добавьте сюда программы из списка программ ваших «бутылок»"
+msgstr "Добавьте сюда элементы из списка программ своих «бутылок»"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
-msgstr "Эта «бутылка» выглядит повреждённой."
+msgstr "«Бутылка» выглядит повреждённой."
 
 #: src/ui/list-entry.ui:60
 msgid "Execute in this bottle"
@@ -2104,7 +2066,7 @@ msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
 msgid "Start off by creating a Bottle."
-msgstr "Начните с создания «Бутылки»."
+msgstr "Начните с создания «бутылки»."
 
 #: src/ui/list.ui:62
 msgid "Create a new Bottle"
@@ -2112,7 +2074,7 @@ msgstr "Создать новую «бутылку»"
 
 #: src/ui/list.ui:75
 msgid "No Results Found"
-msgstr "Результатов Не Найдено"
+msgstr "Результатов не найдено"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
@@ -2124,7 +2086,7 @@ msgstr "Запуск…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr "Этот ресурс не найден."
+msgstr "Заданный ресурс не найден."
 
 #: src/ui/local-resource-entry.ui:10
 msgid "Browse"
@@ -2175,9 +2137,8 @@ msgid "Custom"
 msgstr "Пользовательская"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Чистая среда для ваших экспериментов."
+msgstr "Чистая среда для экспериментов."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2187,7 +2148,7 @@ msgstr ""
 
 #: src/ui/new.ui:128
 msgid "Unlinked Home Directory"
-msgstr "Несвязанный Домашний Каталог"
+msgstr "Несвязанный домашний каталог"
 
 #: src/ui/new.ui:129
 msgid "Do not link the userdir to the homedir"
@@ -2198,9 +2159,8 @@ msgid "Architecture"
 msgstr "Архитектура"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Рекомендуется использовать 64-разрядную архитектуру"
+msgstr "Рекомендуется использовать 64-разрядную архитектуру."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2212,15 +2172,15 @@ msgstr "32 бита"
 
 #: src/ui/new.ui:168
 msgid "Custom Recipe"
-msgstr "Пользовательский «Рецепт»"
+msgstr "Пользовательский рецепт"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Выберите пользовательский «рецепт» для среды, если он у вас есть."
+msgstr "Выберите пользовательский рецепт для среды, если он у вас есть."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
-msgstr "Пользовательский Путь"
+msgstr "Пользовательский путь"
 
 #: src/ui/new.ui:186
 msgid "Store this bottle in another place."
@@ -2236,14 +2196,14 @@ msgstr "Назад"
 
 #: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
-msgstr "Добро пожаловать в Bottles!"
+msgstr "Добро пожаловать в Bottles"
 
 #: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
-"Запускайте Приложения Windows на Linux.\n"
+"Запускайте приложения Windows на Linux.\n"
 "                                                "
 
 #: src/ui/onboard.ui:71
@@ -2255,17 +2215,16 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"В Bottles используются раннеры, которые предоставляют изолированную Windows-"
-"среду, в которой запускаются программы."
+"В Bottles используются пускатели, которые предоставляют изолированную "
+"Windows-среду, в которой запускаются программы."
 
 #: src/ui/onboard.ui:79
 msgid "Almost Done"
-msgstr "Почти Готово"
+msgstr "Почти готово"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
-msgstr "Нам нужно ещё несколько минут для завершения настройки.."
+msgstr "Нужно ещё несколько минут для завершения настройки…"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
@@ -2277,7 +2236,7 @@ msgstr "Всё готово!"
 
 #: src/ui/onboard.ui:119
 msgid "Start using Bottles"
-msgstr "Можете начинать использовать Bottles"
+msgstr "Можно пользоваться Bottles"
 
 #: src/ui/onboard.ui:138
 msgid "Next"
@@ -2293,11 +2252,11 @@ msgstr "Внешний вид"
 
 #: src/ui/preferences.ui:19
 msgid "Show Update Date"
-msgstr "Показать дату обновления"
+msgstr "Дата обновления"
 
 #: src/ui/preferences.ui:20
 msgid "Whether to show the update date in the bottle list."
-msgstr "Показывать ли дату обновления в списке «бутылок»."
+msgstr "Отображение даты обновления в списке «бутылок»."
 
 #: src/ui/preferences.ui:37
 msgid "Show notifications for downloads and installs."
@@ -2309,59 +2268,55 @@ msgstr "Очищать временные файлы"
 
 #: src/ui/preferences.ui:49
 msgid "Clean temp files when Bottles launches?"
-msgstr "Очищать временные файлы при запуске Bottles."
+msgstr "Очищать временные файлы при запуске Bottles?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
-msgstr "Закрывать Bottles после запуска программ"
+msgstr "Закрытие Bottles после запуска программы"
 
 #: src/ui/preferences.ui:61
 msgid "Close Bottles after starting a program from the file manager."
 msgstr "Закрывать Bottles после запуска программы из файл-менеджера."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Операции"
+msgstr "Интеграция"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
 msgstr "Префиксы Steam Proton"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Префиксы Steam Proton"
+msgstr "Отображать префиксы Steam Proton."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Отображать приложения Steam в списке программ"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Требует установки в «бутылку» Steam для Windows."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Отображать приложения Epic Games в списке программ"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Требует установки в «бутылку» приложения Epic Games."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Расширенные настройки"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Пользовательский путь к «бутылкам» (нужен перезапуск)"
+msgstr "Пользовательский путь к «бутылкам» (требуется перезапуск)"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
-msgstr "Раннеры"
+msgstr "Пускатели"
 
 #: src/ui/preferences.ui:157
 msgid "Pre-Release"
@@ -2369,11 +2324,11 @@ msgstr "Предварительный выпуск"
 
 #: src/ui/preferences.ui:158
 msgid "Display unstable versions of runners."
-msgstr "Показывать нестабильные версии раннеров."
+msgstr "Показывать нестабильные версии пускателей."
 
 #: src/ui/preferences.ui:174
 msgid "DLL Components"
-msgstr "DLL Компоненты"
+msgstr "Компоненты DLL"
 
 #: src/ui/preferences.ui:187
 msgid "DXVK-NVAPI"
@@ -2397,12 +2352,11 @@ msgstr "На ранней стадии разработки (требуется 
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Отдельные «песочницы» для «бутылок»"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "На ранней стадии разработки (требуется перезапуск)."
+msgstr "На ранней стадии разработки."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
@@ -2414,15 +2368,15 @@ msgstr "Открыть расположение"
 
 #: src/ui/program-entry.ui:40
 msgid "Change Launch Options…"
-msgstr "Изменить Параметры Запуска…"
+msgstr "Изменить параметры запуска…"
 
 #: src/ui/program-entry.ui:45
 msgid "Add to My Library"
-msgstr "Добавить в Библиотеку"
+msgstr "Добавить в библиотеку"
 
 #: src/ui/program-entry.ui:50
 msgid "Add Desktop Entry"
-msgstr "Добавить на Рабочий стол"
+msgstr "Добавить на рабочий стол"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
@@ -2434,19 +2388,19 @@ msgstr "Переименовать…"
 
 #: src/ui/program-entry.ui:69
 msgid "Hide Program"
-msgstr "Скрыть Программу"
+msgstr "Скрыть программу"
 
 #: src/ui/program-entry.ui:74
 msgid "Show Program"
-msgstr "Показать Программу"
+msgstr "Показать программу"
 
 #: src/ui/program-entry.ui:79
 msgid "Remove from List"
-msgstr "Убрать из Списка"
+msgstr "Убрать из списка"
 
 #: src/ui/state-entry.ui:20
 msgid "Restore this state"
-msgstr "Восстановить это состояние"
+msgstr "Восстановить данное состояние"
 
 #: src/ui/task-entry.ui:24
 msgid "Delete message"
@@ -2458,7 +2412,7 @@ msgstr "Библиотека"
 
 #: src/ui/window.ui:25
 msgid "Import/Export…"
-msgstr "Импорт/Экспорт…"
+msgstr "Импорт/экспорт…"
 
 #: src/ui/window.ui:39
 msgid "Support"
@@ -2470,7 +2424,7 @@ msgstr "Форумы"
 
 #: src/ui/window.ui:54
 msgid "Health Check"
-msgstr "Проверка Здоровья"
+msgstr "Проверка целостности"
 
 #: src/ui/window.ui:59
 msgid "About Bottles"
@@ -2487,8 +2441,7 @@ msgid ""
 "the connection."
 msgstr ""
 "Не обнаружено подключения к интернету, без чего невозможно загрузить "
-"необходимые компоненты. Нажмите на этот значок, когда соединение будет "
-"восстановлено."
+"необходимые компоненты. Нажмите на этот значок при восстановлении соединения."
 
 #: src/ui/window.ui:109
 msgid "New bottle"

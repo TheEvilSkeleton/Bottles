@@ -126,13 +126,17 @@ class WineCommand:
 
         return cwd
 
-    def get_env(self, environment, return_steam_env: bool = False) -> dict:
-        env = WineEnv(clean=return_steam_env)
+    def get_env(self, environment: dict = None, return_steam_env: bool = False, return_clean_env: bool = False) -> dict:
+        env = WineEnv(clean=return_steam_env or return_clean_env)
         config = self.config
         arch = config.get("Arch", None)
         params = config.get("Parameters", None)
+
         if None in [arch, params]:
             return env.get()["envs"]
+
+        if environment is None:
+            environment = {}
 
         if config.get("IsLayer"):
             bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
@@ -143,6 +147,7 @@ class WineCommand:
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
+        is_nvidia = DisplayUtils.check_nvidia_device()
         ld = []
 
         # Bottle environment variables
@@ -234,6 +239,7 @@ class WineCommand:
         # Mangohud environment variables
         if params["mangohud"] and not self.minimal and not (gamescope_available and params.get("gamescope")):
             env.add("MANGOHUD", "1")
+            env.add("MANGOHUD_DLSYM", "1")
 
         # vkBasalt environment variables
         if params["vkbasalt"] and not self.minimal:
@@ -257,7 +263,7 @@ class WineCommand:
             env.add("DXVK_ENABLE_NVAPI", "1")
 
             # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
-            if DisplayUtils.check_nvidia_device():
+            if is_nvidia:
                 env.add("WINE_HIDE_NVIDIA_GPU", "1")
 
         # DXVK HUD environment variable
@@ -334,6 +340,10 @@ class WineCommand:
             if ld:
                 env.concat("LD_LIBRARY_PATH", ld)
 
+        # Vblank
+        # env.add("__GL_SYNC_TO_VBLANK", "0")
+        # env.add("vblank_mode", "0")
+
         # DLL Overrides
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")
         if env.is_empty("WINEDLLOVERRIDES"):
@@ -397,11 +407,15 @@ class WineCommand:
 
         return runner
 
-    def get_cmd(self, command, post_script: str = None, return_steam_cmd: bool = False) -> str:
+    def get_cmd(self, command, post_script: str = None, return_steam_cmd: bool = False, return_clean_cmd: bool = False) -> str:
         config = self.config
         params = config.get("Parameters", {})
         runner = self.runner
-        if not return_steam_cmd:
+
+        if return_clean_cmd:
+            return_steam_cmd = True
+
+        if not return_steam_cmd and not return_clean_cmd:
             command = f"{runner} {command}"
 
         if not self.minimal:
@@ -430,7 +444,7 @@ class WineCommand:
             if _rs:
                 if "soldier" in _rs.keys() and "proton" in self.runner.lower():
                     ''' 
-                    Soldier doesn't works with Caffe and maybe other Wine runners, but it
+                    Soldier doesn't works with Soda/Caffe and maybe other Wine runners, but it
                     works with Proton. So, if the runner is Proton, use the soldier runtime.
                     '''
                     _picked = _rs["soldier"]

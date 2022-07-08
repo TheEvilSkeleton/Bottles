@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-28 04:21+0000\n"
-"Last-Translator: lebao3105 <bao12345yocoo@gmail.com>\n"
+"PO-Revision-Date: 2022-07-08 01:20+0000\n"
+"Last-Translator: CuCai2413 <matbao221@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -141,9 +141,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Nhập các tiền tố Wine từ các trình quản lý khác"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Sử dụng trình phiên bản"
+msgstr "Lập phiên bản Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -163,7 +162,7 @@ msgstr "Chế độ tối"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "Buộc kích hoạt chế độ tối"
+msgstr "Bắt buộc bật chế độ tối"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -175,17 +174,15 @@ msgstr "Bật / Tắt ngày cập nhật trong danh sách Chai."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Danh sách ứng dụng Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Kích hoạt / Vô hiệu hóa ngày cập nhật trong danh sách"
+msgstr "Kích hoạt / Vô hiệu hóa danh sách app từ Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store .."
+msgstr "Danh sách Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 #, fuzzy
@@ -253,12 +250,10 @@ msgstr ""
 "cài đặt phiên bản. Phát hành ứng viên cho trình thực thi."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "ProtonDB"
+msgstr "Hỗ trợ Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
 msgstr "Kích hoạt / Hủy kích hoạt các tính năng thử nghiệm của Steam Proton."
 
@@ -313,7 +308,7 @@ msgstr "Bỏ qua đối số"
 
 #: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "URI không hợp lệ (syntax: bottles:run/<bottle>/<program>)"
 
 #: src/main.py:246
 msgid "[Quit] request received."
@@ -328,12 +323,10 @@ msgid "[Refresh] request received."
 msgstr "[Làm mới] yêu cầu đã nhận."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Tính toán..."
+msgstr "Tính toán…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
 msgstr "Tải xuống…"
 
@@ -430,7 +423,6 @@ msgid "The Wine config is being updated…"
 msgstr "Cấu hình WINE đang được cập nhật …"
 
 #: src/backend/managers/manager.py:1154
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "Cấu hình WINE đã cập nhật!"
 
@@ -511,14 +503,12 @@ msgstr ""
 "dưới đây."
 
 #: src/dialogs/dlloverrides.py:136
-#, fuzzy
 msgid "No overrides found."
-msgstr "Không tìm thấy chương trình"
+msgstr "Không tìm thấy chương trình."
 
 #: src/dialogs/drives.py:71
-#, fuzzy
 msgid "Choose path"
-msgstr "Duyệt đường dẫn"
+msgstr "Chọn đường dẫn"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
 #: src/dialogs/launchoptions.py:229 src/dialogs/launchoptions.py:253
@@ -539,12 +529,11 @@ msgstr "Hủy bỏ"
 #: src/views/bottle_preferences.py:251 src/views/new.py:137
 #: src/views/new.py:153 src/views/preferences.py:167
 msgid "Select"
-msgstr ""
+msgstr "Chọn"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Biến môi trường"
+msgstr "Không có biến môi trường xác định."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -564,34 +553,32 @@ msgstr "Sao chép vào bảng tạm"
 #. endregion
 #: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Chọn một đoạn mã sẽ được thực thi sau khi chạy."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Đóng Chai sau khi khởi động một chương trình"
+msgstr "Chọn nơi sẽ bắt đầu phần mềm."
 
 #: src/dialogs/launchoptions.py:56
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "Phiên bản đã bật cho chai này"
+msgstr "{0} đã tắt cho bottle này."
 
 #: src/dialogs/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Cài đặt này khác với cài đặt mặc định của bottle này."
 
 #: src/dialogs/launchoptions.py:227
 msgid "Choose the script"
-msgstr ""
+msgstr "Chọn đoạn mã"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Thư mục làm việc"
+msgstr "Chọn thư mục làm việc"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Chọn tệp tài nguyên"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -618,12 +605,12 @@ msgstr "Chọn vị trí để lưu kho lưu trữ sao lưu"
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr ""
+msgstr "Đã tạo bản sao lưu cho '{0}'."
 
 #: src/views/bottle_details.py:258
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr ""
+msgstr "Sao lưu thất bại cho '{0}'."
 
 #: src/views/bottle_details.py:276
 msgid "Export"
@@ -631,14 +618,15 @@ msgstr "Xuất"
 
 #: src/views/bottle_details.py:306
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Bạn có chắc chắn muốn xóa Chai này và tất cả các tệp?"
+msgstr "Bạn có chắc chắn muốn xóa Bottle này và tất cả các tệp?"
 
 #: src/views/bottle_details.py:382
-#, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
-msgstr "Bạn có chắc chắn muốn xóa Chai này và tất cả các tệp?"
+msgstr ""
+"Bạn có chắc muốn huỷ hết các quá trình?\n"
+"Điều này có thể gây mất dữ liệu."
 
 #: src/views/bottle_preferences.py:198
 msgid "This feature is not available on your system."
@@ -647,7 +635,7 @@ msgstr "Tính năng này không có sẵn trên hệ thống của bạn."
 #: src/views/bottle_preferences.py:241 src/views/bottle_preferences.py:258
 #: src/views/bottle_preferences.py:394
 msgid "Default to the bottle path."
-msgstr "Mặc định đường dẫn cho chai."
+msgstr "Đường dẫn mặc định cho bottle."
 
 #: src/views/bottle_preferences.py:249
 msgid "Choose working directory for executables"
@@ -656,7 +644,7 @@ msgstr "Chọn thư mục làm việc cho Trình thực thi"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "Đã thêm '{0}'."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
@@ -736,9 +724,8 @@ msgid "Arguments found for executable: [{executable}]."
 msgstr "Các đối số được tìm thấy cho thực thi: [{executable}]."
 
 #: src/views/list.py:249
-#, fuzzy
 msgid "Your Bottles"
-msgstr "Về Chai"
+msgstr "Bottles của bạn"
 
 #: src/views/new.py:135
 #, fuzzy
@@ -1300,7 +1287,7 @@ msgstr "Hiệu suất"
 
 #: src/ui/details-preferences.ui:108 src/ui/preferences.ui:192
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
@@ -1423,7 +1410,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr ""
+msgstr "Trình kết xuất"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
@@ -1435,11 +1422,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:270
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:271
 msgid "vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
@@ -1499,7 +1486,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:440
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
 #, fuzzy
@@ -1536,9 +1523,8 @@ msgid "Manage Sandbox permissions"
 msgstr "Quản lý các phiên bản DXVK"
 
 #: src/ui/details-preferences.ui:520
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Sử dụng môi trường thực thi Chai"
+msgstr "Bottles Runtime"
 
 #: src/ui/details-preferences.ui:521
 #, fuzzy
@@ -1550,9 +1536,8 @@ msgstr ""
 "vô hiệu hóa nếu bạn gặp sự cố."
 
 #: src/ui/details-preferences.ui:532
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Sử dụng môi trường thực thi Chai"
+msgstr "Steam Runtime"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1568,9 +1553,8 @@ msgid "Optimise gaming performance on demand."
 msgstr "Tối ưu hóa hiệu suất chơi game theo yêu cầu."
 
 #: src/ui/details-preferences.ui:556
-#, fuzzy
 msgid "Gamescope"
-msgstr "Sử dụng Gamescope"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:557
 msgid "Use the Gamescope micro-compositor."
@@ -1648,7 +1632,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:672
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:673
 msgid ""
@@ -2469,7 +2453,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:204
 msgid "Runtime"
-msgstr ""
+msgstr "Runtime"
 
 #: src/ui/preferences.ui:209
 msgid "WineBridge"

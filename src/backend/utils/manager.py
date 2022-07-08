@@ -1,11 +1,10 @@
 # manager.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,6 +19,7 @@ import gi
 import os
 import locale
 import subprocess
+import icoextract
 from glob import glob
 from typing import NewType, Union
 from datetime import datetime
@@ -172,7 +172,6 @@ class ManagerUtils:
         bottle_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
 
         try:
-            import icoextract
             if winepath.is_windows(program_path):
                 program_path = winepath.to_unix(program_path)
 
@@ -198,7 +197,7 @@ class ManagerUtils:
             else:
                 shutil.move(ico_dest_temp, ico_dest)
                 icon = ico_dest
-        except:
+        except:  # TODO: handle those
             pass
 
         return icon
