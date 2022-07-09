@@ -26,7 +26,7 @@ clut (or lut): Color Lookup Table
 '''
 
 import os
-from gi.repository import Gtk, GLib, Adw, GdkPixbuf
+from gi.repository import Gtk, GLib, Adw, Gdk
 from bottles.backend.utils.vkbasalt import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
@@ -239,20 +239,24 @@ class VkBasaltDialog(Adw.Window):
             if response == -3:
                 self.lut_file_path = _file_dialog.get_file().get_path()
 
-                width = GdkPixbuf.Pixbuf.get_file_info(self.lut_file_path)[1]
-                height = GdkPixbuf.Pixbuf.get_file_info(self.lut_file_path)[2]
+                if self.lut_file_path.split(".")[-1] == "png":
 
-                def error_dialog(title, message):
-                    dialog = Adw.MessageDialog.new(self.window, title, message)
-                    dialog.add_response("cancel", "Close")
-                    dialog.present()
+                    texture = Gdk.Texture.new_from_filename(self.lut_file_path)
 
-                if " " in self.lut_file_path:
-                    error_dialog("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
-                elif width != height:
-                    error_dialog("Inequal Image Dimension", "Image must have the same dimension.")
-                else:
-                    self.input_entry.set_text(self.lut_file_path)
+                    width = texture.get_width()
+                    height = texture.get_height()
+
+                    def error_dialog(title, message):
+                        dialog = Adw.MessageDialog.new(self.window, title, message)
+                        dialog.add_response("cancel", "Close")
+                        dialog.present()
+
+                    if " " in self.lut_file_path:
+                        error_dialog("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
+                    elif width != height:
+                        error_dialog("Inequal Image Dimension", "Image must have the same dimension.")
+
+                self.input_entry.set_text(self.lut_file_path)
 
         FileChooser(
             parent=self.window,
