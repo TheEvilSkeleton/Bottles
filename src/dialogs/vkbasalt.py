@@ -64,7 +64,6 @@ class VkBasaltDialog(Adw.Window):
     smaa = Gtk.Template.Child()
     row_disable_on_launch = Gtk.Template.Child()
     switch_disable_on_launch = Gtk.Template.Child()
-    # toggle_key = Gtk.Template.Child()
     cas_sharpness = Gtk.Template.Child()
     dls_sharpness = Gtk.Template.Child()
     dls_denoise = Gtk.Template.Child()
