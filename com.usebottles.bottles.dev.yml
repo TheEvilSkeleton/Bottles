@@ -277,7 +277,8 @@ modules:
     sources:
     - type: git
       url: https://gitlab.gnome.org/GNOME/libadwaita.git
-      commit: 57a4a17cdca7a44a4162c053f998bb8bc5a03139
+      tag: 1.2.alpha
+      commit: 9150f4016a04064a00733b78391c8e6aad49bee8
     modules:
     - name: libsass
       buildsystem: meson
