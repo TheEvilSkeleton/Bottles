@@ -25,6 +25,16 @@
                   </object>
                 </child>
                 <child>
+                  <object class="GtkShortcutController">
+                    <child>
+                      <object class="GtkShortcut">
+                        <property name="trigger">Escape</property>
+                        <property name="action">action(window.close)</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkButton" id="btn_help">
                     <property name="label" translatable="yes">_?</property>
                     <property name="use_underline">True</property>
