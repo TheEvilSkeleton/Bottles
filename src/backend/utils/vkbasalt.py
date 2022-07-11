@@ -31,12 +31,14 @@ def parse(args):
             "/usr/share/vkBasalt",
         ]
         for i in range(len(install_paths)):
-            if path.isfile(path.join(install_paths[i], "vkBasalt.conf")):
+            file_path = path.join(install_paths[i], "vkBasalt.conf")
+            if path.isfile(file_path):
                 if args.output:
-                    copyfile(path.join(install_paths[i], "vkBasalt.conf"), path.join(args.output, "vkBasalt.conf"))
+                    logging.info(f"Outputting file to {file_path}")
+                    copyfile(file_path), path.join(args.output, "vkBasalt.conf")
                 if args.exec:
                     environ["ENABLE_VKBASALT"] = "1"
-                    environ["VKBASALT_CONFIG_FILE"] = path.join(install_paths[i], "vkBasalt.conf")
+                    environ["VKBASALT_CONFIG_FILE"] = file_path
                     system(f"{args.exec}")
                 return
         logging.error(f"No such path for vkBasalt exists")
@@ -49,8 +51,10 @@ def parse(args):
         # --disable-on-launch
         file.append("enableOnLaunch = ")
         if args.disable_on_launch:
+            logging.info("Setting Key enableOnLaunch = False")
             file.append("False\n")
         else:
+            logging.info("Setting Key enableOnLaunch = True")
             file.append("True\n")
 
         # --toggle-key
@@ -62,84 +66,105 @@ def parse(args):
 
         # --cas-sharpness
         if args.cas_sharpness:
+            args.cas_sharpness = round(args.cas_sharpness, 2)
             if -1 <= args.cas_sharpness <= 1:
-                file.append(f"casSharpness = {round(args.cas_sharpness, 2)}\n")
+                logging.info(f"Setting Key casSharpness = {args.cas_sharpness}")
+                file.append(f"casSharpness = {args.cas_sharpness}\n")
             else:
                 logging.error(f"Error: CAS sharpness must be above -1 and below 1")
                 exit(1)
 
         # --dls-sharpness
         if args.dls_sharpness:
+            args.dls_sharpness = round(args.dls_sharpness, 2)
             if 0 <= args.dls_sharpness <= 1:
-                file.append(f"dlsSharpness = {round(args.dls_sharpness, 2)}\n")
+                logging.info(f"Setting Key dlsSharpness = {args.dls_sharpness}")
+                file.append(f"dlsSharpness = {args.dls_sharpness}\n")
             else:
                 logging.error(f"Error: DLS sharpness must be above 0 and below 1")
                 exit(1)
 
         # --dls-denoise
         if args.dls_denoise:
+            args.dls_denoise = round(args.dls_denoise, 2)
             if 0 <= args.dls_denoise <= 1:
-                file.append(f"dlsDenoise = {round(args.dls_denoise, 2)}\n")
+                logging.info(f"Setting Key dlsDenoise = {args.dls_denoise}")
+                file.append(f"dlsDenoise = {args.dls_denoise}\n")
             else:
                 logging.error(f"Error: DLS denoise must be above 0 and below 1")
                 exit(1)
 
         # --fxaa-subpixel-quality
         if args.fxaa_subpixel_quality:
+            args.fxaa_subpixel_quality = round(args.fxaa_subpixel_quality, 2)
             if 0 <= args.fxaa_subpixel_quality <= 1:
-                file.append(f"fxaaQualitySubpix = {round(args.fxaa_subpixel_quality, 2)}\n")
+                logging.info(f"Setting Key fxaaQualitySubpix = {args.fxaa_subpixel_quality}")
+                file.append(f"fxaaQualitySubpix = {args.fxaa_subpixel_quality}\n")
             else:
                 logging.error(f"Error: FXAA subpixel quality must be above 0 and below 1")
                 exit(1)
 
         # --fxaa-edge-quality-threshold
         if args.fxaa_quality_edge_threshold:
+            args.fxaa_quality_edge_threshold = round(args.fxaa_quality_edge_threshold, 2)
             if 0 <= args.fxaa_quality_edge_threshold <= 1:
-                file.append(f"fxaaQualityEdgeThreshold = {round(args.fxaa_quality_edge_threshold, 2)}\n")
+                logging.info(f"Setting Key fxaaQualityEdgeThreshold = {args.fxaa_quality_edge_threshold}")
+                file.append(f"fxaaQualityEdgeThreshold = {args.fxaa_quality_edge_threshold}\n")
             else:
                 logging.error(f"Error: FXAA edge quality threshold must be above 0 and below 1")
                 exit(1)
 
         # --fxaa-quality-edge-threshold-min
         if args.fxaa_quality_edge_threshold_min:
+            args.fxaa_quality_edge_threshold_min = round(args.fxaa_quality_edge_threshold_min, 3)
             if 0 <= args.fxaa_quality_edge_threshold_min <= 0.1:
-                file.append(f"fxaaQualityEdgeThresholdMin = {round(args.fxaa_quality_edge_threshold_min, 3)}\n")
+                logging.info(f"Setting Key fxaaQualityEdgeThresholdMin = {args.fxaa_quality_edge_threshold_min}")
+                file.append(f"fxaaQualityEdgeThresholdMin = {args.fxaa_quality_edge_threshold_min}\n")
             else:
                 logging.error(f"Error: FXAA edge quality threshold minimum must be above 0 and below 0.1")
                 exit(1)
 
         # --smaa-edge-detection
         if args.smaa_edge_detection:
+            logging.info(f"Setting Key smaaEdgeDetection = {args.smaa_edge_detection}")
             file.append(f"smaaEdgeDetection = {args.smaa_edge_detection}\n")
 
         # --smaa-threshold
         if args.smaa_threshold:
+            args.smaa_threshold = round(args.smaa_threshold, 3)
             if 0 <= args.smaa_threshold <= 0.5:
-                file.append(f"smaaThreshold = {round(args.smaa_threshold, 3)}\n")
+                logging.info(f"Setting Key smaaThreshold = {args.smaa_threshold}")
+                file.append(f"smaaThreshold = {args.smaa_threshold}\n")
             else:
                 logging.error(f"Error: SMAA threshold must be above 0 and below 0.5")
                 exit(1)
 
         # --smaa-max-search-steps
         if args.smaa_max_search_steps:
+            args.smaa_max_search_steps = round(args.smaa_max_search_steps)
             if 0 <= args.smaa_max_search_steps <= 112:
-                file.append(f"smaaMaxSearchSteps = {round(args.smaa_max_search_steps)}\n")
+                logging.info(f"Setting Key smaaMaxSearchSteps = {args.smaa_max_search_steps}")
+                file.append(f"smaaMaxSearchSteps = {args.smaa_max_search_steps}\n")
             else:
                 logging.error(f"Error: SMAA max search steps must be above 0 and below 112")
                 exit(1)
 
         # --smaa-max-search-steps-diagonal
         if args.smaa_max_search_steps_diagonal:
+            args.smaa_max_search_steps_diagonal = round(args.smaa_max_search_steps_diagonal)
             if 0 <= args.smaa_max_search_steps_diagonal <= 20:
-                file.append(f"smaaMaxSearchStepsDiag = {round(args.smaa_max_search_steps_diagonal)}\n")
+                logging.info(f"Setting Key smaaMaxSearchStepsDiag = {args.smaa_max_search_steps_diagonal}")
+                file.append(f"smaaMaxSearchStepsDiag = {args.smaa_max_search_steps_diagonal}\n")
             else:
                 logging.error(f"Error: SMAA max search steps diagonal must be above 0 and below 20")
                 exit(1)
 
         # --smaa-corner-rounding
         if args.smaa_corner_rounding:
+            args.smaa_corner_rounding = round(args.smaa_corner_rounding)
             if 0 <= args.smaa_corner_rounding <= 100:
-                file.append(f"smaaCornerRounding = {round(args.smaa_corner_rounding)}\n")
+                logging.info(f"Setting Key smaaCornerRounding = {args.smaa_corner_rounding}")
+                file.append(f"smaaCornerRounding = {args.smaa_corner_rounding}\n")
             else:
                 logging.error(f"Error: SMAA corner rounding must be above 0 and below 100")
                 exit(1)
@@ -147,6 +172,7 @@ def parse(args):
         # --lut-file-path
         if args.lut_file_path:
             if not " " in args.lut_file_path:
+                logging.info(f"Setting Key lutFile = {args.lut_file_path}")
                 file.append(f"lutFile = {args.lut_file_path}\n")
             else:
                 logging.error("Error: CLUT must not contain any whitespace")
@@ -156,6 +182,7 @@ def parse(args):
         if args.output:
             if path.isdir(args.output):
                 vkbasalt_conf = path.join(args.output, "vkBasalt.conf")
+                logging.info(f"Writing to = {vkbasalt_conf}")
             else:
                 logging.error(f"Error: No such directory")
                 exit(1)
@@ -166,7 +193,9 @@ def parse(args):
         # Write and close file
         with open(vkbasalt_conf, "w") as f:
             if args.effects:
-                file.append(f"effects = {':'.join(args.effects)}\n")
+                args.effects = ':'.join(args.effects)
+                logging.info(f"Setting Key effects = {args.effects}")
+                file.append(f"effects = {args.effects}\n")
             f.write("".join(file))
 
         # --exec
