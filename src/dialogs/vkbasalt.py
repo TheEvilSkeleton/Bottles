@@ -80,7 +80,6 @@ class VkBasaltDialog(Adw.Window):
     lut_file_path = Gtk.Template.Child()
     input_entry = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
-    btn_help = Gtk.Template.Child()
 
     # endregion
 

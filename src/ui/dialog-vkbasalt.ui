@@ -4,7 +4,7 @@
   <!-- interface-name dialog-vkbasalt.ui -->
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="VkBasaltDialog" parent="AdwWindow">
+  <template class="VkBasaltDialog" parent="GtkWindow">
     <property name="default-width">550</property>
     <property name="modal">True</property>
     <property name="title" translatable="yes">vkBasalt Settings</property>
@@ -32,12 +32,6 @@
                         <property name="action">action(window.close)</property>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="btn_help">
-                    <property name="label" translatable="yes">_?</property>
-                    <property name="use_underline">True</property>
                   </object>
                 </child>
               </object>
@@ -196,6 +190,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Subpixel Quality</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_fxaa_subpixel_quality</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -218,6 +223,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Quality Edge Threshold</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_fxaa_quality_edge_threshold</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -239,6 +255,17 @@
                         <child>
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Quality Edge Threshold Minimum</property>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_fxaa_quality_edge_threshold_min</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
                             <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
@@ -267,6 +294,17 @@
                         <child>
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Edge Detection</property>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_edge_detection</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
                             <child>
                               <object class="GtkBox">
                                 <child>
@@ -436,8 +474,15 @@
   <object class="GtkPopover" id="popover_cas_sharpness">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
         <child>
           <object class="GtkLabel">
+            <property name="valign">center</property>
             <property name="xalign">0</property>
             <property name="wrap">True</property>
             <property name="wrap-mode">word-char</property>
@@ -445,7 +490,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CAS sharpness decreases or increases sharpness of a given game. Games may look clearer, but also cause artifacts or overshapened edges. If the value is lower than 0, the sharpness of the game will be lower than native.
+            <property name="label" translatable="yes">CAS increases the sharpness of an image. Higher values make the image sharper, whereas values lower than 0 make the image softer than native.
             </property>
           </object>
         </child>
@@ -455,6 +500,12 @@
   <object class="GtkPopover" id="popover_dls_sharpness">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
         <child>
           <object class="GtkLabel">
             <property name="xalign">0</property>
@@ -464,7 +515,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS sharpness increases sharpness of a given game. Games may look clearer, but also cause artifacts or overshapened edges. The lower the value, the less sharp it is.
+            <property name="label" translatable="yes">DLS sharpness increases the sharpness of an image. Higher values make the image sharper.
             </property>
           </object>
         </child>
@@ -474,6 +525,12 @@
   <object class="GtkPopover" id="popover_dls_denoise">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
         <child>
           <object class="GtkLabel">
             <property name="xalign">0</property>
@@ -483,7 +540,107 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS denoise decreases the amount of noise in a given game. Games may look cleaner and less oversharpened, but may also cause to look more washed out and less detailed.
+            <property name="label" translatable="yes">DLS denoise decreases the noise of an image. Higher values make the image softer.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_fxaa_subpixel_quality">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the image softer.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_fxaa_quality_edge_threshold">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">The minimum amount of contrast required to apply FXAA algorithm. Higher values make the image have more contrast.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_fxaa_quality_edge_threshold_min">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">Pixels darker than the value are not processed by FXAA to increase performance.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_edge_detection">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is graphically faster than Color.
             </property>
           </object>
         </child>
