@@ -4,7 +4,7 @@
   <!-- interface-name dialog-vkbasalt.ui -->
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="VkBasaltDialog" parent="AdwWindow">
+  <template class="VkBasaltDialog" parent="GtkWindow">
     <property name="default-width">550</property>
     <property name="modal">True</property>
     <property name="title" translatable="yes">vkBasalt Settings</property>
@@ -84,6 +84,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Sharpness</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_cas_sharpness</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -113,6 +124,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Sharpness</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_dls_sharpness</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -134,6 +156,17 @@
                         <child>
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Denoise</property>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_dls_denoise</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
                             <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
@@ -400,6 +433,63 @@
       </object>
     </child>
   </template>
+  <object class="GtkPopover" id="popover_cas_sharpness">
+    <child>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">CAS sharpness decreases or increases sharpness of a given game. Games may look clearer, but also cause artifacts or overshapened edges. If the value is lower than 0, the sharpness of the game will be lower than native.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_dls_sharpness">
+    <child>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">DLS sharpness increases sharpness of a given game. Games may look clearer, but also cause artifacts or overshapened edges. The lower the value, the less sharp it is.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_dls_denoise">
+    <child>
+      <object class="GtkBox">
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">DLS denoise decreases the amount of noise in a given game. Games may look cleaner and less oversharpened, but may also cause to look more washed out and less detailed.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>
 
 
