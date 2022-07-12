@@ -4,7 +4,7 @@
   <!-- interface-name dialog-vkbasalt.ui -->
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="VkBasaltDialog" parent="GtkWindow">
+  <template class="VkBasaltDialog" parent="AdwWindow">
     <property name="default-width">550</property>
     <property name="modal">True</property>
     <property name="title" translatable="yes">vkBasalt Settings</property>
