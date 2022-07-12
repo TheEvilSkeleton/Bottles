@@ -41,7 +41,7 @@ from bottles.views.importer import ImporterView
 from bottles.views.loading import LoadingView
 
 from bottles.dialogs.crash import CrashReportDialog
-from bottles.dialogs.generic import AboutDialog, SourceDialog
+from bottles.dialogs.generic import SourceDialog
 from bottles.dialogs.onboard import OnboardDialog
 from bottles.dialogs.journal import JournalDialog
 from bottles.dialogs.depscheck import DependenciesCheckDialog
@@ -214,11 +214,11 @@ class MainWindow(Adw.ApplicationWindow):
 
             if Paths.custom_bottles_path_err:
                 dialog = Adw.MessageDialog.new(
-                                                self,
-                                                "Custom Bottles Path not Found",
-                                                "Falling back to default path. No bottles from the given path will be listed."
-                                                )
-                dialog.add_response("cancel", "Close")
+                    self,
+                    _("Custom Bottles Path not Found"),
+                    _("Falling back to default path. No bottles from the given path will be listed.")
+                )
+                dialog.add_response("cancel", _("Close"))
                 dialog.present()
 
             if self.arg_exe and not self.arg_bottle:
@@ -367,9 +367,12 @@ class MainWindow(Adw.ApplicationWindow):
         quit()
 
     def show_about_dialog(self, *args):
-        AboutDialog(self).present()
+        builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
+        about_window = builder.get_object("about_window")
+        about_window.set_transient_for(self)
+        about_window.present()
+
 
     @staticmethod
     def open_url(widget, url):
         webbrowser.open_new_tab(url)
-
