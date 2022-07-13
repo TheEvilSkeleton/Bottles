@@ -463,7 +463,7 @@
                 <child>
                   <object class="AdwExpanderRow" id="clut">
                     <property name="show_enable_switch">True</property>
-                    <property name="title" translatable="yes">Color Lookup Table</property>
+                    <property name="title" translatable="yes">Color LookUp Table</property>
                     <child>
                       <object class="AdwPreferencesRow">
                         <child>
@@ -471,9 +471,19 @@
                             <property name="title" translatable="yes">Path</property>
                             <child>
                               <object class="GtkEntry" id="input_entry">
-                                <property name="hexpand">True</property>
                                 <property name="valign">center</property>
                                 <property name="editable">False</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_clut</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
                               </object>
                             </child>
                             <child>
@@ -785,6 +795,31 @@
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
             <property name="label" translatable="yes">SMAA corner rounding specifies the strength of rounding edge corners.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_clut">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.
             </property>
           </object>
         </child>
