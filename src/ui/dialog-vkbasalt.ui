@@ -544,8 +544,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CAS sharpness increases the sharpness of an image. Higher values make the image sharper, whereas values lower than 0 make the image softer than native.
-            </property>
+            <property name="label" translatable="yes">CAS sharpness increases the sharpness of an image. Higher values make the image sharper, whereas values lower than 0 make the image softer than native.</property>
           </object>
         </child>
       </object>
@@ -569,8 +568,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS sharpness increases the sharpness of an image. Higher values make the image sharper.
-            </property>
+            <property name="label" translatable="yes">DLS sharpness increases the sharpness of an image. Higher values make the image sharper.</property>
           </object>
         </child>
       </object>
@@ -594,8 +592,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS denoise decreases the noise of an image. Higher values make the image softer.
-            </property>
+            <property name="label" translatable="yes">DLS denoise decreases the noise of an image. Higher values make the image softer.</property>
           </object>
         </child>
       </object>
@@ -619,8 +616,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the image softer.
-            </property>
+            <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the image softer.</property>
           </object>
         </child>
       </object>
@@ -644,8 +640,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">The minimum amount of contrast required to apply FXAA algorithm. Higher values make the image have more contrast.
-            </property>
+            <property name="label" translatable="yes">The minimum amount of contrast required to apply FXAA algorithm. Higher values make the image have more contrast.</property>
           </object>
         </child>
       </object>
@@ -669,8 +664,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">Pixels darker than the value are not processed by FXAA to increase performance.
-            </property>
+            <property name="label" translatable="yes">Pixels darker than the value are not processed by FXAA to increase performance.</property>
           </object>
         </child>
       </object>
@@ -694,8 +688,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is graphically faster than Color.
-            </property>
+            <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is graphically faster than Color.</property>
           </object>
         </child>
       </object>
@@ -719,8 +712,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA threshold specifies the sensitivity of edge detection. Lower values detect more edges at the expense of performance.
-            </property>
+            <property name="label" translatable="yes">SMAA threshold specifies the sensitivity of edge detection. Lower values detect more edges at the expense of performance.</property>
           </object>
         </child>
       </object>
@@ -744,8 +736,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA max search steps specifies how many horizontal and vertical search steps are performed when searching for edges.
-            </property>
+            <property name="label" translatable="yes">SMAA max search steps specifies how many horizontal and vertical search steps are performed when searching for edges.</property>
           </object>
         </child>
       </object>
@@ -769,8 +760,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA max diagonal search steps specifies how many diagonal search steps are performed when searching for edges.
-            </property>
+            <property name="label" translatable="yes">SMAA max diagonal search steps specifies how many diagonal search steps are performed when searching for edges.</property>
           </object>
         </child>
       </object>
@@ -794,8 +784,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA corner rounding specifies the strength of rounding edge corners.
-            </property>
+            <property name="label" translatable="yes">SMAA corner rounding specifies the strength of rounding edge corners.</property>
           </object>
         </child>
       </object>
@@ -819,8 +808,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.
-            </property>
+            <property name="label" translatable="yes">CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.</property>
           </object>
         </child>
       </object>
