@@ -544,7 +544,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CAS increases the sharpness of an image. Higher values make the image sharper, whereas values lower than 0 make the image softer than native.
+            <property name="label" translatable="yes">CAS sharpness increases the sharpness of an image. Higher values make the image sharper, whereas values lower than 0 make the image softer than native.
             </property>
           </object>
         </child>
