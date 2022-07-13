@@ -335,6 +335,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Threshold</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_smaa_threshold</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -357,6 +368,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Max Search Steps</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_smaa_max_search_steps</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -378,6 +400,17 @@
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Max Search Steps Diagonal</property>
                             <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_smaa_max_search_steps_diagonal</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
                                 <property name='valign'>center</property>
@@ -398,6 +431,17 @@
                         <child>
                           <object class="AdwActionRow">
                             <property name="title" translatable="yes">Max Corner Rounding</property>
+                            <child>
+                              <object class="GtkMenuButton">
+                                <property name='valign'>center</property>
+                                <property name="tooltip-text" translatable="yes">Select</property>
+                                <property name="icon-name">info-symbolic</property>
+                                <property name="popover">popover_smaa_corner_rounding</property>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
                             <child>
                               <object class="GtkSpinButton">
                                 <property name='numeric'>true</property>
@@ -641,6 +685,106 @@
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
             <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is graphically faster than Color.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_smaa_threshold">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">SMAA threshold specifies the sensitivity of edge detection. Lower values detect more edges at the expense of performance.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_smaa_max_search_steps">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">SMAA max search steps specifies how many horizontal and vertical search steps are performed when searching for edges.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_smaa_max_search_steps_diagonal">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">SMAA max diagonal search steps specifies how many diagonal search steps are performed when searching for edges.
+            </property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="popover_smaa_corner_rounding">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+            <property name="wrap-mode">word-char</property>
+            <property name="ellipsize">none</property>
+            <property name="lines">4</property>
+            <property name="use-markup">True</property>
+            <property name="max-width-chars">40</property>
+            <property name="label" translatable="yes">SMAA corner rounding specifies the strength of rounding edge corners.
             </property>
           </object>
         </child>
