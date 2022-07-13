@@ -4,7 +4,7 @@
   <!-- interface-name dialog-vkbasalt.ui -->
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="VkBasaltDialog" parent="AdwWindow">
+  <template class="VkBasaltDialog" parent="GtkWindow">
     <property name="default-width">550</property>
     <property name="modal">True</property>
     <property name="title" translatable="yes">vkBasalt Settings</property>
@@ -544,7 +544,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CAS sharpness increases the sharpness of an image. Higher values make the image sharper, whereas values lower than 0 make the image softer than native.</property>
+            <property name="label" translatable="yes">CAS sharpness increases the sharpness of a frame. Higher values make the frame sharper, whereas values lower than 0 make the frame softer than native.</property>
           </object>
         </child>
       </object>
@@ -568,7 +568,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS sharpness increases the sharpness of an image. Higher values make the image sharper.</property>
+            <property name="label" translatable="yes">DLS sharpness increases the sharpness of a frame. Higher values make the frame sharper.</property>
           </object>
         </child>
       </object>
@@ -592,7 +592,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS denoise decreases the noise of an image. Higher values make the image softer.</property>
+            <property name="label" translatable="yes">DLS denoise decreases the noise of a frame. Higher values make the frame softer.</property>
           </object>
         </child>
       </object>
@@ -616,7 +616,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the image softer.</property>
+            <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the frame softer.</property>
           </object>
         </child>
       </object>
@@ -640,7 +640,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">The minimum amount of contrast required to apply FXAA algorithm. Higher values make the image have more contrast.</property>
+            <property name="label" translatable="yes">FXAA edge threshold is the minimum amount of contrast required to apply the FXAA algorithm. Higher values make the frame have more contrast.</property>
           </object>
         </child>
       </object>
@@ -663,8 +663,8 @@
             <property name="ellipsize">none</property>
             <property name="lines">4</property>
             <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">Pixels darker than the value are not processed by FXAA to increase performance.</property>
+            <property name="max-width-chars">60</property>
+            <property name="label" translatable="yes">FXAA quality edge threshold minimum is the minimum value of dark pixels that are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels below the specified value and can lead to a performance increase.</property>
           </object>
         </child>
       </object>
@@ -688,7 +688,7 @@
             <property name="lines">4</property>
             <property name="use-markup">True</property>
             <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is graphically faster than Color.</property>
+            <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is more performant than Color.</property>
           </object>
         </child>
       </object>
