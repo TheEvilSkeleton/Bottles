@@ -94,6 +94,11 @@ class VkBasaltDialog(Adw.Window):
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
 
         # connect signals
+        self.cas.connect("state-flags-changed", self.__check_state)
+        self.dls.connect("state-flags-changed", self.__check_state)
+        self.fxaa.connect("state-flags-changed", self.__check_state)
+        self.smaa.connect("state-flags-changed", self.__check_state)
+        self.clut.connect("state-flags-changed", self.__check_state)
         self.btn_save.connect("clicked", self.__save)
         self.default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
@@ -115,6 +120,7 @@ class VkBasaltDialog(Adw.Window):
             # Check if clut is used.
             if VkBasaltSettings.lut_file_path is None:
                 self.clut.set_enable_expansion(False)
+                self.lut_file_path = False
             else:
                 self.input_entry.set_text(VkBasaltSettings.lut_file_path)
                 self.lut_file_path = VkBasaltSettings.lut_file_path
@@ -174,7 +180,7 @@ class VkBasaltDialog(Adw.Window):
             return
 
         # Checks filter settings.
-        if self.cas.get_enable_expansion() is True or self.dls.get_enable_expansion() is True or self.fxaa.get_enable_expansion() is True or self.smaa.get_enable_expansion() is True:
+        if self.cas.get_enable_expansion() is True or self.dls.get_enable_expansion() is True or self.fxaa.get_enable_expansion() is True or self.smaa.get_enable_expansion() is True or self.clut.get_enable_expansion() is True:
             VkBasaltSettings.default = False
             effects = []
             if self.cas.get_enable_expansion() is True:
@@ -211,6 +217,12 @@ class VkBasaltDialog(Adw.Window):
     def __save(self, *args):
         GLib.idle_add(self.__idle_save)
 
+    def __check_state(self, widget, state):
+        if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
+            self.btn_save.set_sensitive(False)
+        else:
+            self.btn_save.set_sensitive(True)
+
     def __default(self, widget, state):
         self.cas.set_sensitive(not state)
         self.dls.set_sensitive(not state)
@@ -218,6 +230,11 @@ class VkBasaltDialog(Adw.Window):
         self.smaa.set_sensitive(not state)
         self.row_disable_on_launch.set_sensitive(not state)
         self.clut.set_sensitive(not state)
+        if state is False:
+            if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.clut.get_enable_expansion() is False:
+                self.btn_save.set_sensitive(False)
+        else:
+            self.btn_save.set_sensitive(True)
 
     def __change_edge_detection_type(self, widget, edge_detection_type):
         self.smaa_edge_detection = edge_detection_type
@@ -252,10 +269,12 @@ class VkBasaltDialog(Adw.Window):
 
                     if " " in self.lut_file_path:
                         error_dialog("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
+                        self.lut_file_path = False
                     elif width != height:
                         error_dialog("Inequal Image Dimension", "Image must have the same dimension.")
-
-                self.input_entry.set_text(self.lut_file_path)
+                        self.lut_file_path = False
+                    else:
+                        self.input_entry.set_text(self.lut_file_path)
 
         FileChooser(
             parent=self.window,
