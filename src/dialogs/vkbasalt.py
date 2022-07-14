@@ -163,6 +163,7 @@ class VkBasaltDialog(Adw.Window):
             self.fxaa.set_enable_expansion(False)
             self.smaa.set_enable_expansion(False)
             self.clut.set_enable_expansion(False)
+            self.lut_file_path = False
 
     def __idle_save(self, *args):
 
@@ -218,9 +219,12 @@ class VkBasaltDialog(Adw.Window):
         GLib.idle_add(self.__idle_save)
 
     def __check_state(self, widget, state):
-        if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
+        print(self.lut_file_path)
+        if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and (self.lut_file_path is False or self.clut.get_enable_expansion() is False):
+            print("eeeeeeeeeeeeee")
             self.btn_save.set_sensitive(False)
         else:
+            print("aaaaaaaaaaaaaaa")
             self.btn_save.set_sensitive(True)
 
     def __default(self, widget, state):
@@ -267,12 +271,18 @@ class VkBasaltDialog(Adw.Window):
                         dialog.add_response("cancel", "Close")
                         dialog.present()
 
+                    def set_lut_file_path():
+                        if self.input_entry.get_text():
+                            self.lut_file_path = self.input_entry.get_text()
+                        else:
+                            self.lut_file_path = False
+
                     if " " in self.lut_file_path:
                         error_dialog("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
-                        self.lut_file_path = False
+                        set_lut_file_path()
                     elif width != height:
                         error_dialog("Inequal Image Dimension", "Image must have the same dimension.")
-                        self.lut_file_path = False
+                        set_lut_file_path()
                     else:
                         self.input_entry.set_text(self.lut_file_path)
 
