@@ -301,6 +301,9 @@ class ManagerUtils:
         )
 
     @staticmethod
+    def
+
+    @staticmethod
     def get_languages(from_name=None, from_locale=None, from_index=None, get_index=False, get_locales=False):
         locales = [
             'sys',

@@ -167,7 +167,7 @@ class PreferencesView(Adw.PreferencesPage):
                                           "fullscreen_capture")
         self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
         self.switch_mouse_warp.connect('state-set', self.__toggle_mouse_warp)
-        self.combo_fsr.connect('activated', self.__set_fsr_level)
+        self.combo_fsr.connect('notify::selected-item', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('changed', self.__set_runner)
@@ -266,6 +266,7 @@ class PreferencesView(Adw.PreferencesPage):
         the functions connected to the combo boxes to avoid the
         bottle configuration to be updated during the process.
         """
+        self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
@@ -298,6 +299,7 @@ class PreferencesView(Adw.PreferencesPage):
         for lang in ManagerUtils.get_languages():
             self.str_list_languages.append(lang)
 
+        self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
@@ -375,7 +377,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
+        # self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
         self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
@@ -757,8 +759,18 @@ class PreferencesView(Adw.PreferencesPage):
                 resolution=resolution
             )
 
+    # def __set_language(self, *args):
+    #     """Set the language to use for the bottle"""
+    #     index = self.combo_language.get_selected()
+    #     language = ManagerUtils.get_languages(from_index=index)
+    #     self.config = self.manager.update_config(
+    #         config=self.config,
+    #         key="Language",
+    #         value=language[0],
+    #     ).data["config"]
     def __set_fsr_level(self, widget):
         """Set the FSR level of sharpness (from 0 to 5, where 5 is the default)"""
+        level = self.combo_fsr.get_selected()
         level = int(widget.get_active_id())
         self.config = self.manager.update_config(
             config=self.config,
