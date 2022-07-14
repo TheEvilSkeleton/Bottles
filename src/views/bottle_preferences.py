@@ -167,7 +167,7 @@ class PreferencesView(Adw.PreferencesPage):
                                           "fullscreen_capture")
         self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
         self.switch_mouse_warp.connect('state-set', self.__toggle_mouse_warp)
-        self.combo_fsr.connect('changed', self.__set_fsr_level)
+        self.combo_fsr.connect('activated', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('changed', self.__set_runner)

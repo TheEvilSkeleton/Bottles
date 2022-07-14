@@ -75,26 +75,19 @@
                     </object>
                 </child>
                 <child>
-                    <object class="AdwActionRow">
-                        <property name="activatable-widget">switch_fsr</property>
+                    <object class="AdwComboRow" id="combo_fsr">
                         <property name="title" translatable="yes">FSR</property>
                         <property name="subtitle" translatable="yes">FSR uses cutting-edge up-scaling technologies to help boost your framerate.</property>
-                        <child>
-                            <object class="GtkComboBoxText" id="combo_fsr">
-                                <!-- TODO: replace with ComboRow -->
-                                <property name="valign">center</property>
-                                <property name="active-id">add</property>
+                        <property name="model">
+                            <object class="GtkStringList">
                                 <items>
-                                    <item id="5" translatable="yes">Ultra Quality</item>
-                                    <item id="4" translatable="yes">Quality</item>
-                                    <item id="3" translatable="yes">Balanced</item>
-                                    <item id="2" translatable="yes">Performance</item>
+                                    <item translatable="yes">Ultra Quality</item>
+                                    <item translatable="yes">Quality</item>
+                                    <item translatable="yes">Balanced</item>
+                                    <item translatable="yes">Performance</item>
                                 </items>
-                                <style>
-                                    <class name="borderless"/>
-                                </style>
                             </object>
-                        </child>
+                        </property>
                         <child>
                             <object class="GtkSwitch" id="switch_fsr">
                                 <property name="valign">center</property>
