@@ -22,7 +22,7 @@ cas: Contrast Adaptive Sharpening
 dls: Denoised Luma Sharpening
 fxaa: Fast Approximate Anti-Aliasing
 smaa: Subpixel Morphological Anti-Aliasing
-clut (or lut): Color Lookup Table
+clut (or lut): Color LookUp Table
 '''
 
 import os
