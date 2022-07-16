@@ -27,7 +27,7 @@ clut (or lut): Color LookUp Table
 
 import os
 from gi.repository import Gtk, GLib, Adw, Gdk
-from bottles.backend.utils.vkbasalt import parse, ParseConfig
+from bottles.backend.utils.vkbasalt import Parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
 import logging
@@ -176,7 +176,7 @@ class VkBasaltDialog(Adw.Window):
             conf = os.path.join(conf, "vkBasalt.conf")
             if os.path.isfile(conf):
                 os.remove(conf)
-            parse(VkBasaltSettings)
+            Parse(VkBasaltSettings)
             self.close()
             return
 
@@ -212,7 +212,7 @@ class VkBasaltDialog(Adw.Window):
 
         VkBasaltSettings.output = conf
 
-        parse(VkBasaltSettings)
+        Parse(VkBasaltSettings)
         self.close()
 
     def __save(self, *args):
