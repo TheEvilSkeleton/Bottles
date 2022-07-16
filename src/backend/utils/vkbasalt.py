@@ -182,7 +182,7 @@ def Parse(args):
         if args.output:
             if path.isdir(args.output):
                 vkbasalt_conf = path.join(args.output, "vkBasalt.conf")
-                logging.info(f"Writing to = {vkbasalt_conf}")
+                logging.info(f"Writing to: {vkbasalt_conf}")
             else:
                 logging.error(f"Error: No such directory")
                 exit(1)
