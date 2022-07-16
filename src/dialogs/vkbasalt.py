@@ -94,11 +94,11 @@ class VkBasaltDialog(Adw.Window):
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
 
         # connect signals
-        self.cas.connect("state-flags-changed", self.__check_state)
-        self.dls.connect("state-flags-changed", self.__check_state)
-        self.fxaa.connect("state-flags-changed", self.__check_state)
-        self.smaa.connect("state-flags-changed", self.__check_state)
-        self.clut.connect("state-flags-changed", self.__check_state)
+        self.cas.connect("notify::expanded", self.__check_state)
+        self.dls.connect("notify::expanded", self.__check_state)
+        self.fxaa.connect("notify::expanded", self.__check_state)
+        self.smaa.connect("notify::expanded", self.__check_state)
+        self.clut.connect("notify::expanded", self.__check_state)
         self.btn_save.connect("clicked", self.__save)
         self.default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
@@ -175,13 +175,20 @@ class VkBasaltDialog(Adw.Window):
             VkBasaltSettings.output = False
             conf = os.path.join(conf, "vkBasalt.conf")
             if os.path.isfile(conf):
+                logging.info(f"Removing file: {conf}")
                 os.remove(conf)
             Parse(VkBasaltSettings)
             self.close()
             return
 
         # Checks filter settings.
-        if self.cas.get_enable_expansion() is True or self.dls.get_enable_expansion() is True or self.fxaa.get_enable_expansion() is True or self.smaa.get_enable_expansion() is True or self.clut.get_enable_expansion() is True:
+        if True in [
+            self.cas.get_enable_expansion(),
+            self.dls.get_enable_expansion(),
+            self.fxaa.get_enable_expansion(),
+            self.smaa.get_enable_expansion(),
+            self.clut.get_enable_expansion(),
+        ]:
             VkBasaltSettings.default = False
             effects = []
             if self.cas.get_enable_expansion() is True:
@@ -219,10 +226,16 @@ class VkBasaltDialog(Adw.Window):
         GLib.idle_add(self.__idle_save)
 
     def __check_state(self, widget, state):
-        if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and (self.lut_file_path is False or self.clut.get_enable_expansion() is False):
-            self.btn_save.set_sensitive(False)
-        else:
+        if True in [
+            self.cas.get_enable_expansion(),
+            self.dls.get_enable_expansion(),
+            self.fxaa.get_enable_expansion(),
+            self.smaa.get_enable_expansion(),
+            (self.lut_file_path and self.clut.get_enable_expansion())
+        ]:
             self.btn_save.set_sensitive(True)
+        else:
+            self.btn_save.set_sensitive(False)
 
     def __default(self, widget, state):
         self.cas.set_sensitive(not state)

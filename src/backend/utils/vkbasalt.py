@@ -182,7 +182,6 @@ def Parse(args):
         if args.output:
             if path.isdir(args.output):
                 vkbasalt_conf = path.join(args.output, "vkBasalt.conf")
-                logging.info(f"Writing to: {vkbasalt_conf}")
             else:
                 logging.error(f"Error: No such directory")
                 exit(1)
@@ -196,6 +195,7 @@ def Parse(args):
                 args.effects = ':'.join(args.effects)
                 logging.info(f"Setting Key effects = {args.effects}")
                 file.append(f"effects = {args.effects}\n")
+            logging.info(f"Writing to: {vkbasalt_conf}")
             f.write("".join(file))
 
         # --exec
