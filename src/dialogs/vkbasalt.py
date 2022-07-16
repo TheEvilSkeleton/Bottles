@@ -219,7 +219,6 @@ class VkBasaltDialog(Adw.Window):
         GLib.idle_add(self.__idle_save)
 
     def __check_state(self, widget, state):
-        print(self.lut_file_path)
         if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and (self.lut_file_path is False or self.clut.get_enable_expansion() is False):
             self.btn_save.set_sensitive(False)
         else:
