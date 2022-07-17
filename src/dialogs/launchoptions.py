@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
@@ -24,6 +24,9 @@ from bottles.backend.utils.manager import ManagerUtils
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
+    __gsignals__ = {
+        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (str,)),  # str would be dict here, it just raises errors
+    }
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
@@ -63,7 +66,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.manager = parent.window.manager
         self.config = config
         self.program = program
-        self.main_loop = GLib.MainLoop()
 
         self.set_transient_for(self.window)
 
@@ -206,6 +208,7 @@ class LaunchOptionsDialog(Adw.Window):
             scope="External_Programs"
         ).data["config"]
 
+        self.emit("options-saved", self.config)
         self.close()
         return
 
@@ -270,7 +273,3 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
         self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
         self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])
-
-    def run(self):
-        self.present()
-        self.main_loop.run()
