@@ -94,11 +94,11 @@ class VkBasaltDialog(Adw.Window):
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
 
         # connect signals
-        self.cas.connect("notify::expanded", self.__check_state)
-        self.dls.connect("notify::expanded", self.__check_state)
-        self.fxaa.connect("notify::expanded", self.__check_state)
-        self.smaa.connect("notify::expanded", self.__check_state)
-        self.clut.connect("notify::expanded", self.__check_state)
+        self.cas.connect("notify::enable-expansion", self.__check_state)
+        self.dls.connect("notify::enable-expansion", self.__check_state)
+        self.fxaa.connect("notify::enable-expansion", self.__check_state)
+        self.smaa.connect("notify::enable-expansion", self.__check_state)
+        self.clut.connect("notify::enable-expansion", self.__check_state)
         self.btn_save.connect("clicked", self.__save)
         self.default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
