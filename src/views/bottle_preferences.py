@@ -199,7 +199,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_gamescope.set_sensitive(gamescope_available)
         self.switch_vkbasalt.set_sensitive(vkbasalt_available)
         self.btn_manage_vkbasalt.set_sensitive(vkbasalt_available)
-
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         _not_available = _("This feature is not available on your system.")
