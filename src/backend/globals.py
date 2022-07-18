@@ -49,8 +49,8 @@ def VkBasaltPath():
             "/usr/local",
             "/usr/share/vkBasalt",
     ]
-    for path in range(len(vkbasalt_paths)):
-        if os.path.exists(vkbasalt_paths[path]):
+    for path in vkbasalt_paths:
+        if os.path.exists(path):
             return True
     return False
 
