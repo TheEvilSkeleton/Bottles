@@ -219,7 +219,7 @@ def getConfigValue(config, value):
         return config['config'].get(value)
 
 def ParseConfig(config):
-    class args:
+    class Args:
         default = False
         effects = False
         output = False
@@ -237,21 +237,21 @@ def ParseConfig(config):
         smaa_max_search_steps_diagonal = False
         smaa_corner_rounding = False
         lut_file_path = False
-    args.effects = getConfigValue(config, 'effects')
-    args.toggle_key = getConfigValue(config, 'toggleKey')
-    args.disable_on_launch = "True" if getConfigValue(config, 'enableOnLaunch') == "False" else "False"
-    args.cas_sharpness = getConfigValue(config, 'casSharpness')
-    args.dls_sharpness = getConfigValue(config, 'dlsSharpness')
-    args.dls_denoise = getConfigValue(config, 'dlsDenoise')
-    args.fxaa_subpixel_quality = getConfigValue(config, 'fxaaQualitySubpix')
-    args.fxaa_quality_edge_threshold = getConfigValue(config, 'fxaaQualityEdgeThreshold')
-    args.fxaa_quality_edge_threshold_min = getConfigValue(config, 'fxaaQualityEdgeThresholdMin')
-    args.smaa_edge_detection = getConfigValue(config, 'smaaEdgeDetection')
-    args.smaa_threshold = getConfigValue(config, 'smaaThreshold')
-    args.smaa_max_search_steps = getConfigValue(config, 'smaaMaxSearchSteps')
-    args.smaa_max_search_steps_diagonal = getConfigValue(config, 'smaaMaxSearchStepsDiag')
-    args.smaa_corner_rounding = getConfigValue(config, 'smaaCornerRounding')
-    args.lut_file_path = getConfigValue(config, 'lutFile')
+    Args.effects = getConfigValue(config, 'effects')
+    Args.toggle_key = getConfigValue(config, 'toggleKey')
+    Args.disable_on_launch = "True" if getConfigValue(config, 'enableOnLaunch') == "False" else "False"
+    Args.cas_sharpness = getConfigValue(config, 'casSharpness')
+    Args.dls_sharpness = getConfigValue(config, 'dlsSharpness')
+    Args.dls_denoise = getConfigValue(config, 'dlsDenoise')
+    Args.fxaa_subpixel_quality = getConfigValue(config, 'fxaaQualitySubpix')
+    Args.fxaa_quality_edge_threshold = getConfigValue(config, 'fxaaQualityEdgeThreshold')
+    Args.fxaa_quality_edge_threshold_min = getConfigValue(config, 'fxaaQualityEdgeThresholdMin')
+    Args.smaa_edge_detection = getConfigValue(config, 'smaaEdgeDetection')
+    Args.smaa_threshold = getConfigValue(config, 'smaaThreshold')
+    Args.smaa_max_search_steps = getConfigValue(config, 'smaaMaxSearchSteps')
+    Args.smaa_max_search_steps_diagonal = getConfigValue(config, 'smaaMaxSearchStepsDiag')
+    Args.smaa_corner_rounding = getConfigValue(config, 'smaaCornerRounding')
+    Args.lut_file_path = getConfigValue(config, 'lutFile')
 
-    return(args)
+    return(Args)
 
