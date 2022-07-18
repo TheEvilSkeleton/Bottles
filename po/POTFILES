@@ -15,6 +15,7 @@ src/dialogs/filechooser.py
 src/dialogs/generic.py
 src/dialogs/launchoptions.py
 src/dialogs/installer.py
+src/dialogs/vkbasalt.py
 src/views/bottle_details.py
 src/views/bottle_preferences.py
 src/views/bottle_programs.py
@@ -53,6 +54,7 @@ src/ui/dialog-launch-options.ui
 src/ui/dialog-installer.ui
 src/ui/dialog-rename.ui
 src/ui/dialog-run-args.ui
+src/ui/dialog-vkbasalt.ui
 src/ui/dll-override-entry.ui
 src/ui/drive-entry.ui
 src/ui/env-var-entry.ui

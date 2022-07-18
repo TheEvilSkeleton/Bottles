@@ -7,7 +7,7 @@
   <template class="VkBasaltDialog" parent="AdwWindow">
     <property name="default-width">550</property>
     <property name="modal">True</property>
-    <property name="title" translatable="yes">vkBasalt Settings</property>
+    <property name="title" translatable="yes" comments="vkBasalt is a Vulkan post processing layer for Linux">vkBasalt Settings</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
@@ -111,7 +111,7 @@
                 <child>
                   <object class="AdwExpanderRow" id="dls">
                     <property name="show_enable_switch">True</property>
-                    <property name="title" translatable="yes">Denoised Luma Sharpening</property>
+                    <property name="title" translatable="yes" comments="Luma is not translatable">Denoised Luma Sharpening</property>
                     <child>
                       <object class="AdwPreferencesRow">
                         <child>
