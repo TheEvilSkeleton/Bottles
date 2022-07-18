@@ -22,7 +22,7 @@ import configparser
 import logging
 
 
-def Parse(args):
+def parse(args):
     # Apply default settings if possible
     if args.default:
         install_paths = [
