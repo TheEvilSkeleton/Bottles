@@ -291,7 +291,7 @@ class VkBasaltDialog(Adw.Window):
                         error_dialog("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
                         set_lut_file_path()
                     elif width != height:
-                        error_dialog("Inequal Image Dimension", "Image must have the same dimension.")
+                        error_dialog("Invalid Image Dimension", "The height and width of the image must be equal.")
                         set_lut_file_path()
                     else:
                         self.input_entry.set_text(self.lut_file_path)
