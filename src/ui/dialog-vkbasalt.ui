@@ -464,7 +464,7 @@
                 <child>
                   <object class="AdwExpanderRow" id="clut">
                     <property name="show_enable_switch">True</property>
-                    <property name="title" translatable="yes">Color LookUp Table</property>
+                    <property name="title" translatable="yes">Color Lookup Table</property>
                     <child>
                       <object class="AdwPreferencesRow">
                         <child>
