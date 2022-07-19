@@ -62,8 +62,6 @@ class VkBasaltDialog(Adw.Window):
     dls = Gtk.Template.Child()
     fxaa = Gtk.Template.Child()
     smaa = Gtk.Template.Child()
-    row_disable_on_launch = Gtk.Template.Child()
-    switch_disable_on_launch = Gtk.Template.Child()
     cas_sharpness = Gtk.Template.Child()
     dls_sharpness = Gtk.Template.Child()
     dls_denoise = Gtk.Template.Child()
@@ -145,8 +143,6 @@ class VkBasaltDialog(Adw.Window):
                 self.smaa_max_search_steps_diagonal.set_value(float(vkbasalt_settings.smaa_max_search_steps_diagonal))
             if vkbasalt_settings.smaa_corner_rounding != None:
                 self.smaa_corner_rounding.set_value(float(vkbasalt_settings.smaa_corner_rounding))
-            if vkbasalt_settings.disable_on_launch == "True":
-                self.switch_disable_on_launch.set_state(True)
             if vkbasalt_settings.smaa_edge_detection != None:
                 if vkbasalt_settings.smaa_edge_detection == "color":
                     self.color.set_active(True)
@@ -213,8 +209,6 @@ class VkBasaltDialog(Adw.Window):
             if self.clut.get_enable_expansion() is True:
                 vkbasalt_settings.lut_file_path = self.lut_file_path
 
-            vkbasalt_settings.disable_on_launch = self.switch_disable_on_launch.get_state()
-
         vkbasalt_settings.effects = tuple(effects)
 
         vkbasalt_settings.output = conf
@@ -242,7 +236,6 @@ class VkBasaltDialog(Adw.Window):
         self.dls.set_sensitive(not state)
         self.fxaa.set_sensitive(not state)
         self.smaa.set_sensitive(not state)
-        self.row_disable_on_launch.set_sensitive(not state)
         self.clut.set_sensitive(not state)
         if state is False:
             if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.clut.get_enable_expansion() is False:
