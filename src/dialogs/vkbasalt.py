@@ -122,7 +122,7 @@ class VkBasaltDialog(Adw.Window):
             else:
                 self.clut.set_subtitle(vkbasalt_settings.lut_file_path)
                 self.lut_file_path = vkbasalt_settings.lut_file_path
-                self.btn_lut_reset.set_visible(True)
+                self.btn_lut_reset.show()
 
             if vkbasalt_settings.cas_sharpness != None:
                 self.cas_sharpness.set_value(float(vkbasalt_settings.cas_sharpness))
@@ -287,6 +287,7 @@ class VkBasaltDialog(Adw.Window):
                         set_lut_file_path()
                     else:
                         self.clut.set_subtitle(self.lut_file_path)
+                        self.btn_lut_reset.show()
 
         FileChooser(
             parent=self.window,
@@ -299,6 +300,6 @@ class VkBasaltDialog(Adw.Window):
 
     def __reset_clut(self, *args):
         self.lut_file_path = False
-        self.btn_lut_reset.set_visible(False)
+        self.btn_lut_reset.hide()
         self.clut.set_subtitle(self.__default_lut_msg)
         # TODO: execute __check_state
