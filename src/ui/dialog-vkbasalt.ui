@@ -6,7 +6,7 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="VkBasaltDialog" parent="AdwWindow">
     <property name="default-width">500</property>
-    <property name="default-height">600</property>
+    <property name="default-height">550</property>
     <property name="modal">True</property>
     <property name="title" translatable="yes" comments="vkBasalt is a Vulkan post processing layer for Linux">vkBasalt Settings</property>
     <child>
@@ -495,50 +495,6 @@
                     </child>
                   </object>
                 </child>
-                <!-- <child> -->
-                <!--   <object class="AdwExpanderRow" id="clut"> -->
-                <!--     <property name="show_enable_switch">True</property> -->
-                <!--     <property name="activatable-widget">lut_file_path</property> -->
-                <!--     <property name="title" translatable="yes">Color Lookup Table</property> -->
-                <!--     <property name="subtitle" translatable="yes">Choose a file which should be a .CUBE file, or a .png file with the same height and width.</property> -->
-                <!--     <child> -->
-                <!--       <object class="AdwPreferencesRow"> -->
-                <!--         <child> -->
-                <!--           <object class="AdwActionRow"> -->
-                <!--             <property name="title" translatable="yes">Path</property> -->
-                <!--             <child> -->
-                <!--               <object class="GtkEntry" id="input_entry"> -->
-                <!--                 <property name="valign">center</property> -->
-                <!--                 <property name="editable">False</property> -->
-                <!--               </object> -->
-                <!--             </child> -->
-                <!--             <child> -->
-                <!--               <object class="GtkMenuButton"> -->
-                <!--                 <property name='valign'>center</property> -->
-                <!--                 <property name="tooltip-text" translatable="yes">Select</property> -->
-                <!--                 <property name="icon-name">info-symbolic</property> -->
-                <!--                 <property name="popover">popover_clut</property> -->
-                <!--                 <style> -->
-                <!--                   <class name="flat"/> -->
-                <!--                 </style> -->
-                <!--               </object> -->
-                <!--             </child> -->
-                <!--             <child> -->
-                <!--               <object class="GtkButton" id="lut_file_path"> -->
-                <!--                 <property name='valign'>center</property> -->
-                <!--                 <property name="tooltip-text" translatable="yes">Select</property> -->
-                <!--                 <property name="icon-name">paper-symbolic</property> -->
-                <!--                 <style> -->
-                <!--                   <class name="flat"/> -->
-                <!--                 </style> -->
-                <!--               </object> -->
-                <!--             </child> -->
-                <!--           </object> -->
-                <!--         </child> -->
-                <!--       </object> -->
-                <!--     </child> -->
-                <!--   </object> -->
-                <!-- </child> -->
               </object>
             </child>
           </object>
