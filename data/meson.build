@@ -64,3 +64,8 @@ install_data(
     join_paths('icons/symbolic/scalable/apps/bottles-steam-symbolic.svg'),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
 )
+
+install_data(
+    join_paths('icons/symbolic/scalable/apps/info-symbolic.svg'),
+    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)
