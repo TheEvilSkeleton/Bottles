@@ -24,6 +24,7 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="AdwHeaderBar">
+            <property name="show-start-title-buttons">False</property>
             <property name="show-end-title-buttons">False</property>
             <child type="start">
               <object class="GtkBox">
