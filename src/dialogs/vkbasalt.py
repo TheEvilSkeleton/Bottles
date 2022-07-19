@@ -280,10 +280,10 @@ class VkBasaltDialog(Adw.Window):
                             self.lut_file_path = False
 
                     if " " in self.lut_file_path:
-                        error_dialog(_("Spaces in File Name", "Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."))
+                        error_dialog(_("Spaces in File Name"), _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."))
                         set_lut_file_path()
                     elif width != height:
-                        error_dialog(_("Invalid Image Dimension", "The height and width of the image must be equal."))
+                        error_dialog(_("Invalid Image Dimension"), _("The height and width of the image must be equal."))
                         set_lut_file_path()
                     else:
                         self.clut.set_subtitle(self.lut_file_path)
