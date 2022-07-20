@@ -471,290 +471,218 @@
   </template>
   <object class="GtkPopover" id="popover_cas_sharpness">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="valign">center</property>
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CAS sharpness increases the sharpness of a frame. Higher values make the frame sharper, whereas values lower than 0 make the frame softer than native.</property>
-          </object>
-        </child>
+        <property name="valign">center</property>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">CAS sharpness increases the sharpness of a frame. Higher values make the frame sharper, whereas values lower than 0 make the frame softer than native.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_dls_sharpness">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS sharpness increases the sharpness of a frame. Higher values make the frame sharper.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">DLS sharpness increases the sharpness of a frame. Higher values make the frame sharper.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_dls_denoise">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">DLS denoise decreases the noise of a frame. Higher values make the frame softer.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">DLS denoise decreases the noise of a frame. Higher values make the frame softer.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_fxaa_subpixel_quality">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the frame softer.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the frame softer.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_fxaa_quality_edge_threshold">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">FXAA edge threshold is the minimum amount of contrast required to apply the FXAA algorithm. Higher values make the frame have more contrast.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">FXAA edge threshold is the minimum amount of contrast required to apply the FXAA algorithm. Higher values make the frame have more contrast.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_fxaa_quality_edge_threshold_min">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">60</property>
-            <property name="label" translatable="yes">FXAA quality edge threshold minimum is the minimum value of dark pixels that are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels below the specified value and can lead to a performance increase.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">60</property>
+        <property name="label" translatable="yes">FXAA quality edge threshold minimum is the minimum value of dark pixels that are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels below the specified value and can lead to a performance increase.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_edge_detection">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is more performant than Color.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is more performant than Color.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_smaa_threshold">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA threshold specifies the sensitivity of edge detection. Lower values detect more edges at the expense of performance.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">SMAA threshold specifies the sensitivity of edge detection. Lower values detect more edges at the expense of performance.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_smaa_max_search_steps">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA max search steps specifies how many horizontal and vertical search steps are performed when searching for edges.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">SMAA max search steps specifies how many horizontal and vertical search steps are performed when searching for edges.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_smaa_max_search_steps_diagonal">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA max diagonal search steps specifies how many diagonal search steps are performed when searching for edges.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">SMAA max diagonal search steps specifies how many diagonal search steps are performed when searching for edges.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_smaa_corner_rounding">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">SMAA corner rounding specifies the strength of rounding edge corners.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">SMAA corner rounding specifies the strength of rounding edge corners.</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="popover_clut">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+      <object class="GtkLabel">
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="xalign">0</property>
-            <property name="wrap">True</property>
-            <property name="wrap-mode">word-char</property>
-            <property name="ellipsize">none</property>
-            <property name="lines">4</property>
-            <property name="use-markup">True</property>
-            <property name="max-width-chars">40</property>
-            <property name="label" translatable="yes">CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.</property>
-          </object>
-        </child>
+        <property name="xalign">0</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <property name="ellipsize">none</property>
+        <property name="lines">4</property>
+        <property name="use-markup">True</property>
+        <property name="max-width-chars">40</property>
+        <property name="label" translatable="yes">CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.</property>
       </object>
     </child>
   </object>
