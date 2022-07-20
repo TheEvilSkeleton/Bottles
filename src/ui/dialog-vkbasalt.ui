@@ -501,6 +501,7 @@
   <object class="GtkPopover" id="popover_cas_sharpness">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -525,6 +526,7 @@
   <object class="GtkPopover" id="popover_dls_sharpness">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -548,6 +550,7 @@
   <object class="GtkPopover" id="popover_dls_denoise">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -571,6 +574,7 @@
   <object class="GtkPopover" id="popover_fxaa_subpixel_quality">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -594,6 +598,7 @@
   <object class="GtkPopover" id="popover_fxaa_quality_edge_threshold">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -617,6 +622,7 @@
   <object class="GtkPopover" id="popover_fxaa_quality_edge_threshold_min">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -640,6 +646,7 @@
   <object class="GtkPopover" id="popover_edge_detection">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -663,6 +670,7 @@
   <object class="GtkPopover" id="popover_smaa_threshold">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -686,6 +694,7 @@
   <object class="GtkPopover" id="popover_smaa_max_search_steps">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -709,6 +718,7 @@
   <object class="GtkPopover" id="popover_smaa_max_search_steps_diagonal">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -732,6 +742,7 @@
   <object class="GtkPopover" id="popover_smaa_corner_rounding">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
@@ -755,6 +766,7 @@
   <object class="GtkPopover" id="popover_clut">
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
