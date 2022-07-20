@@ -75,35 +75,31 @@
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
                     <child>
-                      <object class="AdwPreferencesRow">
+                      <object class="AdwActionRow">
+                        <property name="title" translatable="yes">Sharpness</property>
                         <child>
-                          <object class="AdwActionRow">
-                            <property name="title" translatable="yes">Sharpness</property>
-                            <child>
-                              <object class="GtkMenuButton">
-                                <property name='valign'>center</property>
-                                <property name="tooltip-text" translatable="yes">Select</property>
-                                <property name="icon-name">info-symbolic</property>
-                                <property name="popover">popover_cas_sharpness</property>
-                                <style>
-                                  <class name="flat"/>
-                                </style>
+                          <object class="GtkMenuButton">
+                            <property name='valign'>center</property>
+                            <property name="tooltip-text" translatable="yes">Select</property>
+                            <property name="icon-name">info-symbolic</property>
+                            <property name="popover">popover_cas_sharpness</property>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton">
+                            <property name='numeric'>true</property>
+                            <property name='valign'>center</property>
+                            <property name="digits">2</property>
+                            <property name="adjustment">
+                              <object class="GtkAdjustment" id="cas_sharpness">
+                                <property name="lower">-1.0</property>
+                                <property name="step-increment">0.1</property>
+                                <property name="upper">1.0</property>
                               </object>
-                            </child>
-                            <child>
-                              <object class="GtkSpinButton">
-                                <property name='numeric'>true</property>
-                                <property name='valign'>center</property>
-                                <property name="digits">2</property>
-                                <property name="adjustment">
-                                  <object class="GtkAdjustment" id="cas_sharpness">
-                                    <property name="lower">-1.0</property>
-                                    <property name="step-increment">0.1</property>
-                                    <property name="upper">1.0</property>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
+                            </property>
                           </object>
                         </child>
                       </object>
