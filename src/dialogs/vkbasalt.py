@@ -304,6 +304,7 @@ class VkBasaltDialog(Adw.Window):
 
     def __reset_clut(self, *args):
         self.lut_file_path = False
+        vkbasalt_settings.lut_file_path = False
         self.btn_lut_reset.hide()
         self.clut.set_subtitle(self.__default_lut_msg)
         # TODO: execute __check_state
