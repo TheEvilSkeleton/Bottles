@@ -38,6 +38,7 @@ from bottles.dialogs.gamescope import GamescopeDialog
 from bottles.dialogs.vkbasalt import VkBasaltDialog
 from bottles.dialogs.sandbox import SandboxDialog
 from bottles.dialogs.protonalert import ProtonAlertDialog
+from bottles.dialogs.exclusionpatterns import ExclusionPatternsDialog
 
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
@@ -54,6 +55,7 @@ class PreferencesView(Adw.PreferencesPage):
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
+    btn_manage_versioning_patterns = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     row_dxvk = Gtk.Template.Child()
@@ -92,6 +94,9 @@ class PreferencesView(Adw.PreferencesPage):
     switch_take_focus = Gtk.Template.Child()
     switch_mouse_warp = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
+    switch_versioning_compression = Gtk.Template.Child()
+    switch_auto_versioning = Gtk.Template.Child()
+    switch_versioning_patterns = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -144,6 +149,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
         self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
+        self.btn_manage_versioning_patterns.connect("clicked", self.__show_exclusionpatterns_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
@@ -170,6 +176,9 @@ class PreferencesView(Adw.PreferencesPage):
                                           "fullscreen_capture")
         self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
         self.switch_mouse_warp.connect('state-set', self.__toggle_mouse_warp)
+        self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
+        self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
+        self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
@@ -336,6 +345,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_block_by_func(self.__toggle_pulse_latency)
+        self.switch_versioning_compression.handler_block_by_func(self.__toggle_versioning_compression)
+        self.switch_auto_versioning.handler_block_by_func(self.__toggle_auto_versioning)
+        self.switch_versioning_patterns.handler_block_by_func(self.__toggle_versioning_patterns)
         with contextlib.suppress(TypeError):
             self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
@@ -368,6 +380,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_sandbox.set_active(parameters["sandbox"])
         self.switch_fsr.set_active(parameters["fsr"])
+        self.switch_versioning_compression.set_active(parameters["versioning_compression"])
+        self.switch_auto_versioning.set_active(parameters["versioning_automatic"])
+        self.switch_versioning_patterns.set_active(parameters["versioning_exclusion_patterns"])
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
 
@@ -439,6 +454,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_unblock_by_func(self.__toggle_pulse_latency)
+        self.switch_versioning_compression.handler_unblock_by_func(self.__toggle_versioning_compression)
+        self.switch_auto_versioning.handler_unblock_by_func(self.__toggle_auto_versioning)
+        self.switch_versioning_patterns.handler_unblock_by_func(self.__toggle_versioning_patterns)
         with contextlib.suppress(TypeError):
             self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
@@ -471,6 +489,13 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_vkbasalt_settings(self, widget):
         new_window = VkBasaltDialog(
             parent_window=self.window,
+            config=self.config
+        )
+        new_window.present()
+
+    def __show_exclusionpatterns_settings(self, widget):
+        new_window = ExclusionPatternsDialog(
+            window=self.window,
             config=self.config
         )
         new_window.present()
@@ -719,6 +744,33 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = self.manager.update_config(
             config=self.config,
             key="discrete_gpu",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
+
+    def __toggle_versioning_compression(self, widget, state):
+        """Toggle the versioning compression for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="versioning_compression",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
+    
+    def __toggle_auto_versioning(self, widget, state):
+        """Toggle the auto versioning for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="versioning_auto",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
+    
+    def __toggle_versioning_patterns(self, widget, state):
+        """Toggle the versioning patterns for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="versioning_exclusion_patterns",
             value=state,
             scope="Parameters"
         ).data["config"]

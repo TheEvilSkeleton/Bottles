@@ -735,12 +735,15 @@ class Manager:
                 conf_file_yaml["Latest_Executables"] = []
 
             # Migrate old programs to [id] and [name]
+            # TODO: remove this migration after 2022.9.28
             _temp = {}
             _changed = False
             for k, v in conf_file_yaml.get("External_Programs").items():
                 _uuid = str(uuid.uuid4())
                 _k = k
                 _v = v
+                if isinstance(v, str):
+                    continue
                 try:
                     uuid.UUID(k)
                 except (ValueError, TypeError):
@@ -1209,7 +1212,7 @@ class Manager:
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe", "mshtml", "mscoree"]  # avoid gecko, mono popups
+            _blacklist_dll = ["winemenubuilder.exe", "mshtml"]  # avoid gecko, mono popups
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",

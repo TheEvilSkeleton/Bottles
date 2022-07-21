@@ -39,6 +39,7 @@ class VersioningView(Adw.PreferencesPage):
     entry_state_comment = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     pref_page = Gtk.Template.Child()
+    btn_add = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -74,6 +75,10 @@ class VersioningView(Adw.PreferencesPage):
             config = self.config
         if states is None:
             states = self.versioning_manager.list_states(config)
+
+        if self.config.get("Versioning"):
+            self.btn_add.set_sensitive(True)
+            self.btn_add.set_tooltip_text(_("Please migrate to the new Versioning system to create new states."))
 
         self.config = config
         self.list_states.set_sensitive(False)

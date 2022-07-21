@@ -19,6 +19,7 @@ class Samples:
         "Creation_Date": "",
         "Update_Date": "",
         "Versioning": False,
+        "Versioning_Exclusion_Patterns": [],
         "State": 0,
         "Parameters": {
             "dxvk": False,
@@ -58,6 +59,9 @@ class Samples:
             "use_be_runtime": True,
             "use_steam_runtime": False,
             "sandbox": False,
+            "versioning_compression": False,
+            "versioning_automatic": False,
+            "versioning_exclusion_patterns": False,
         },
         "Sandbox": {
             # "share_paths_ro": [], # TODO: implement
