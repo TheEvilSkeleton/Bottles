@@ -176,7 +176,7 @@ class VkBasaltDialog(Adw.Window):
                 os.remove(conf)
             parse(vkbasalt_settings)
             self.close()
-            return
+            return GLib.SOURCE_REMOVE
 
         # Checks filter settings.
         if True in [
@@ -215,6 +215,7 @@ class VkBasaltDialog(Adw.Window):
 
         parse(vkbasalt_settings)
         self.close()
+        return GLib.SOURCE_REMOVE
 
     def __save(self, *args):
         GLib.idle_add(self.__idle_save)
