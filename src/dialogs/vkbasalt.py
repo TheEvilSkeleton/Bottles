@@ -263,31 +263,35 @@ class VkBasaltDialog(Adw.Window):
 
                 if self.lut_file_path.split(".")[-1] == "png":
 
-                    texture = Gdk.Texture.new_from_filename(self.lut_file_path)
-
-                    width = texture.get_width()
-                    height = texture.get_height()
-
                     def error_dialog(title, message):
                         dialog = Adw.MessageDialog.new(self.window, title, message)
                         dialog.add_response("cancel", "Close")
                         dialog.present()
 
-                    def set_lut_file_path():
-                        if self.clut.get_subtitle():
-                            self.lut_file_path = self.clut.get_subtitle()
-                        else:
-                            self.lut_file_path = False
+                    try:
+                        texture = Gdk.Texture.new_from_filename(self.lut_file_path)
 
-                    if " " in self.lut_file_path:
-                        error_dialog(_("Spaces in File Name"), _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."))
-                        set_lut_file_path()
-                    elif width != height:
-                        error_dialog(_("Invalid Image Dimension"), _("The height and width of the image must be equal."))
-                        set_lut_file_path()
-                    else:
-                        self.clut.set_subtitle(self.lut_file_path)
-                        self.btn_lut_reset.show()
+                        width = texture.get_width()
+                        height = texture.get_height()
+
+                        def set_lut_file_path():
+                            if self.clut.get_subtitle():
+                                self.lut_file_path = self.clut.get_subtitle()
+                            else:
+                                self.lut_file_path = False
+
+                        if " " in self.lut_file_path:
+                            error_dialog(_("Spaces in File Name"), _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."))
+                            set_lut_file_path()
+                        elif width != height:
+                            error_dialog(_("Invalid Image Dimension"), _("The height and width of the image must be equal."))
+                            set_lut_file_path()
+                        else:
+                            self.clut.set_subtitle(self.lut_file_path)
+                            self.btn_lut_reset.show()
+
+                    except GLib.Error:
+                        error_dialog(_("File not Found"), _("The given file does not exist. Please choose an appropriate file."))
 
         FileChooser(
             parent=self.window,
