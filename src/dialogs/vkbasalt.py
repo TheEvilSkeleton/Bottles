@@ -70,10 +70,10 @@ class VkBasaltDialog(Adw.Window):
     spin_fxaa_quality_edge_threshold_min = Gtk.Template.Child()
     toggle_luma = Gtk.Template.Child()
     toggle_color = Gtk.Template.Child()
-    smaa_threshold = Gtk.Template.Child()
-    smaa_max_search_steps = Gtk.Template.Child()
-    smaa_max_search_steps_diagonal = Gtk.Template.Child()
-    smaa_corner_rounding = Gtk.Template.Child()
+    spin_smaa_threshold = Gtk.Template.Child()
+    spin_smaa_max_search_steps = Gtk.Template.Child()
+    spin_smaa_max_search_steps_diagonal = Gtk.Template.Child()
+    spin_smaa_corner_rounding = Gtk.Template.Child()
     clut = Gtk.Template.Child()
     lut_file_path = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
@@ -137,13 +137,13 @@ class VkBasaltDialog(Adw.Window):
             if vkbasalt_settings.fxaa_quality_edge_threshold_min != None:
                 self.spin_fxaa_quality_edge_threshold_min.set_value(float(vkbasalt_settings.fxaa_quality_edge_threshold_min))
             if vkbasalt_settings.smaa_threshold != None:
-                self.smaa_threshold.set_value(float(vkbasalt_settings.smaa_threshold))
+                self.spin_smaa_threshold.set_value(float(vkbasalt_settings.smaa_threshold))
             if vkbasalt_settings.smaa_max_search_steps != None:
-                self.smaa_max_search_steps.set_value(float(vkbasalt_settings.smaa_max_search_steps))
+                self.spin_smaa_max_search_steps.set_value(float(vkbasalt_settings.smaa_max_search_steps))
             if vkbasalt_settings.smaa_max_search_steps_diagonal != None:
-                self.smaa_max_search_steps_diagonal.set_value(float(vkbasalt_settings.smaa_max_search_steps_diagonal))
+                self.spin_smaa_max_search_steps_diagonal.set_value(float(vkbasalt_settings.smaa_max_search_steps_diagonal))
             if vkbasalt_settings.smaa_corner_rounding != None:
-                self.smaa_corner_rounding.set_value(float(vkbasalt_settings.smaa_corner_rounding))
+                self.spin_smaa_corner_rounding.set_value(float(vkbasalt_settings.smaa_corner_rounding))
             if vkbasalt_settings.smaa_edge_detection != None:
                 if vkbasalt_settings.smaa_edge_detection == "color":
                     self.toggle_color.set_active(True)
@@ -201,11 +201,11 @@ class VkBasaltDialog(Adw.Window):
                 vkbasalt_settings.fxaa_quality_edge_threshold_min = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold_min)
             if self.expander_smaa.get_enable_expansion() is True:
                 effects.append("smaa")
-                vkbasalt_settings.smaa_threshold = Gtk.Adjustment.get_value(self.smaa_threshold)
+                vkbasalt_settings.smaa_threshold = Gtk.Adjustment.get_value(self.spin_smaa_threshold)
                 vkbasalt_settings.smaa_edge_detection = self.smaa_edge_detection
-                vkbasalt_settings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.smaa_corner_rounding)
-                vkbasalt_settings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.smaa_max_search_steps)
-                vkbasalt_settings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.smaa_max_search_steps_diagonal)
+                vkbasalt_settings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.spin_smaa_corner_rounding)
+                vkbasalt_settings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps)
+                vkbasalt_settings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps_diagonal)
             if self.lut_file_path:
                 vkbasalt_settings.lut_file_path = self.lut_file_path
 
