@@ -57,12 +57,12 @@ class VkBasaltDialog(Adw.Window):
     __gtype_name__ = 'VkBasaltDialog'
 
     # region Widgets
-    default = Gtk.Template.Child()
-    cas = Gtk.Template.Child()
+    switch_default = Gtk.Template.Child()
+    expander_cas = Gtk.Template.Child()
     dls = Gtk.Template.Child()
     fxaa = Gtk.Template.Child()
     smaa = Gtk.Template.Child()
-    cas_sharpness = Gtk.Template.Child()
+    spin_cas_sharpness = Gtk.Template.Child()
     dls_sharpness = Gtk.Template.Child()
     dls_denoise = Gtk.Template.Child()
     fxaa_subpixel_quality = Gtk.Template.Child()
@@ -93,12 +93,12 @@ class VkBasaltDialog(Adw.Window):
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf")
 
         # connect signals
-        self.cas.connect("notify::enable-expansion", self.__check_state)
+        self.expander_cas.connect("notify::enable-expansion", self.__check_state)
         self.dls.connect("notify::enable-expansion", self.__check_state)
         self.fxaa.connect("notify::enable-expansion", self.__check_state)
         self.smaa.connect("notify::enable-expansion", self.__check_state)
         self.btn_save.connect("clicked", self.__save)
-        self.default.connect("state-set", self.__default)
+        self.switch_default.connect("state-set", self.__default)
         self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
         self.color.connect("toggled", self.__change_edge_detection_type, "color")
         self.lut_file_path.connect("clicked", self.__import_clut)
@@ -109,7 +109,7 @@ class VkBasaltDialog(Adw.Window):
 
             # Check if effects are used.
             if "cas" not in vkbasalt_settings.effects:
-                self.cas.set_enable_expansion(False)
+                self.expander_cas.set_enable_expansion(False)
             if "dls" not in vkbasalt_settings.effects:
                 self.dls.set_enable_expansion(False)
             if "fxaa" not in vkbasalt_settings.effects:
@@ -125,7 +125,7 @@ class VkBasaltDialog(Adw.Window):
                 self.btn_lut_reset.show()
 
             if vkbasalt_settings.cas_sharpness != None:
-                self.cas_sharpness.set_value(float(vkbasalt_settings.cas_sharpness))
+                self.spin_cas_sharpness.set_value(float(vkbasalt_settings.cas_sharpness))
             if vkbasalt_settings.dls_sharpness != None:
                 self.dls_sharpness.set_value(float(vkbasalt_settings.dls_sharpness))
             if vkbasalt_settings.dls_denoise != None:
@@ -153,13 +153,13 @@ class VkBasaltDialog(Adw.Window):
             else:
                 self.smaa_edge_detection = "luma"
         else:
-            self.default.set_state(True)
+            self.switch_default.set_state(True)
             self.smaa_edge_detection = "luma"
-            self.cas.set_enable_expansion(False)
+            self.expander_cas.set_enable_expansion(False)
             self.dls.set_enable_expansion(False)
             self.fxaa.set_enable_expansion(False)
             self.smaa.set_enable_expansion(False)
-            self.clut.set_enable_expansion(False)
+            # self.clut.set_enable_expansion(False)
             self.lut_file_path = False
 
     def __idle_save(self, *args):
@@ -167,7 +167,7 @@ class VkBasaltDialog(Adw.Window):
         conf = ManagerUtils.get_bottle_path(self.config)
 
         # Applies default settings and closes dialog.
-        if self.default.get_state() is True:
+        if self.switch_default.get_state() is True:
             vkbasalt_settings.default = True
             vkbasalt_settings.output = False
             conf = os.path.join(conf, "vkBasalt.conf")
@@ -180,16 +180,16 @@ class VkBasaltDialog(Adw.Window):
 
         # Checks filter settings.
         if True in [
-            self.cas.get_enable_expansion(),
+            self.expander_cas.get_enable_expansion(),
             self.dls.get_enable_expansion(),
             self.fxaa.get_enable_expansion(),
             self.smaa.get_enable_expansion(),
         ]:
             vkbasalt_settings.default = False
             effects = []
-            if self.cas.get_enable_expansion() is True:
+            if self.expander_cas.get_enable_expansion() is True:
                 effects.append("cas")
-                vkbasalt_settings.cas_sharpness = Gtk.Adjustment.get_value(self.cas_sharpness)
+                vkbasalt_settings.cas_sharpness = Gtk.Adjustment.get_value(self.spin_cas_sharpness)
             if self.dls.get_enable_expansion() is True:
                 effects.append("dls")
                 vkbasalt_settings.dls_sharpness = Gtk.Adjustment.get_value(self.dls_sharpness)
@@ -222,7 +222,7 @@ class VkBasaltDialog(Adw.Window):
 
     def __check_state(self, widget, state):
         if True in [
-            self.cas.get_enable_expansion(),
+            self.expander_cas.get_enable_expansion(),
             self.dls.get_enable_expansion(),
             self.fxaa.get_enable_expansion(),
             self.smaa.get_enable_expansion(),
@@ -232,13 +232,13 @@ class VkBasaltDialog(Adw.Window):
             self.btn_save.set_sensitive(False)
 
     def __default(self, widget, state):
-        self.cas.set_sensitive(not state)
+        self.expander_cas.set_sensitive(not state)
         self.dls.set_sensitive(not state)
         self.fxaa.set_sensitive(not state)
         self.smaa.set_sensitive(not state)
         self.clut.set_sensitive(not state)
         if state is False:
-            if self.cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
+            if self.expander_cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
                 self.btn_save.set_sensitive(False)
         else:
             self.btn_save.set_sensitive(True)

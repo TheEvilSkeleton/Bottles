@@ -55,10 +55,10 @@
                 <property name="title" translatable="yes">Default</property>
                 <child>
                   <object class="AdwActionRow">
-                    <property name="activatable-widget">default</property>
+                    <property name="activatable-widget">switch_default</property>
                     <property name="title" translatable="yes">Default Settings</property>
                     <child>
-                      <object class="GtkSwitch" id="default">
+                      <object class="GtkSwitch" id="switch_default">
                         <property name="valign">center</property>
                       </object>
                     </child>
@@ -71,7 +71,7 @@
                 <property name="description" translatable="yes">Effects are applied according to the list order.</property>
                 <property name="title" translatable="yes">Effects</property>
                 <child>
-                  <object class="AdwExpanderRow" id="cas">
+                  <object class="AdwExpanderRow" id="expander_cas">
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Contrast Adaptive Sharpening</property>
                     <child>
@@ -94,7 +94,7 @@
                             <property name='valign'>center</property>
                             <property name="digits">2</property>
                             <property name="adjustment">
-                              <object class="GtkAdjustment" id="cas_sharpness">
+                              <object class="GtkAdjustment" id="spin_cas_sharpness">
                                 <property name="lower">-1.0</property>
                                 <property name="step-increment">0.1</property>
                                 <property name="upper">1.0</property>
