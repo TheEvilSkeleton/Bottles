@@ -171,7 +171,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwExpanderRow" id="fxaa">
+                  <object class="AdwExpanderRow" id="expander_fxaa">
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Fast Approximate Anti-Aliasing</property>
                     <child>
@@ -194,7 +194,7 @@
                             <property name='valign'>center</property>
                             <property name="digits">2</property>
                             <property name="adjustment">
-                              <object class="GtkAdjustment" id="fxaa_subpixel_quality">
+                              <object class="GtkAdjustment" id="spin_fxaa_subpixel_quality">
                                 <property name="step-increment">0.1</property>
                                 <property name="upper">1.0</property>
                               </object>
@@ -223,7 +223,7 @@
                             <property name='valign'>center</property>
                             <property name="digits">2</property>
                             <property name="adjustment">
-                              <object class="GtkAdjustment" id="fxaa_quality_edge_threshold">
+                              <object class="GtkAdjustment" id="spin_fxaa_quality_edge_threshold">
                                 <property name="step-increment">0.1</property>
                                 <property name="upper">1.0</property>
                               </object>
@@ -252,7 +252,7 @@
                             <property name='valign'>center</property>
                             <property name="digits">2</property>
                             <property name="adjustment">
-                              <object class="GtkAdjustment" id="fxaa_quality_edge_threshold_min">
+                              <object class="GtkAdjustment" id="spin_fxaa_quality_edge_threshold_min">
                                 <property name="step-increment">0.01</property>
                                 <property name="upper">0.1</property>
                               </object>
