@@ -264,7 +264,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwExpanderRow" id="smaa">
+                  <object class="AdwExpanderRow" id="expander_smaa">
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes">Subpixel Morphological Anti-Aliasing</property>
                     <child>
@@ -284,14 +284,14 @@
                         <child>
                           <object class="GtkBox">
                             <child>
-                              <object class="GtkToggleButton" id="luma">
+                              <object class="GtkToggleButton" id="toggle_luma">
                                 <property name="label" translatable="yes">Luma</property>
                                 <property name="active">True</property>
                                 <property name="valign">center</property>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkToggleButton" id="color">
+                              <object class="GtkToggleButton" id="toggle_color">
                                 <property name="label" translatable="yes">Color</property>
                                 <property name="valign">center</property>
                               </object>

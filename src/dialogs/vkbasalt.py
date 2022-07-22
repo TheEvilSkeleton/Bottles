@@ -61,15 +61,15 @@ class VkBasaltDialog(Adw.Window):
     expander_cas = Gtk.Template.Child()
     expander_dls = Gtk.Template.Child()
     expander_fxaa = Gtk.Template.Child()
-    smaa = Gtk.Template.Child()
+    expander_smaa = Gtk.Template.Child()
     spin_cas_sharpness = Gtk.Template.Child()
     spin_dls_sharpness = Gtk.Template.Child()
     spin_dls_denoise = Gtk.Template.Child()
     spin_fxaa_subpixel_quality = Gtk.Template.Child()
     spin_fxaa_quality_edge_threshold = Gtk.Template.Child()
     spin_fxaa_quality_edge_threshold_min = Gtk.Template.Child()
-    luma = Gtk.Template.Child()
-    color = Gtk.Template.Child()
+    toggle_luma = Gtk.Template.Child()
+    toggle_color = Gtk.Template.Child()
     smaa_threshold = Gtk.Template.Child()
     smaa_max_search_steps = Gtk.Template.Child()
     smaa_max_search_steps_diagonal = Gtk.Template.Child()
@@ -96,11 +96,11 @@ class VkBasaltDialog(Adw.Window):
         self.expander_cas.connect("notify::enable-expansion", self.__check_state)
         self.expander_dls.connect("notify::enable-expansion", self.__check_state)
         self.expander_fxaa.connect("notify::enable-expansion", self.__check_state)
-        self.smaa.connect("notify::enable-expansion", self.__check_state)
+        self.expander_smaa.connect("notify::enable-expansion", self.__check_state)
         self.btn_save.connect("clicked", self.__save)
         self.switch_default.connect("state-set", self.__default)
-        self.luma.connect("toggled", self.__change_edge_detection_type, "luma")
-        self.color.connect("toggled", self.__change_edge_detection_type, "color")
+        self.toggle_luma.connect("toggled", self.__change_edge_detection_type, "luma")
+        self.toggle_color.connect("toggled", self.__change_edge_detection_type, "color")
         self.lut_file_path.connect("clicked", self.__import_clut)
         self.btn_lut_reset.connect("clicked", self.__reset_clut)
 
@@ -115,7 +115,7 @@ class VkBasaltDialog(Adw.Window):
             if "fxaa" not in vkbasalt_settings.effects:
                 self.expander_fxaa.set_enable_expansion(False)
             if "smaa" not in vkbasalt_settings.effects:
-                self.smaa.set_enable_expansion(False)
+                self.expander_smaa.set_enable_expansion(False)
             # Check if clut is used.
             if vkbasalt_settings.lut_file_path is None:
                 self.lut_file_path = False
@@ -146,7 +146,7 @@ class VkBasaltDialog(Adw.Window):
                 self.smaa_corner_rounding.set_value(float(vkbasalt_settings.smaa_corner_rounding))
             if vkbasalt_settings.smaa_edge_detection != None:
                 if vkbasalt_settings.smaa_edge_detection == "color":
-                    self.color.set_active(True)
+                    self.toggle_color.set_active(True)
                     self.smaa_edge_detection = "color"
                 else:
                     self.smaa_edge_detection = "luma"
@@ -158,7 +158,7 @@ class VkBasaltDialog(Adw.Window):
             self.expander_cas.set_enable_expansion(False)
             self.expander_dls.set_enable_expansion(False)
             self.expander_fxaa.set_enable_expansion(False)
-            self.smaa.set_enable_expansion(False)
+            self.expander_smaa.set_enable_expansion(False)
             # self.clut.set_enable_expansion(False)
             self.lut_file_path = False
 
@@ -183,7 +183,7 @@ class VkBasaltDialog(Adw.Window):
             self.expander_cas.get_enable_expansion(),
             self.expander_dls.get_enable_expansion(),
             self.expander_fxaa.get_enable_expansion(),
-            self.smaa.get_enable_expansion(),
+            self.expander_smaa.get_enable_expansion(),
         ]:
             vkbasalt_settings.default = False
             effects = []
@@ -199,7 +199,7 @@ class VkBasaltDialog(Adw.Window):
                 vkbasalt_settings.fxaa_subpixel_quality = Gtk.Adjustment.get_value(self.spin_fxaa_subpixel_quality)
                 vkbasalt_settings.fxaa_quality_edge_threshold = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold)
                 vkbasalt_settings.fxaa_quality_edge_threshold_min = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold_min)
-            if self.smaa.get_enable_expansion() is True:
+            if self.expander_smaa.get_enable_expansion() is True:
                 effects.append("smaa")
                 vkbasalt_settings.smaa_threshold = Gtk.Adjustment.get_value(self.smaa_threshold)
                 vkbasalt_settings.smaa_edge_detection = self.smaa_edge_detection
@@ -225,7 +225,7 @@ class VkBasaltDialog(Adw.Window):
             self.expander_cas.get_enable_expansion(),
             self.expander_dls.get_enable_expansion(),
             self.expander_fxaa.get_enable_expansion(),
-            self.smaa.get_enable_expansion(),
+            self.expander_smaa.get_enable_expansion(),
         ] or self.lut_file_path is not False:
             self.btn_save.set_sensitive(True)
         else:
@@ -235,27 +235,27 @@ class VkBasaltDialog(Adw.Window):
         self.expander_cas.set_sensitive(not state)
         self.expander_dls.set_sensitive(not state)
         self.expander_fxaa.set_sensitive(not state)
-        self.smaa.set_sensitive(not state)
+        self.expander_smaa.set_sensitive(not state)
         self.clut.set_sensitive(not state)
         if state is False:
-            if self.expander_cas.get_enable_expansion() is False and self.expander_dls.get_enable_expansion() is False and self.expander_fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
+            if self.expander_cas.get_enable_expansion() is False and self.expander_dls.get_enable_expansion() is False and self.expander_fxaa.get_enable_expansion() is False and self.expander_smaa.get_enable_expansion() is False and self.lut_file_path is False:
                 self.btn_save.set_sensitive(False)
         else:
             self.btn_save.set_sensitive(True)
 
     def __change_edge_detection_type(self, widget, edge_detection_type):
         self.smaa_edge_detection = edge_detection_type
-        self.luma.handler_block_by_func(self.__change_edge_detection_type)
-        self.color.handler_block_by_func(self.__change_edge_detection_type)
+        self.toggle_luma.handler_block_by_func(self.__change_edge_detection_type)
+        self.toggle_color.handler_block_by_func(self.__change_edge_detection_type)
         if edge_detection_type == "luma":
-            self.color.set_active(False)
-            self.luma.set_active(True)
+            self.toggle_color.set_active(False)
+            self.toggle_luma.set_active(True)
         elif edge_detection_type == "color":
-            self.color.set_active(True)
-            self.luma.set_active(False)
+            self.toggle_color.set_active(True)
+            self.toggle_luma.set_active(False)
 
-        self.luma.handler_unblock_by_func(self.__change_edge_detection_type)
-        self.color.handler_unblock_by_func(self.__change_edge_detection_type)
+        self.toggle_luma.handler_unblock_by_func(self.__change_edge_detection_type)
+        self.toggle_color.handler_unblock_by_func(self.__change_edge_detection_type)
 
     def __import_clut(self, *args):
         def set_path(_dialog, response, _file_dialog):
