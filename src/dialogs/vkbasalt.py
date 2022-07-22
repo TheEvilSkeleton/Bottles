@@ -59,12 +59,12 @@ class VkBasaltDialog(Adw.Window):
     # region Widgets
     switch_default = Gtk.Template.Child()
     expander_cas = Gtk.Template.Child()
-    dls = Gtk.Template.Child()
+    expander_dls = Gtk.Template.Child()
     fxaa = Gtk.Template.Child()
     smaa = Gtk.Template.Child()
     spin_cas_sharpness = Gtk.Template.Child()
-    dls_sharpness = Gtk.Template.Child()
-    dls_denoise = Gtk.Template.Child()
+    spin_dls_sharpness = Gtk.Template.Child()
+    spin_dls_denoise = Gtk.Template.Child()
     fxaa_subpixel_quality = Gtk.Template.Child()
     fxaa_quality_edge_threshold = Gtk.Template.Child()
     fxaa_quality_edge_threshold_min = Gtk.Template.Child()
@@ -94,7 +94,7 @@ class VkBasaltDialog(Adw.Window):
 
         # connect signals
         self.expander_cas.connect("notify::enable-expansion", self.__check_state)
-        self.dls.connect("notify::enable-expansion", self.__check_state)
+        self.expander_dls.connect("notify::enable-expansion", self.__check_state)
         self.fxaa.connect("notify::enable-expansion", self.__check_state)
         self.smaa.connect("notify::enable-expansion", self.__check_state)
         self.btn_save.connect("clicked", self.__save)
@@ -111,7 +111,7 @@ class VkBasaltDialog(Adw.Window):
             if "cas" not in vkbasalt_settings.effects:
                 self.expander_cas.set_enable_expansion(False)
             if "dls" not in vkbasalt_settings.effects:
-                self.dls.set_enable_expansion(False)
+                self.expander_dls.set_enable_expansion(False)
             if "fxaa" not in vkbasalt_settings.effects:
                 self.fxaa.set_enable_expansion(False)
             if "smaa" not in vkbasalt_settings.effects:
@@ -127,9 +127,9 @@ class VkBasaltDialog(Adw.Window):
             if vkbasalt_settings.cas_sharpness != None:
                 self.spin_cas_sharpness.set_value(float(vkbasalt_settings.cas_sharpness))
             if vkbasalt_settings.dls_sharpness != None:
-                self.dls_sharpness.set_value(float(vkbasalt_settings.dls_sharpness))
+                self.spin_dls_sharpness.set_value(float(vkbasalt_settings.dls_sharpness))
             if vkbasalt_settings.dls_denoise != None:
-                self.dls_denoise.set_value(float(vkbasalt_settings.dls_denoise))
+                self.spin_dls_denoise.set_value(float(vkbasalt_settings.dls_denoise))
             if vkbasalt_settings.fxaa_subpixel_quality != None:
                 self.fxaa_subpixel_quality.set_value(float(vkbasalt_settings.fxaa_subpixel_quality))
             if vkbasalt_settings.fxaa_quality_edge_threshold != None:
@@ -156,7 +156,7 @@ class VkBasaltDialog(Adw.Window):
             self.switch_default.set_state(True)
             self.smaa_edge_detection = "luma"
             self.expander_cas.set_enable_expansion(False)
-            self.dls.set_enable_expansion(False)
+            self.expander_dls.set_enable_expansion(False)
             self.fxaa.set_enable_expansion(False)
             self.smaa.set_enable_expansion(False)
             # self.clut.set_enable_expansion(False)
@@ -181,7 +181,7 @@ class VkBasaltDialog(Adw.Window):
         # Checks filter settings.
         if True in [
             self.expander_cas.get_enable_expansion(),
-            self.dls.get_enable_expansion(),
+            self.expander_dls.get_enable_expansion(),
             self.fxaa.get_enable_expansion(),
             self.smaa.get_enable_expansion(),
         ]:
@@ -190,10 +190,10 @@ class VkBasaltDialog(Adw.Window):
             if self.expander_cas.get_enable_expansion() is True:
                 effects.append("cas")
                 vkbasalt_settings.cas_sharpness = Gtk.Adjustment.get_value(self.spin_cas_sharpness)
-            if self.dls.get_enable_expansion() is True:
+            if self.expander_dls.get_enable_expansion() is True:
                 effects.append("dls")
-                vkbasalt_settings.dls_sharpness = Gtk.Adjustment.get_value(self.dls_sharpness)
-                vkbasalt_settings.dls_denoise = Gtk.Adjustment.get_value(self.dls_denoise)
+                vkbasalt_settings.dls_sharpness = Gtk.Adjustment.get_value(self.spin_dls_sharpness)
+                vkbasalt_settings.dls_denoise = Gtk.Adjustment.get_value(self.spin_dls_denoise)
             if self.fxaa.get_enable_expansion() is True:
                 effects.append("fxaa")
                 vkbasalt_settings.fxaa_subpixel_quality = Gtk.Adjustment.get_value(self.fxaa_subpixel_quality)
@@ -223,7 +223,7 @@ class VkBasaltDialog(Adw.Window):
     def __check_state(self, widget, state):
         if True in [
             self.expander_cas.get_enable_expansion(),
-            self.dls.get_enable_expansion(),
+            self.expander_dls.get_enable_expansion(),
             self.fxaa.get_enable_expansion(),
             self.smaa.get_enable_expansion(),
         ] or self.lut_file_path is not False:
@@ -233,12 +233,12 @@ class VkBasaltDialog(Adw.Window):
 
     def __default(self, widget, state):
         self.expander_cas.set_sensitive(not state)
-        self.dls.set_sensitive(not state)
+        self.expander_dls.set_sensitive(not state)
         self.fxaa.set_sensitive(not state)
         self.smaa.set_sensitive(not state)
         self.clut.set_sensitive(not state)
         if state is False:
-            if self.expander_cas.get_enable_expansion() is False and self.dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
+            if self.expander_cas.get_enable_expansion() is False and self.expander_dls.get_enable_expansion() is False and self.fxaa.get_enable_expansion() is False and self.smaa.get_enable_expansion() is False and self.lut_file_path is False:
                 self.btn_save.set_sensitive(False)
         else:
             self.btn_save.set_sensitive(True)

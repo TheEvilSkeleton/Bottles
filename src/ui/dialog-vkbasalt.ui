@@ -107,7 +107,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwExpanderRow" id="dls">
+                  <object class="AdwExpanderRow" id="expander_dls">
                     <property name="show_enable_switch">True</property>
                     <property name="title" translatable="yes" comments="Luma is not translatable">Denoised Luma Sharpening</property>
                     <child>
@@ -130,7 +130,7 @@
                             <property name='valign'>center</property>
                             <property name="digits">2</property>
                             <property name="adjustment">
-                              <object class="GtkAdjustment" id="dls_sharpness">
+                              <object class="GtkAdjustment" id="spin_dls_sharpness">
                                 <property name="step-increment">0.1</property>
                                 <property name="upper">1.0</property>
                               </object>
@@ -159,7 +159,7 @@
                             <property name='valign'>center</property>
                             <property name="digits">2</property>
                             <property name="adjustment">
-                              <object class="GtkAdjustment" id="dls_denoise">
+                              <object class="GtkAdjustment" id="spin_dls_denoise">
                                 <property name="step-increment">0.1</property>
                                 <property name="upper">1.0</property>
                               </object>
