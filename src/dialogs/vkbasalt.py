@@ -74,8 +74,8 @@ class VkBasaltDialog(Adw.Window):
     spin_smaa_max_search_steps = Gtk.Template.Child()
     spin_smaa_max_search_steps_diagonal = Gtk.Template.Child()
     spin_smaa_corner_rounding = Gtk.Template.Child()
-    clut = Gtk.Template.Child()
-    lut_file_path = Gtk.Template.Child()
+    action_clut = Gtk.Template.Child()
+    btn_lut_file_path = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_lut_reset = Gtk.Template.Child()
 
@@ -101,7 +101,7 @@ class VkBasaltDialog(Adw.Window):
         self.switch_default.connect("state-set", self.__default)
         self.toggle_luma.connect("toggled", self.__change_edge_detection_type, "luma")
         self.toggle_color.connect("toggled", self.__change_edge_detection_type, "color")
-        self.lut_file_path.connect("clicked", self.__import_clut)
+        self.btn_lut_file_path.connect("clicked", self.__import_clut)
         self.btn_lut_reset.connect("clicked", self.__reset_clut)
 
         if os.path.isfile(conf):
@@ -118,10 +118,10 @@ class VkBasaltDialog(Adw.Window):
                 self.expander_smaa.set_enable_expansion(False)
             # Check if clut is used.
             if vkbasalt_settings.lut_file_path is None:
-                self.lut_file_path = False
+                self.btn_lut_file_path = False
             else:
-                self.clut.set_subtitle(vkbasalt_settings.lut_file_path)
-                self.lut_file_path = vkbasalt_settings.lut_file_path
+                self.action_clut.set_subtitle(vkbasalt_settings.lut_file_path)
+                self.btn_lut_file_path = vkbasalt_settings.lut_file_path
                 self.btn_lut_reset.show()
 
             if vkbasalt_settings.cas_sharpness != None:
@@ -159,8 +159,8 @@ class VkBasaltDialog(Adw.Window):
             self.expander_dls.set_enable_expansion(False)
             self.expander_fxaa.set_enable_expansion(False)
             self.expander_smaa.set_enable_expansion(False)
-            # self.clut.set_enable_expansion(False)
-            self.lut_file_path = False
+            # self.action_clut.set_enable_expansion(False)
+            self.btn_lut_file_path = False
 
     def __idle_save(self, *args):
 
@@ -206,8 +206,8 @@ class VkBasaltDialog(Adw.Window):
                 vkbasalt_settings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.spin_smaa_corner_rounding)
                 vkbasalt_settings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps)
                 vkbasalt_settings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps_diagonal)
-            if self.lut_file_path:
-                vkbasalt_settings.lut_file_path = self.lut_file_path
+            if self.btn_lut_file_path:
+                vkbasalt_settings.lut_file_path = self.btn_lut_file_path
 
         vkbasalt_settings.effects = tuple(effects)
 
@@ -226,7 +226,7 @@ class VkBasaltDialog(Adw.Window):
             self.expander_dls.get_enable_expansion(),
             self.expander_fxaa.get_enable_expansion(),
             self.expander_smaa.get_enable_expansion(),
-        ] or self.lut_file_path is not False:
+        ] or self.btn_lut_file_path is not False:
             self.btn_save.set_sensitive(True)
         else:
             self.btn_save.set_sensitive(False)
@@ -236,9 +236,9 @@ class VkBasaltDialog(Adw.Window):
         self.expander_dls.set_sensitive(not state)
         self.expander_fxaa.set_sensitive(not state)
         self.expander_smaa.set_sensitive(not state)
-        self.clut.set_sensitive(not state)
+        self.action_clut.set_sensitive(not state)
         if state is False:
-            if self.expander_cas.get_enable_expansion() is False and self.expander_dls.get_enable_expansion() is False and self.expander_fxaa.get_enable_expansion() is False and self.expander_smaa.get_enable_expansion() is False and self.lut_file_path is False:
+            if self.expander_cas.get_enable_expansion() is False and self.expander_dls.get_enable_expansion() is False and self.expander_fxaa.get_enable_expansion() is False and self.expander_smaa.get_enable_expansion() is False and self.btn_lut_file_path is False:
                 self.btn_save.set_sensitive(False)
         else:
             self.btn_save.set_sensitive(True)
@@ -260,9 +260,9 @@ class VkBasaltDialog(Adw.Window):
     def __import_clut(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
-                self.lut_file_path = _file_dialog.get_file().get_path()
+                self.btn_lut_file_path = _file_dialog.get_file().get_path()
 
-                if self.lut_file_path.split(".")[-1] == "png":
+                if self.btn_lut_file_path.split(".")[-1] == "png":
 
                     def error_dialog(title, message):
                         dialog = Adw.MessageDialog.new(self.window, title, message)
@@ -270,25 +270,25 @@ class VkBasaltDialog(Adw.Window):
                         dialog.present()
 
                     try:
-                        texture = Gdk.Texture.new_from_filename(self.lut_file_path)
+                        texture = Gdk.Texture.new_from_filename(self.btn_lut_file_path)
 
                         width = texture.get_width()
                         height = texture.get_height()
 
                         def set_lut_file_path():
-                            if self.clut.get_subtitle():
-                                self.lut_file_path = self.clut.get_subtitle()
+                            if self.action_clut.get_subtitle():
+                                self.btn_lut_file_path = self.action_clut.get_subtitle()
                             else:
-                                self.lut_file_path = False
+                                self.btn_lut_file_path = False
 
-                        if " " in self.lut_file_path:
+                        if " " in self.btn_lut_file_path:
                             error_dialog(_("Spaces in File Name"), _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."))
                             set_lut_file_path()
                         elif width != height:
                             error_dialog(_("Invalid Image Dimension"), _("The height and width of the image must be equal."))
                             set_lut_file_path()
                         else:
-                            self.clut.set_subtitle(self.lut_file_path)
+                            self.action_clut.set_subtitle(self.btn_lut_file_path)
                             self.btn_lut_reset.show()
 
                     except GLib.Error:
@@ -304,8 +304,8 @@ class VkBasaltDialog(Adw.Window):
         )
 
     def __reset_clut(self, *args):
-        self.lut_file_path = False
+        self.btn_lut_file_path = False
         vkbasalt_settings.lut_file_path = False
         self.btn_lut_reset.hide()
-        self.clut.set_subtitle(self.__default_lut_msg)
+        self.action_clut.set_subtitle(self.__default_lut_msg)
         # TODO: execute __check_state

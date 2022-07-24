@@ -419,8 +419,8 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwActionRow" id="clut">
-                    <property name="activatable-widget">lut_file_path</property>
+                  <object class="AdwActionRow" id="action_clut">
+                    <property name="activatable-widget">btn_lut_file_path</property>
                     <property name="title" translatable="yes">Color Lookup Table</property>
                     <property name="subtitle" translatable="yes">Choose a file.</property>
                     <child>
@@ -449,7 +449,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkButton" id="lut_file_path">
+                          <object class="GtkButton" id="btn_lut_file_path">
                             <property name="tooltip-text" translatable="yes">Choose a file</property>
                             <property name="valign">center</property>
                             <property name="icon-name">paper-symbolic</property>
