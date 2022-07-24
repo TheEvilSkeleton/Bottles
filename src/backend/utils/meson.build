@@ -19,6 +19,7 @@ bottles_sources = [
   'imagemagick.py',
   'proc.py',
   'vkbasalt.py',
+  'yaml.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)
