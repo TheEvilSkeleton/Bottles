@@ -30,8 +30,8 @@ def parse(args):
             "/usr/local",
             "/usr/share/vkBasalt",
         ]
-        for i in range(len(install_paths)):
-            file_path = path.join(install_paths[i], "vkBasalt.conf")
+        for index, item in enumerate(install_paths):
+            file_path = path.join(item, "vkBasalt.conf")
             if path.isfile(file_path):
                 if args.output:
                     logging.info(f"Outputting file to {file_path}")
