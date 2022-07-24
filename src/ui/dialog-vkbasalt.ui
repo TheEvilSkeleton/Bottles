@@ -450,7 +450,7 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="btn_lut_file_path">
-                            <property name="tooltip-text" translatable="yes">Choose a file</property>
+                            <property name="tooltip-text" translatable="yes">Select a File</property>
                             <property name="valign">center</property>
                             <property name="icon-name">paper-symbolic</property>
                             <style>
