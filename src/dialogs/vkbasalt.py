@@ -220,7 +220,7 @@ class VkBasaltDialog(Adw.Window):
     def __save(self, *args):
         GLib.idle_add(self.__idle_save)
 
-    def __check_state(self, widget, state):
+    def __check_state(self, *args):
         if True in [
             self.expander_cas.get_enable_expansion(),
             self.expander_dls.get_enable_expansion(),
@@ -291,6 +291,8 @@ class VkBasaltDialog(Adw.Window):
                             self.action_clut.set_subtitle(self.btn_lut_file_path)
                             self.btn_lut_reset.show()
 
+                        self.__check_state()
+
                     except GLib.Error:
                         error_dialog(_("File not Found"), _("The given file does not exist. Please choose an appropriate file."))
 
@@ -308,4 +310,4 @@ class VkBasaltDialog(Adw.Window):
         vkbasalt_settings.lut_file_path = False
         self.btn_lut_reset.hide()
         self.action_clut.set_subtitle(self.__default_lut_msg)
-        # TODO: execute __check_state
+        self.__check_state()
