@@ -108,14 +108,22 @@ class VkBasaltDialog(Adw.Window):
             vkbasalt_settings = ParseConfig(conf)
 
             # Check if effects are used.
-            if "cas" not in vkbasalt_settings.effects:
+            if vkbasalt_settings.effects:
+                if "cas" not in vkbasalt_settings.effects:
+                    self.expander_cas.set_enable_expansion(False)
+                if "dls" not in vkbasalt_settings.effects:
+                    self.expander_dls.set_enable_expansion(False)
+                if "fxaa" not in vkbasalt_settings.effects:
+                    self.expander_fxaa.set_enable_expansion(False)
+                if "smaa" not in vkbasalt_settings.effects:
+                    self.expander_smaa.set_enable_expansion(False)
+            else:
+                vkbasalt_settings.effects = False
                 self.expander_cas.set_enable_expansion(False)
-            if "dls" not in vkbasalt_settings.effects:
                 self.expander_dls.set_enable_expansion(False)
-            if "fxaa" not in vkbasalt_settings.effects:
                 self.expander_fxaa.set_enable_expansion(False)
-            if "smaa" not in vkbasalt_settings.effects:
                 self.expander_smaa.set_enable_expansion(False)
+
             # Check if clut is used.
             if vkbasalt_settings.lut_file_path is None:
                 self.btn_lut_file_path = False
@@ -177,6 +185,8 @@ class VkBasaltDialog(Adw.Window):
             parse(vkbasalt_settings)
             self.close()
             return GLib.SOURCE_REMOVE
+        else:
+            vkbasalt_settings.default = False
 
         # Checks filter settings.
         if True in [
@@ -185,7 +195,6 @@ class VkBasaltDialog(Adw.Window):
             self.expander_fxaa.get_enable_expansion(),
             self.expander_smaa.get_enable_expansion(),
         ]:
-            vkbasalt_settings.default = False
             effects = []
             if self.expander_cas.get_enable_expansion() is True:
                 effects.append("cas")
@@ -206,10 +215,14 @@ class VkBasaltDialog(Adw.Window):
                 vkbasalt_settings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.spin_smaa_corner_rounding)
                 vkbasalt_settings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps)
                 vkbasalt_settings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps_diagonal)
-            if self.btn_lut_file_path:
-                vkbasalt_settings.lut_file_path = self.btn_lut_file_path
 
-        vkbasalt_settings.effects = tuple(effects)
+            vkbasalt_settings.effects = tuple(effects)
+
+        else:
+            vkbasalt_settings.effects = False
+
+        if self.btn_lut_file_path:
+            vkbasalt_settings.lut_file_path = self.btn_lut_file_path
 
         vkbasalt_settings.output = conf
 

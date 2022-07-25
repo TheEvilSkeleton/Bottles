@@ -22,7 +22,7 @@ import configparser
 import logging
 
 
-def parse(args):
+def parse(args, *arguments):
     # Apply default settings if possible
     if args.default:
         install_paths = [
@@ -35,7 +35,7 @@ def parse(args):
             if path.isfile(file_path):
                 if args.output:
                     logging.info(f"Outputting file to {file_path}")
-                    copyfile(file_path), path.join(args.output, "vkBasalt.conf")
+                    copyfile(file_path, path.join(args.output, "vkBasalt.conf"))
                 if args.exec:
                     environ["ENABLE_VKBASALT"] = "1"
                     environ["VKBASALT_CONFIG_FILE"] = file_path
@@ -45,7 +45,7 @@ def parse(args):
         exit(1)
 
     # Generate config and check for errors
-    if args.effects:
+    if args.effects or args.lut_file_path:
         file = []
 
         # --disable-on-launch
@@ -208,7 +208,7 @@ def parse(args):
                 remove(vkbasalt_conf)
 
     else:
-        logging.error(f"Please specify one or more effects.")
+        logging.error(f"Please specify one or more effects, or a CLUT file path.")
         exit(1)
 
 def getConfigValue(config, value):
