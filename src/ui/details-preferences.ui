@@ -20,7 +20,7 @@
                 <child>
                     <object class="AdwActionRow" id="row_dxvk">
                         <property name="activatable-widget">switch_dxvk</property>
-                        <property name="title" translatable="yes">Direct3D 9, 10 and 11 Compatibility</property>
+                        <property name="title" translatable="yes">Direct3D 9/10/11 Compatibility</property>
                         <property name="subtitle" translatable="yes">Translate from Direct3D 9, 10 and 11 to Vulkan.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_dxvkbool">
@@ -138,7 +138,7 @@
                     <object class="AdwActionRow" id="row_vkbasalt">
                         <property name="activatable-widget">switch_vkbasalt</property>
                         <property name="title" translatable="yes">Vulkan Post-Processing Layer</property>
-                        <property name="subtitle" translatable="yes">Enhance the visual graphics in Vulkan.</property>
+                        <property name="subtitle" translatable="yes">Enhance sharpness, shader and more on Vulkan.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_vkbasalt">
                                 <property name="valign">center</property>
