@@ -59,7 +59,7 @@
                     <object class="AdwActionRow" id="row_nvapi">
                         <property name="activatable-widget">switch_nvapi</property>
                         <property name="title" translatable="yes">Deep Learning Super Sampling</property>
-                        <property name="subtitle" translatable="yes">Use Deep learning super sampling (DLSS) to increase performance at the cost of visuals. Only works on newer NVIDIA GPUs.</property>
+                        <property name="subtitle" translatable="yes">Use Deep learning super sampling (DLSS) to increase performance at the expense of visuals. Only works on newer NVIDIA GPUs.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_nvapibool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -78,7 +78,7 @@
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_fsr</property>
                         <property name="title" translatable="yes">FidelityFX Super Resolution</property>
-                        <property name="subtitle" translatable="yes">Use FidelityFX super resolution (FSR) to increase performance at the cost of visuals. Only works on Vulkan.</property>
+                        <property name="subtitle" translatable="yes">Use FidelityFX super resolution (FSR) to increase performance at the expense of visuals. Only works on Vulkan.</property>
                         <child>
                             <object class="GtkComboBoxText" id="combo_fsr">
                                 <!-- TODO: replace with ComboRow -->
@@ -106,7 +106,7 @@
                     <object class="AdwActionRow" id="row_latencyflex">
                         <property name="activatable-widget">switch_latencyflex</property>
                         <property name="title" translatable="yes">Reduce Latency</property>
-                        <property name="subtitle" translatable="yes">Can be detected by some Anti-cheats.</property>
+                        <property name="subtitle" translatable="yes">Decrease latency when the system is GPU bound. Can be detected by some anti-cheat software.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_latencyflexbool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -126,7 +126,7 @@
                     <object class="AdwActionRow" id="row_discrete">
                         <property name="activatable-widget">switch_discrete</property>
                         <property name="title" translatable="yes">Discrete Graphics</property>
-                        <property name="subtitle" translatable="yes">Use the discrete graphics card to increase performance at the cost of power usage.</property>
+                        <property name="subtitle" translatable="yes">Use the discrete graphics card to increase performance at the expense of power consumption.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_discrete">
                                 <property name="valign">center</property>
@@ -137,8 +137,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_vkbasalt">
                         <property name="activatable-widget">switch_vkbasalt</property>
-                        <property name="title" translatable="yes">Vulkan Post-Processing Layer</property>
-                        <property name="subtitle" translatable="yes">Enhance sharpness, shader and more on Vulkan.</property>
+                        <property name="title" translatable="yes">Post-Processing Layer</property>
+                        <property name="subtitle" translatable="yes">Enhance sharpness, shaders and more. Only works on Vulkan.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_vkbasalt">
                                 <property name="valign">center</property>
@@ -153,7 +153,7 @@
                             <object class="AdwActionRow">
                                 <property name="activatable-widget">switch_virt_desktop</property>
                                 <property name="title" translatable="yes">Virtual Desktop</property>
-                                <property name="subtitle" translatable="yes">Create a virtual space to place windows inside. Recommended when the application in use doesn't work as intended.</property>
+                                <property name="subtitle" translatable="yes">Create a virtual space to place windows inside. Recommended when the application doesn't work as intended.</property>
                                 <child>
                                     <!-- TODO: replace with ComboRow -->
                                     <object class="GtkComboBoxText" id="combo_virt_res">
