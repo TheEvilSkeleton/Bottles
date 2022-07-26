@@ -58,8 +58,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_nvapi">
                         <property name="activatable-widget">switch_nvapi</property>
-                        <property name="title" translatable="yes">DLSS</property>
-                        <property name="subtitle" translatable="yes">Provide DLSS support if available and NVIDIA's NVAPI.</property>
+                        <property name="title" translatable="yes">Deep Learning Super Sampling</property>
+                        <property name="subtitle" translatable="yes">Use Deep learning super sampling (DLSS) to increase performance at the cost of visuals. Only works on newer NVIDIA GPUs.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_nvapibool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -77,8 +77,8 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_fsr</property>
-                        <property name="title" translatable="yes">FSR</property>
-                        <property name="subtitle" translatable="yes">Increase performance at the cost of visuals. Only works on Vulkan.</property>
+                        <property name="title" translatable="yes">FidelityFX Super Resolution</property>
+                        <property name="subtitle" translatable="yes">Use FidelityFX super resolution (FSR) to increase performance at the cost of visuals. Only works on Vulkan.</property>
                         <child>
                             <object class="GtkComboBoxText" id="combo_fsr">
                                 <!-- TODO: replace with ComboRow -->
