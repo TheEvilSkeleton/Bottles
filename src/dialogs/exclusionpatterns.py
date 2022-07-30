@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import re
 from gi.repository import Gtk, GLib, Adw
@@ -42,7 +43,7 @@ class ExclusionPatternEntry(Adw.ActionRow):
         # connect signals
         self.btn_remove.connect("clicked", self.__remove)
 
-    def __remove(self, *args):
+    def __remove(self, *_args):
         """
         Remove the env var from the bottle configuration and
         destroy the widget
@@ -82,7 +83,7 @@ class ExclusionPatternsDialog(Adw.Window):
         # connect signals
         self.entry_name.connect("apply", self.__save_var)
 
-    def __save_var(self, *args):
+    def __save_var(self, *_args):
         """
         This function save the new env var to the
         bottle configuration

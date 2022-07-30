@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import webbrowser
@@ -26,6 +27,7 @@ from bottles.dialogs.generic import MessageDialog
 
 from bottles.backend.globals import user_apps_dir
 from bottles.backend.managers.library import LibraryManager
+from bottles.backend.managers.steam import SteamManager
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
@@ -178,40 +180,7 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
         def _run():
-            dxvk = self.config["Parameters"]["dxvk"]
-            vkd3d = self.config["Parameters"]["vkd3d"]
-            nvapi = self.config["Parameters"]["dxvk_nvapi"]
-            fsr = self.config["Parameters"]["fsr"]
-            pulse_latency = self.config["Parameters"]["pulseaudio_latency"]
-            virt_desktop = self.config["Parameters"]["virtual_desktop"]
-
-            if self.program.get("dxvk") != dxvk:
-                dxvk = self.program.get("dxvk")
-            if self.program.get("vkd3d") != vkd3d:
-                vkd3d = self.program.get("vkd3d")
-            if self.program.get("dxvk_nvapi") != nvapi:
-                nvapi = self.program.get("dxvk_nvapi")
-            if self.program.get("fsr") != fsr:
-                fsr = self.program.get("fsr")
-            if self.program.get("pulseaudio_latency") != pulse_latency:
-                pulse_latency = self.program.get("pulseaudio_latency")
-            if self.program.get("virtual_desktop") != virt_desktop:
-                virt_desktop = self.program.get("virtual_desktop")
-
-            WineExecutor(
-                self.config,
-                exec_path=self.program["path"],
-                args=self.program["arguments"],
-                cwd=self.program["folder"],
-                post_script=self.program.get("script", None),
-                terminal=with_terminal,
-                override_dxvk=dxvk,
-                override_vkd3d=vkd3d,
-                override_nvapi=nvapi,
-                override_fsr=fsr,
-                override_pulse_latency=pulse_latency,
-                override_virt_desktop=virt_desktop
-            ).run()
+            WineExecutor.run_program(self.config, self.program, with_terminal)
             self.pop_actions.popdown()  # workaround #1640
             return True
 
@@ -316,22 +285,29 @@ class ProgramEntry(Adw.ActionRow):
         )
 
     def add_to_library(self, widget):
-        LibraryManager().add_to_library({
-            "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
-            "name": self.program["name"],
-            "id": str(self.program["id"]),
-            "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
-        }, self.config)
-        self.window.update_library()
-        self.window.show_toast(_("'{0}' added to your library").format(self.program["name"]))
+        def update(result, error=False):
+            self.window.update_library()
+            self.window.show_toast(_("'{0}' added to your library").format(self.program["name"]))
+
+        def add_to_library():
+            library_manager = LibraryManager()
+            library_manager.add_to_library({
+                "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
+                "name": self.program["name"],
+                "id": str(self.program["id"]),
+                "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
+            }, self.config)
+
+        RunAsync(add_to_library, update)
 
     def add_to_steam(self, widget):
         def update(result, error=False):
             if result.status:
                 self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
 
+        steam_manager = SteamManager(self.config)
         RunAsync(
-            self.manager.steam_manager.add_shortcut,
+            steam_manager.add_shortcut,
             update,
             self.program["name"],
             self.program["path"]

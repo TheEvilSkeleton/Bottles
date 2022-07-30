@@ -13,9 +13,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import logging
 import os
+import math
+from PIL import Image
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
@@ -42,6 +45,7 @@ class LibraryEntry(Gtk.Box):
     label_no_cover = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
     img_icon = Gtk.Template.Child()
+    btn_menu = Gtk.Template.Child()
 
     # endregion
 
@@ -53,7 +57,7 @@ class LibraryEntry(Gtk.Box):
         self.entry = entry
         self.config = self.__get_config()
         self.program = self.__get_program()
-
+        self.set_size_request(240, 420)
         self.label_name.set_text(entry['name'])
         self.label_bottle.set_text(entry['bottle']['name'])
 
@@ -72,11 +76,13 @@ class LibraryEntry(Gtk.Box):
 
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
-            # self.img_cover.set_filename(path)
-            self.img_cover.set_from_pixbuf(pixbuf)
+            #texture = Gdk.Texture.new_from_filename(path)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
+            self.img_cover.set_pixbuf(pixbuf)
+            #self.img_cover.set_paintable(texture)
             self.img_cover.set_visible(True)
             self.label_no_cover.set_visible(False)
+            self.__calculate_button_color(path=path)
 
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
@@ -145,17 +151,22 @@ class LibraryEntry(Gtk.Box):
     def __remove_entry(self, widget):
         self.library.remove_entry(self.uuid)
 
-    def run_executable(self, widget, with_terminal=False):
-        executor = WineExecutor(
-            self.config,
-            exec_path=self.program["path"],
-            args=self.program["arguments"],
-            cwd=self.program["folder"],
-            post_script=self.program.get("script", None),
-            terminal=with_terminal
-        )
-        RunAsync(executor.run, callback=self.__reset_buttons)
+    def __calculate_button_color(self, path):
+        image = Image.open(path)
+        image = image.crop((0, 0, 47, 58))
+        image.thumbnail((150, 150))
+        palette = image.convert('P', palette=Image.ADAPTIVE, colors=1).getpalette()
+        rgb = (255-palette[0], 255-palette[1], 255-palette[2])
+        button_color = math.floor(0.299*rgb[0])+math.floor(0.587*rgb[1])+math.floor(0.144*rgb[2])
+        self.library.add_css_entry(entry=self, color=button_color)
 
+    def run_executable(self, widget, with_terminal=False):
+        RunAsync(
+            WineExecutor.run_program, 
+            callback=self.__reset_buttons, 
+            config=self.config, 
+            program=self.program
+        )
         self.__reset_buttons()
 
     def run_steam(self, widget):

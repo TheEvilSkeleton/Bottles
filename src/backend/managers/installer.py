@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import subprocess
@@ -23,7 +24,7 @@ import urllib.request
 from typing import Union, NewType
 from functools import lru_cache
 from datetime import datetime
-from gi.repository import Gtk, GLib
+from gi.repository import GLib
 
 try:
     from bottles.operation import OperationManager  # pyright: reportMissingImports=false

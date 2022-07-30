@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import uuid
@@ -67,9 +68,8 @@ class LibraryManager:
         _uuid = str(uuid.uuid4())
         logging.info(f'Adding new entry to library: {_uuid}')
 
-        if not data.get("thumbnail") and os.environ.get("SGDB_KEY"):
-            sgdb = SteamGridDBManager(os.environ.get("SGDB_KEY"))
-            data['thumbnail'] = sgdb.get_game_grid(data['name'], config)
+        if not data.get("thumbnail"):
+            data['thumbnail'] = SteamGridDBManager.get_game_grid(data['name'], config)
 
         self.__library[_uuid] = data
         self.save_library()

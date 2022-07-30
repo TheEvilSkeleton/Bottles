@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import re
 import time
@@ -51,7 +52,7 @@ class DuplicateDialog(Adw.Window):
         # connect signals
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
 
-    def __check_entry_name(self, *args):
+    def __check_entry_name(self, *_args):
         result = GtkUtils.validate_entry(self.entry_name)
         self.btn_duplicate.set_sensitive(result)
 
