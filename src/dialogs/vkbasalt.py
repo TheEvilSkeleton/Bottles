@@ -251,7 +251,12 @@ class VkBasaltDialog(Adw.Window):
         self.expander_smaa.set_sensitive(not state)
         self.action_clut.set_sensitive(not state)
         if state is False:
-            if self.expander_cas.get_enable_expansion() is False and self.expander_dls.get_enable_expansion() is False and self.expander_fxaa.get_enable_expansion() is False and self.expander_smaa.get_enable_expansion() is False and self.btn_lut_file_path is False:
+            if self.expander_cas.get_enable_expansion() is False \
+                and self.expander_dls.get_enable_expansion() is False\
+                and self.expander_fxaa.get_enable_expansion() is False\
+                and self.expander_smaa.get_enable_expansion() is False\
+                and self.btn_lut_file_path is False:
+
                 self.btn_save.set_sensitive(False)
         else:
             self.btn_save.set_sensitive(True)
