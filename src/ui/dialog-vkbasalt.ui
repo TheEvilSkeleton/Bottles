@@ -26,16 +26,11 @@
           <object class="AdwHeaderBar">
             <property name="show-start-title-buttons">False</property>
             <property name="show-end-title-buttons">False</property>
-            <child type="start">
-              <object class="GtkBox">
-                <property name="spacing">6</property>
-                <child>
-                  <object class="GtkButton" id="btn_cancel">
-                    <property name="label" translatable="yes">_Cancel</property>
-                    <property name="use_underline">True</property>
-                    <property name="action_name">window.close</property>
-                  </object>
-                </child>
+            <child>
+              <object class="GtkButton" id="btn_cancel">
+                <property name="label" translatable="yes">_Cancel</property>
+                <property name="use_underline">True</property>
+                <property name="action_name">window.close</property>
               </object>
             </child>
             <child type="end">
