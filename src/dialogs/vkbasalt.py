@@ -300,10 +300,16 @@ class VkBasaltDialog(Adw.Window):
                                 self.btn_lut_file_path = False
 
                         if " " in self.btn_lut_file_path:
-                            error_dialog(_("Spaces in File Name"), _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces."))
+                            error_dialog(
+                                _("Spaces in File Name"),
+                                _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
+                                )
                             set_lut_file_path()
                         elif width != height:
-                            error_dialog(_("Invalid Image Dimension"), _("The height and width of the image must be equal."))
+                            error_dialog(
+                                _("Invalid Image Dimension"),
+                                _("The height and width of the image must be equal.")
+                                )
                             set_lut_file_path()
                         else:
                             self.action_clut.set_subtitle(self.btn_lut_file_path)
@@ -312,7 +318,10 @@ class VkBasaltDialog(Adw.Window):
                         self.__check_state()
 
                     except GLib.Error:
-                        error_dialog(_("File not Found"), _("The given file does not exist. Please choose an appropriate file."))
+                        error_dialog(
+                            _("File not Found"),
+                            _("The given file does not exist. Please choose an appropriate file.")
+                            )
 
         FileChooser(
             parent=self.window,
