@@ -30,7 +30,7 @@ def parse(args, *arguments):
             "/usr/local",
             "/usr/share/vkBasalt",
         ]
-        for index, item in enumerate(install_paths):
+        for item in install_paths:
             file_path = path.join(item, "vkBasalt.conf")
             if path.isfile(file_path):
                 if args.output:
