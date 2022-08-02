@@ -251,8 +251,9 @@ class WineCommand:
 
         # vkBasalt environment variables
         if params["vkbasalt"] and not self.minimal:
-            if os.path.isfile(os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf")):
-                env.add("VKBASALT_CONFIG_FILE", os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf"))
+            vkbasalt_conf_path = os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf")
+            if os.path.isfile(vkbasalt_conf_path):
+                env.add("VKBASALT_CONFIG_FILE", vkbasalt_conf_path)
             env.add("ENABLE_VKBASALT", "1")
 
         # OBS Vulkan Capture environment variables
