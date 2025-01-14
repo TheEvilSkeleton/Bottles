@@ -35,7 +35,7 @@ from bottles.frontend.details_task_manager_view import DetailsTaskManagerView
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-view.ui")
-class BottleDetailsView(Adw.Bin):
+class BottleDetailsView(Adw.NavigationPage):
     """
     This class is the starting point for all the pages concerning the
     bottle (details, preferences, dependencies ..).
@@ -53,8 +53,6 @@ class BottleDetailsView(Adw.Bin):
     default_actions = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     content_title = Gtk.Template.Child()
-    btn_back = Gtk.Template.Child()
-    btn_back_sidebar = Gtk.Template.Child()
     btn_operations = Gtk.Template.Child()
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
@@ -82,8 +80,6 @@ class BottleDetailsView(Adw.Bin):
         self.view_versioning = DetailsVersioningPage(self, config)
         self.view_taskmanager = DetailsTaskManagerView(self, config)
 
-        self.btn_back.connect("clicked", self.go_back)
-        self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
         self.window.main_leaf.connect("notify::visible-child", self.unload_view)
         self.default_actions.append(self.view_bottle.actions)
 
@@ -108,7 +104,6 @@ class BottleDetailsView(Adw.Bin):
         folded = widget.get_folded()
         self.sidebar_headerbar.set_show_end_title_buttons(folded)
         self.content_headerbar.set_show_start_title_buttons(folded)
-        self.btn_back_sidebar.set_visible(folded)
 
     def __on_page_change(self, *_args):
         """
@@ -187,7 +182,7 @@ class BottleDetailsView(Adw.Bin):
         if widget:
             self.box_actions.append(widget)
 
-    def set_config(self, config: BottleConfig, rebuild_pages=True):
+    def set_config(self, config: BottleConfig):
         """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions
@@ -202,9 +197,6 @@ class BottleDetailsView(Adw.Bin):
         self.view_taskmanager.set_config(config=config)
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
-
-        if rebuild_pages:
-            self.build_pages()
 
     def __on_operations_toggled(self, widget):
         if not self.list_tasks.get_first_child():
@@ -221,22 +213,17 @@ class BottleDetailsView(Adw.Bin):
     def go_back(self, _widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
 
-    def go_back_sidebar(self, *_args):
-        self.leaflet.navigate(Adw.NavigationDirection.BACK)
-
     def unload_view(self, *_args):
         while self.stack_bottle.get_first_child():
             self.stack_bottle.remove(self.stack_bottle.get_first_child())
 
     @GtkUtils.run_in_main_loop
     def lock_back(self):
-        self.btn_back.set_sensitive(False)
-        self.btn_back.set_tooltip_text(_("Operations in progress, please wait."))
+        ...
 
     @GtkUtils.run_in_main_loop
     def unlock_back(self):
-        self.btn_back.set_sensitive(True)
-        self.btn_back.set_tooltip_text(_("Return to your bottles."))
+        ...
 
     def update_runner_label(self, runner: str):
         self.view_bottle.label_runner.set_text(runner)
